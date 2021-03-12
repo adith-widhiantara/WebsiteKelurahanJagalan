@@ -1,0 +1,7 @@
+Fitur
+1. administrasi surat,
+2. pengaduan warga,
+3. penyiaran berita,
+4. pengajuan nomor antrian,
+5. pendataan warga, dan
+6. pengaturan akun.

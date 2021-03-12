@@ -1,59 +1,60 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('base.base')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@php
+$title = "Daftar";
+@endphp
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+@section('title')
+{{ $title }}
+@endsection
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+@section('base')
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(assets/img/hero/hero2.png);">
+                <span class="login100-form-title-1">
+                    @php
+                    echo $title
+                    @endphp
+                </span>
             </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+            <form class="login100-form validate-form">
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">Username</span>
+                    <input class="input100" type="text" name="username" placeholder="Enter username">
+                    <span class="focus-input100"></span>
+                </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" name="pass" placeholder="Enter password">
+                    <span class="focus-input100"></span>
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <div class="flex-sb-m w-full p-b-30">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
+                    <div>
+                        <a href="#" class="txt1">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
