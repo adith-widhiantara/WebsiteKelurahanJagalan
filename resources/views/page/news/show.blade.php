@@ -1,31 +1,32 @@
 @extends('base.base')
 
-@php
-$title = "Berita Terbaru";
-@endphp
-
 @section('title')
-{{ $title }}
+{{ $news->title }}
 @endsection
 
 @section('base')
-{{-- slider area --}}
-@include('page.news.part.index.slider', ['title' => $title])
-{{-- end slider area --}}
+{{-- slider --}}
+@include('page.news.part.show.slider')
+{{-- end slider --}}
 
-<section class="blog_area section-padding">
+{{-- main --}}
+<section class="blog_area single-post-area section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mb-5 mb-lg-0">
-                <div class="blog_left_sidebar">
-                    {{-- news-card area --}}
-                    @each('page.news.part.index.news-card', $allNews, 'news', 'page.news.part.index.news-card-empty')
-                    {{-- end news-card area --}}
+            <div class="col-lg-8 posts-list">
+                @include('page.news.part.show.main')
 
-                    @include('page.news.part.index.pagination')
+                <div class="navigation-top">
+                    {{-- sosial media --}}
+                    @include('page.news.part.show.social-media')
+                    {{-- end sosial media --}}
+
+                    {{-- next-prev-post --}}
+                    @include('page.news.part.show.next-prev-post')
+                    {{-- end next-prev-post --}}
                 </div>
-            </div>
 
+            </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
                     {{-- search bar --}}
@@ -44,4 +45,5 @@ $title = "Berita Terbaru";
         </div>
     </div>
 </section>
+{{-- end main --}}
 @endsection

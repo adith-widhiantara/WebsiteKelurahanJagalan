@@ -5,3 +5,9 @@ Fitur
 4. pengajuan nomor antrian,
 5. pendataan warga, dan
 6. pengaturan akun.
+
+Role
+1. Admin
+2. Pengurus Desa
+3. Warga
+4. Umum

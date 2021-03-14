@@ -1,9 +1,10 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\News;
 
-use App\Models\News;
+use App\Models\News\Category;
 use App\Models\User;
+use App\Models\News\News;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,10 +24,12 @@ class NewsFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->sentence($nbWords = 6, $variableNbWords = true);
         return [
             'user_id' => User::factory(),
-            'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
-            'slug' => Str::of($this->faker->sentence($nbWords = 6, $variableNbWords = true))->slug('-'),
+            'category_id' => Category::factory(),
+            'title' => $title,
+            'slug' => Str::of($title)->slug('-'),
             'photo' => 'https://placeimg.com/640/480/any',
             'description' => $this->faker->text($maxNbChars = 100)
         ];

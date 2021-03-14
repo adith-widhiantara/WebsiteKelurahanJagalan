@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\News\NewsController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\News\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,25 @@ use App\Http\Controllers\LandingController;
 
 Route::get('/', LandingController::class)->name('landing');
 
+// User
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('{user}', [UserController::class, 'show'])->name('show');
+});
+// end User
+
+// News
 Route::prefix('news')->name('news.')->group(function () {
     Route::get('', [NewsController::class, 'index'])->name('index');
+    Route::get('{news:slug}', [NewsController::class, 'show'])->name('show');
 });
+// end News
 
+// category
+Route::prefix('categories')->name('category.')->group(function () {
+    Route::get('{category:slug}', [CategoryController::class, 'show'])->name('show');
+});
+// end category
+
+// auth
 require __DIR__ . '/auth.php';
+// end auth

@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\News;
 
+use App\Models\News\News;
 use Illuminate\Http\Request;
 
-use App\Models\News;
+use App\Models\News\Category;
+use App\Http\Controllers\Controller;
 
 class NewsController extends Controller
 {
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,12 +22,13 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $allNews = News::paginate(12);
+        $allNews = News::paginate(6);
         $recentNews = News::orderBy('id', 'desc')
             ->take(4)
             ->get();
+        $categoryList = Category::all();
 
-        return view('page.news.index', compact('allNews', 'recentNews'));
+        return view('page.news.index', compact('allNews', 'recentNews', 'categoryList'));
     }
 
     /**
@@ -50,9 +58,14 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
-        //
+        $recentNews = News::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+        $categoryList = Category::all();
+
+        return view('page.news.show', compact('news', 'categoryList', 'recentNews'));
     }
 
     /**

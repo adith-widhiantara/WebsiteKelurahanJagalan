@@ -1,7 +1,7 @@
 <article class="blog_item">
     <div class="blog_item_img">
         <img class="card-img rounded-0" src="assets/img/blog/{{ $image }}" alt="">
-        <a href="#" class="blog_item_date">
+        <a href="{{ $routeDetail }}" class="blog_item_date">
             <h3>{{ $dateDay }}</h3>
             <p>{{ $dateMonth }}</p>
         </a>
@@ -14,8 +14,8 @@
         </a>
         <p>{{ $description }}</p>
         <ul class="blog-info-link">
-            <li><a href="#"><i class="fa fa-user"></i> {{ $author }}</a></li>
-            <li><a href="#"><i class="fa fa-tags"></i> {{ $tags }}</a></li>
+            <li><a href="{{ $routeAuthor }}"><i class="fa fa-user"></i> {{ $author }}</a></li>
+            <li><a href="{{ $routeCategory }}"><i class="fa fa-tags"></i> {{ $category }}</a></li>
         </ul>
     </div>
 </article>

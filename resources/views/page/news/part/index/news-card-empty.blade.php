@@ -1,0 +1,1 @@
+<h1>Berita Kosong</h1>
