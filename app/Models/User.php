@@ -19,9 +19,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        'nama',
+        'nomor_ktp',
         'password',
+        'nomor_telepon',
     ];
 
     /**
@@ -40,7 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'nomor_ktp_verified_at' => 'datetime',
     ];
 
     public function news()

@@ -25,8 +25,38 @@
                                                     <li><a href="elements.html">Element</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('login') }}">Masuk</a>
+                                            @guest
+                                            <li>
+                                                <a href="{{ route('login') }}">
+                                                    Masuk
+                                                </a>
                                             </li>
+                                            @endguest
+
+                                            @auth
+                                            @role('admin')
+                                            <li>
+                                                <a href="#">Admin</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{{ route('admin.index') }}">Lihat Panel</a></li>
+                                                    <li>
+                                                        <a href="#"
+                                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                            Keluar
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="#">Profil Saya</a>
+                                            </li>
+                                            @endrole
+                                            <form style="display: none" action="{{ route('logout') }}" method="post"
+                                                id="logout-form">
+                                                @csrf
+                                            </form>
+                                            @endauth
                                         </ul>
                                     </nav>
                                 </div>

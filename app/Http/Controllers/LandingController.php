@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News\News;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -14,6 +15,10 @@ class LandingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('page.landing.index');
+        $recentNews = News::orderBy('id', 'desc')
+            ->take(2)
+            ->get();
+
+        return view('page.landing.index', compact('recentNews'));
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\News\CategoryController;
 
 /*
@@ -39,6 +40,12 @@ Route::prefix('categories')->name('category.')->group(function () {
     Route::get('{category:slug}', [CategoryController::class, 'show'])->name('show');
 });
 // end category
+
+// admin
+Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('', [AdminController::class, 'index'])->name('index');
+});
+// end admin
 
 // auth
 require __DIR__ . '/auth.php';
