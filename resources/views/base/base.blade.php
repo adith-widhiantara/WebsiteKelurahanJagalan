@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/dist/sweetalert2.min.css') }}">
+
     @if (url()->current() == route('login'))
     <link rel="stylesheet" href="{{ asset('vendor/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
@@ -99,9 +101,31 @@
     <script src="{{ asset('assets/js/mail-script.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
 
+    {{-- Sweetalert2 --}}
+    <script src="{{ asset('assets/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+
     <!-- Jquery Plugins, main Jquery -->
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script>
+        $(function() {
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            @if( session('login') )
+            Toast.fire({
+                icon: 'success',
+                title: 'Selamat datang, {{ Auth::user()->nama }}!'
+            });
+            @endif
+        });
+    </script>
 
 </body>
 

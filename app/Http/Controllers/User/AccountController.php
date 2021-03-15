@@ -15,7 +15,7 @@ class AccountController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('landing');
+            return redirect()->route('landing')->with('login', 'Selamat Datang!');
         }
 
         $checkNomorKTP = User::where('nomor_ktp', $request->nomor_ktp)->first();
