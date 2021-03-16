@@ -1,5 +1,5 @@
 Fitur
-1. administrasi surat,
+1. administrasi surat (permintaan surat),
 2. pengaduan warga,
 3. penyiaran berita,
 4. pengajuan nomor antrian,

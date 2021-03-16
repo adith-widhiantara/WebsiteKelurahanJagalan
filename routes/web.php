@@ -7,6 +7,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\News\CategoryController;
 
 /*
@@ -42,8 +43,40 @@ Route::prefix('categories')->name('category.')->group(function () {
 // end category
 
 // admin
-Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('', [AdminController::class, 'index'])->name('index');
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    // landing
+    Route::middleware('role:admin|petugas')->group(function () {
+        Route::get('', [AdminController::class, 'index'])->name('index');
+    });
+    // end landing
+
+    // news
+    Route::prefix('news')->name('news.')->group(function () {
+        Route::middleware('role:admin|petugas')->group(function () {
+            // index
+            Route::get('warga', [AdminNewsController::class, 'indexWarga'])->name('warga');
+            Route::get('kelurahan', [AdminNewsController::class, 'indexKelurahan'])->name('kelurahan');
+
+            // create
+            Route::get('create', [AdminNewsController::class, 'createNews'])->name('create');
+
+            // store
+            Route::post('create', [AdminNewsController::class, 'storeNews'])->name('store');
+
+            // show
+            Route::get('{news:slug}', [AdminNewsController::class, 'showNews'])->name('show');
+        });
+    });
+    // end news
+
+    // news category
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::middleware('role:admin|petugas')->group(function () {
+            Route::get('', [AdminNewsController::class, 'indexCategory'])->name('index');
+            Route::get('{category:slug}', [AdminNewsController::class, 'showCategory'])->name('show');
+        });
+    });
+    // end news category
 });
 // end admin
 

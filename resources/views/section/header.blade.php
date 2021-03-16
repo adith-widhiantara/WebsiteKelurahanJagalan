@@ -34,7 +34,7 @@
                                             @endguest
 
                                             @auth
-                                            @role('admin')
+                                            @role('admin|petugas')
                                             <li>
                                                 <a href="#">Admin</a>
                                                 <ul class="submenu">

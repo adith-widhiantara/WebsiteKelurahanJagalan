@@ -13,10 +13,12 @@ class News extends Model
 
     protected $fillable = [
         'user_id',
+        'category_id',
         'title',
         'slug',
         'photo',
-        'description'
+        'description',
+        'role'
     ];
 
     public function user()

@@ -31,7 +31,8 @@ class NewsFactory extends Factory
             'title' => $title,
             'slug' => Str::of($title)->slug('-'),
             'photo' => 'https://placeimg.com/640/480/any',
-            'description' => $this->faker->text($maxNbChars = 100)
+            'description' => $this->faker->text($maxNbChars = 100),
+            'role' => 0
         ];
     }
 }
