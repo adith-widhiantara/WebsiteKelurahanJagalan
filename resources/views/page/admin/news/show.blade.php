@@ -1,7 +1,7 @@
 @extends('base.admin')
 
 @section('title')
-Buat Berita
+{{ $news -> title }}
 @endsection
 
 @section('style')
@@ -14,7 +14,7 @@ Buat Berita
 @endsection
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('admin.news.create') }}
+{{ Breadcrumbs::render('admin.news.show', $news) }}
 @endsection
 
 @section('base')
@@ -23,11 +23,12 @@ Buat Berita
         <div class="card card-outline card-info">
             <div class="card-header">
                 <h3 class="card-title">
-                    Buat Berita
+                    Ubah Berita
                 </h3>
             </div>
-            <form action="{{ route('admin.news.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.news.put', $news->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="card-body">
 
                     @if ($errors->any())
@@ -39,9 +40,14 @@ Buat Berita
                     @endif
 
                     <div class="form-group">
+                        <label for="title">Sampul Berita</label>
+                        <img src="{{ asset('image/news/'.$news->photo) }}" alt="" class="img-fluid">
+                    </div>
+
+                    <div class="form-group">
                         <label for="title">Judul Berita</label>
                         <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="title"
-                            value="{{ old('title') }}">
+                            value="{{ $news->title }}">
                     </div>
 
                     <div class="form-group">
@@ -55,6 +61,9 @@ Buat Berita
                                 <span class="input-group-text">Upload</span>
                             </div>
                         </div>
+                        <small id="emailHelp" class="form-text text-muted">
+                            Harap upload foto sampul berita kembali
+                        </small>
                     </div>
 
                     <div class="form-group">
@@ -62,7 +71,7 @@ Buat Berita
                         <select class="form-control select2" name="category_id">
                             <option value="">...</option>
                             @foreach (\App\Models\News\Category::all() as $cat)
-                            <option @if ( old('category_id')==$cat->id ) selected="selected" @endif
+                            <option @if ( $news->category_id == $cat->id ) selected="selected" @endif
                                 value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach
                         </select>
@@ -70,15 +79,40 @@ Buat Berita
 
                     <div class="form-group">
                         <label>Deskripsi Berita</label>
-                        <textarea id="summernote" name="description">{{ old('description') }}</textarea>
+                        <textarea id="summernote" name="description">{{ $news->description }}</textarea>
                     </div>
                 </div>
                 <div class="card-footer">
+                    @if ($news->show == 1)
+                    <a href="#" class="btn btn-danger btn-xs"
+                        onclick="event.preventDefault(); document.getElementById('hide-form').submit();">
+                        Sembunyikan<br>Berita
+                    </a>
+                    @elseif($news->show == 0)
+                    <a href="#" class="btn btn-success btn-xs"
+                        onclick="event.preventDefault(); document.getElementById('show-form').submit();">
+                        Tampilkan<br>Berita
+                    </a>
+                    @endif
                     <button type="submit" class="btn btn-primary float-right">
                         Simpan
                     </button>
                 </div>
             </form>
+
+            @if ($news->show == 1)
+            <form style="display: none" action="{{ route('admin.news.hide', $news->slug) }}" method="post"
+                id="hide-form">
+                @csrf
+                @method('put')
+            </form>
+            @elseif($news->show == 0)
+            <form style="display: none" action="{{ route('admin.news.showPut', $news->slug) }}" method="post"
+                id="show-form">
+                @csrf
+                @method('put')
+            </form>
+            @endif
         </div>
     </div>
 </div>

@@ -7,28 +7,27 @@ Breadcrumbs::for('admin.index', function ($trail) {
     $trail->push('Panel Website', route('admin.index'));
 });
 
-// News index.warga
-Breadcrumbs::for('admin.news.warga', function ($trail) {
+Breadcrumbs::for('admin.news.index', function ($trail) {
     $trail->parent('admin.index');
-    $trail->push('Daftar Berita Warga', route('admin.news.warga'));
+    $trail->push('Daftar Berita', route('admin.news.index'));
 });
 
-// News index.kelurahan
-Breadcrumbs::for('admin.news.kelurahan', function ($trail) {
-    $trail->parent('admin.index');
-    $trail->push('Daftar Berita Kelurahan', route('admin.news.kelurahan'));
-});
-
-// Category index
-Breadcrumbs::for('admin.category.index', function ($trail) {
-    $trail->parent('admin.index');
-    $trail->push('Daftar Kategory Berita', route('admin.category.index'));
+// News show.warga
+Breadcrumbs::for('admin.news.show', function ($trail, $news) {
+    $trail->parent('admin.news.index');
+    $trail->push($news->title, route('admin.news.show', $news->slug));
 });
 
 // news create
 Breadcrumbs::for('admin.news.create', function ($trail) {
     $trail->parent('admin.index');
     $trail->push('Buat Berita', route('admin.news.create'));
+});
+
+// Category index
+Breadcrumbs::for('admin.category.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Kategory Berita', route('admin.category.index'));
 });
 
 // category show

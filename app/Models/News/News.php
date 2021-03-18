@@ -18,7 +18,8 @@ class News extends Model
         'slug',
         'photo',
         'description',
-        'role'
+        'role',
+        'show',
     ];
 
     public function user()

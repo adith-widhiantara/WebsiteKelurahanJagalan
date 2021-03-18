@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
     <title>@yield('title') | Kelurahan Jagalan</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -96,28 +97,28 @@
             @if( session('success') )
             Toast.fire({
                 icon: 'success',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                title: '{{ session('success') }}'
             });
             @endif
             
             @if( session('info') )
             Toast.fire({
                 icon: 'info',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                title: '{{ session('info') }}'
             });
             @endif
             
             @if( session('error') )
             Toast.fire({
                 icon: 'error',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                title: '{{ session('error') }}'
             });
             @endif
             
             @if( session('warning') )
             Toast.fire({
                 icon: 'warning',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                title: '{{ session('warning') }}'
             });
             @endif
             

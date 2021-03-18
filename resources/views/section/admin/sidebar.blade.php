@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('admin.index') }}" class="brand-link">
         <img src="{{ asset('lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Kelurahan Jagalan</span>
@@ -98,10 +98,10 @@
                 </li>
 
                 @php
-                $newsActive = url()->current() == route('admin.news.warga') ||
-                url()->current() == route('admin.news.kelurahan') ||
+                $newsActive =
                 url()->current() == route('admin.category.index') ||
-                url()->current() == route('admin.news.create');
+                url()->current() == route('admin.news.create') ||
+                url()->current() == route('admin.news.index');
                 @endphp
 
                 {{-- News --}}
@@ -141,28 +141,15 @@
                             @endif
                         </li>
                         <li class="nav-item">
-                            @if ( url()->current() == route('admin.news.warga') )
+                            @if ( url()->current() == route('admin.news.index') )
                             <a href="#" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Berita Warga</p>
+                                <p>Lihat Berita</p>
                             </a>
                             @else
-                            <a href="{{ route('admin.news.warga') }}" class="nav-link">
+                            <a href="{{ route('admin.news.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Berita Warga</p>
-                            </a>
-                            @endif
-                        </li>
-                        <li class="nav-item">
-                            @if ( url()->current() == route('admin.news.kelurahan') )
-                            <a href="#" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Berita Kelurahan</p>
-                            </a>
-                            @else
-                            <a href="{{ route('admin.news.kelurahan') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Berita Kelurahan</p>
+                                <p>Lihat Berita</p>
                             </a>
                             @endif
                         </li>

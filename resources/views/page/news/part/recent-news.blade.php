@@ -1,7 +1,7 @@
 <aside class="single_sidebar_widget popular_post_widget">
     <h3 class="widget_title" style="color: #2d2d2d;">Recent Post</h3>
 
-    @foreach ($recentNews as $news)
+    @foreach (\App\Models\News\News::where('show', 1)->latest()->take(4)->get() as $news)
     <div class="media post_item">
         <img src="{{ asset('assets/img/blog/single_blog_1.png') }}" alt="post"
             style="height: 80px; width: 80px; object-fit: cover">

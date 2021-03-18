@@ -22,8 +22,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $allNews = News::paginate(6);
-        $recentNews = News::orderBy('id', 'desc')
+        $allNews = News::where('show', 1)
+            ->latest()
+            ->paginate(6);
+        $recentNews = News::where('show', 1)
+            ->orderBy('id', 'desc')
             ->take(4)
             ->get();
         $categoryList = Category::all();
@@ -60,7 +63,12 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        $recentNews = News::orderBy('id', 'desc')
+        if ($news->show == 0) {
+            return view('page.news.404');
+        }
+
+        $recentNews = News::where('show', 1)
+            ->orderBy('id', 'desc')
             ->take(4)
             ->get();
         $categoryList = Category::all();

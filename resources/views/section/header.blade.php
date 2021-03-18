@@ -36,7 +36,18 @@
                                             @auth
                                             @role('admin|petugas')
                                             <li>
+                                                @role('admin')
                                                 <a href="#">Admin</a>
+                                                @endrole
+                                                @role('petugas')
+                                                <a href="#">Petugas</a>
+                                                @endrole
+                                                @php
+                                                $collectionOfRoles = ['admin', 'petugas'];
+                                                @endphp
+                                                @hasallroles($collectionOfRoles)
+                                                <a href="#">Warga</a>
+                                                @endhasallroles
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('admin.index') }}">Lihat Panel</a></li>
                                                     <li>

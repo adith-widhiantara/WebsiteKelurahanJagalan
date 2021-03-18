@@ -3665,11 +3665,8 @@ hr {
 .services-area.services-area2 {
   margin-top: 0;
 }
-.services-area .single-services {
-  display: flex;
-}
 .services-area .single-services.single-services2 {
-  background: #F3FFF2;
+  background: #f3fff2;
 }
 .services-area .single-services .features-img img {
   width: 100%;
@@ -3683,7 +3680,7 @@ hr {
   height: 290px;
 }
 .services-area .single-services .features-caption {
-  background: #F3FFF2;
+  background: #f3fff2;
   padding: 60px 40px;
   height: 460px;
 }
@@ -3754,7 +3751,7 @@ hr {
 .services-area .single-services .features-caption p {
   font-size: 18px;
   line-height: 1.5;
-  color: #285D25;
+  color: #285d25;
   margin-bottom: 30px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

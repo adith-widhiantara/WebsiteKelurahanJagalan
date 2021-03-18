@@ -15,7 +15,8 @@ class LandingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $recentNews = News::orderBy('id', 'desc')
+        $recentNews = News::where('show', 1)
+            ->orderBy('id', 'desc')
             ->take(2)
             ->get();
 

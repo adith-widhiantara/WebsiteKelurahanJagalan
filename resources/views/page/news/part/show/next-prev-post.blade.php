@@ -16,7 +16,7 @@ $prevPost = \App\Models\News\News::orderBy('id', 'desc')->first();
         <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
             <div class="thumb">
                 <a href="{{ route('news.show', $prevPost->slug) }}">
-                    <img src="{{ asset('assets/img/post/post_1.png') }}" alt=""
+                    <img src="{{ asset('image/news/'.$prevPost->photo) }}" alt=""
                         style="width: 60px; height: 60px; object-fit: cover">
                 </a>
             </div>
@@ -47,7 +47,7 @@ $prevPost = \App\Models\News\News::orderBy('id', 'desc')->first();
             </div>
             <div class="thumb">
                 <a href="{{ route('news.show', $nextPost->slug) }}">
-                    <img src="{{ asset('assets/img/post/post_1.png') }}" alt=""
+                    <img src="{{ asset('image/news/'.$nextPost->photo) }}" alt=""
                         style="width: 60px; height: 60px; object-fit: cover">
                 </a>
             </div>

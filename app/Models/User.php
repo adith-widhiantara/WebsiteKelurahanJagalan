@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\News;
+use App\Models\News\News;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

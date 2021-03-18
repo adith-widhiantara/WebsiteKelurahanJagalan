@@ -1,6 +1,6 @@
 <article class="blog_item">
     <div class="blog_item_img">
-        <img class="card-img rounded-0" src="assets/img/blog/{{ $image }}" alt="">
+        <img class="card-img rounded-0" src="{{ asset('image/news/'.$image) }}" alt="{{ $title }}">
         <a href="{{ $routeDetail }}" class="blog_item_date">
             <h3>{{ $dateDay }}</h3>
             <p>{{ $dateMonth }}</p>

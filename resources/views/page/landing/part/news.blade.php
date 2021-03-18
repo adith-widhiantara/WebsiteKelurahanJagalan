@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <div class="row ">
+        <div class="row">
             @foreach ($recentNews as $news)
             <div class="col-xl-12">
                 <div class="single-services single-services2 mb-30">
@@ -22,9 +22,9 @@
                                 <h3>
                                     <a href="{{ route('news.show', $news->slug) }}">{{ $news -> title }}</a>
                                 </h3>
-                                <p>
-                                    {{ $news -> description }}
-                                </p>
+                                <?= $news -> description ?>
+                                <div>
+                                </div>
                                 <a href="{{ route('news.show', $news->slug) }}" class="all-btn">Read More</a>
                             </div>
                         </div>

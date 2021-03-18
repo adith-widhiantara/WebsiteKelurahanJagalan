@@ -11,7 +11,7 @@ Daftar Berita kelurahan
 @endsection
 
 @section('breadcrumbs')
-{{ Breadcrumbs::render('admin.news.kelurahan') }}
+{{ Breadcrumbs::render('admin.news.index') }}
 @endsection
 
 @section('base')
@@ -19,7 +19,7 @@ Daftar Berita kelurahan
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Daftar Berita Kelurahan</h3>
+                <h3 class="card-title">Daftar Berita</h3>
             </div>
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped table-hover">
@@ -27,8 +27,9 @@ Daftar Berita kelurahan
                         <tr>
                             <th>#</th>
                             <th>Judul</th>
-                            <th>Penulis</th>
                             <th>Kategori</th>
+                            <th>Penulis</th>
+                            <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,8 +38,9 @@ Daftar Berita kelurahan
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $new->title }}</td>
-                            <td>{{ $new->user->nama }}</td>
                             <td>{{ $new->category->name }}</td>
+                            <td>{{ $new->user->nama }}</td>
+                            <td> @if ($new->role == 0) Warga @else Petugas @endif </td>
                             <td>
                                 <a href="{{ route('admin.news.show', $new->slug) }}" class="btn btn-xs btn-primary">
                                     Detail
@@ -51,8 +53,9 @@ Daftar Berita kelurahan
                         <tr>
                             <th>#</th>
                             <th>Judul</th>
-                            <th>Penulis</th>
                             <th>Kategori</th>
+                            <th>Penulis</th>
+                            <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
