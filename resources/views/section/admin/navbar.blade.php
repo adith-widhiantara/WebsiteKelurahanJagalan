@@ -36,8 +36,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('lte/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
-                            class="img-size-50 mr-3 img-circle">
+                        <img src="{{ asset('lte/dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
@@ -53,8 +52,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('lte/dist/img/user8-128x128.jpg') }}" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
+                        <img src="{{ asset('lte/dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 John Pierce
@@ -70,8 +68,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('lte/dist/img/user3-128x128.jpg') }}" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
+                        <img src="{{ asset('lte/dist/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Nora Silvester
@@ -114,6 +111,32 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
+        {{-- profile --}}
+        <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="user-image img-circle elevation-2" alt="User Image">
+                <span class="d-none d-md-inline">{{ Auth::user()->nama }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <li class="user-header bg-primary">
+                    <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    <p>
+                        {{ Auth::user()->nama.__(' - ').Auth::user()->getRoleNames()[0] }}
+                    </p>
+                </li>
+                <li class="user-footer">
+                    <a href="#" class="btn btn-default btn-flat">Profil Saya</a>
+                    <a href="#" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+
+                    <form style="display: none" action="{{ route('logout') }}" method="post" id="logout-form">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </li>
+        {{-- end profile --}}
+
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>

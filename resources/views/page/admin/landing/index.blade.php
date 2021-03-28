@@ -13,8 +13,11 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>150</h3>
-                <p>Jumlah Aduan<br>Bulan Ini</p>
+                @php
+                $aduanCount = App\Models\Aduan\Aduan::whereDate('created_at', '=', \Carbon\Carbon::today())->count();
+                @endphp
+                <h3>{{ $aduanCount }}</h3>
+                <p>Jumlah Aduan<br>Hari Ini</p>
             </div>
             <div class="icon">
                 <i class="ion ion-ios-paper"></i>
@@ -25,7 +28,7 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-dark">
             <div class="inner">
-                <h3>53</h3>
+                <h3>-</h3>
                 <p>Jumlah Antrian<br>Untuk Besok</p>
             </div>
             <div class="icon">
@@ -37,7 +40,10 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>44</h3>
+                @php
+                $newsCount = App\Models\News\News::whereDate('created_at', '=', \Carbon\Carbon::today())->count();
+                @endphp
+                <h3>{{ $newsCount }}</h3>
                 <p>Jumlah Berita Milik<br>Warga Hari Ini</p>
             </div>
             <div class="icon">
@@ -49,7 +55,7 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-secondary">
             <div class="inner">
-                <h3>65</h3>
+                <h3>-</h3>
                 <p>Permintaan Surat<br>Warga</p>
             </div>
             <div class="icon">
@@ -64,7 +70,7 @@ Halaman Admin
     <div class="col-md-6">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Aduan Warga</h3>
+                <h3 class="card-title">Aduan Warga Terbaru</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -83,46 +89,22 @@ Halaman Admin
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (\App\Models\Aduan\Aduan::doesntHave('nonValid')->latest()->take(4)->get() as $aduanLatest)
                         <tr>
-                            <td>1.</td>
-                            <td>Update software</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $aduanLatest -> judul_masalah }}</td>
                             <td>
                                 <div class="progress progress-xs">
-                                    <div class="progress-bar bg-warning" style="width: 55%"></div>
+                                    @if ( $aduanLatest -> nonValid )
+                                    <div class="progress-bar bg-danger" style="width: 100%"></div>
+                                    @else
+                                    <div class="progress-bar bg-success" style="width: {{ ($aduanLatest -> progress / 5)*100 }}%"></div>
+                                    @endif
                                 </div>
                             </td>
-                            <td><a href="#" class="btn btn-primary btn-xs">Detail</a></td>
+                            <td><a href="{{ route('admin.aduan.show', $aduanLatest -> slug) }}" class="btn btn-primary btn-xs">Detail</a></td>
                         </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Clean database</td>
-                            <td>
-                                <div class="progress progress-xs">
-                                    <div class="progress-bar bg-success" style="width: 70%"></div>
-                                </div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Cron job running</td>
-                            <td>
-                                <div class="progress progress-xs progress-striped active">
-                                    <div class="progress-bar bg-danger" style="width: 30%"></div>
-                                </div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Fix and squish bugs</td>
-                            <td>
-                                <div class="progress progress-xs progress-striped active">
-                                    <div class="progress-bar bg-success" style="width: 90%"></div>
-                                </div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary btn-xs">Detail</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -193,6 +175,9 @@ Halaman Admin
                 </div>
             </div>
             <div class="card-body p-0">
+                @php
+                $newsLatest = App\Models\News\News::latest()->take(4)->get();
+                @endphp
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -203,30 +188,14 @@ Halaman Admin
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($newsLatest as $latest)
                         <tr>
-                            <td>1.</td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td>Brian James</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $latest->title }}</td>
+                            <td>{{ $latest->user->nama }}</td>
+                            <td><a href="{{ route('admin.news.show', $latest->slug) }}" class="btn btn-info btn-xs">Detail</a></td>
                         </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td>Brian James</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td>Brian James</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            <td>Brian James</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

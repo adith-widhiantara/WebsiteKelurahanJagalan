@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Warga\News;
 
 use App\Models\News\News;
 use Illuminate\Http\Request;

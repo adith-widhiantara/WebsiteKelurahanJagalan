@@ -8,8 +8,7 @@
     <title>@yield('title') | Kelurahan Jagalan</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -100,28 +99,37 @@
                 title: '{{ session('success') }}'
             });
             @endif
-            
+
             @if( session('info') )
             Toast.fire({
                 icon: 'info',
                 title: '{{ session('info') }}'
             });
             @endif
-            
+
             @if( session('error') )
             Toast.fire({
                 icon: 'error',
                 title: '{{ session('error') }}'
             });
             @endif
-            
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    Toast.fire({
+                        icon: 'error',
+                        title: '{{ $error }}'
+                    });
+                @endforeach
+            @endif
+
             @if( session('warning') )
             Toast.fire({
                 icon: 'warning',
                 title: '{{ session('warning') }}'
             });
             @endif
-            
+
         });
     </script>
 </body>

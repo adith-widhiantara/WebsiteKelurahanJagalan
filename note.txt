@@ -1,13 +1,28 @@
 Fitur
 1. administrasi surat (permintaan surat),
 2. pengaduan warga,
-3. penyiaran berita,
+3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian,
 5. pendataan warga, dan
 6. pengaturan akun.
 
 Role
-1. Admin
-2. Pengurus Desa
-3. Warga
-4. Umum
+1. Admin (All)
+2. Pengurus Desa (1 2 3 4 5 7 8 9)
+3. RW (1 2 3 4 5 10)
+4. Warga (7 11)
+5. Umum
+6. Kepala Desa (1 2 3 4 5 7 11)
+
+Permission
+1. Create News
+2. Read News
+3. Update News
+4. Show News
+5. Hide News
+6. Create Aduan
+7. Read Aduan
+8. Valid Aduan
+9. Non Valid Aduan
+10. Tindak Lanjut Aduan
+11. Komentar Aduan Selesai

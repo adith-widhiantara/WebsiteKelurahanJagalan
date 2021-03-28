@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Warga\News;
 
 use App\Models\News\News;
 use Illuminate\Http\Request;
@@ -16,7 +16,9 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $news = News::where('category_id', $category->id)->paginate(6);
+        $news = News::where('category_id', $category->id)
+            ->where('show', 1)
+            ->paginate(6);
 
         return view('page.news.category.show', compact('category', 'news'));
     }

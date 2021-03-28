@@ -5,7 +5,7 @@
         <li>
             <a href="{{ route('category.show', $category->slug) }}" class="d-flex">
                 <p>{{ $category->name }}</p>
-                <p>({{ $category->news->count() }})</p>
+                <p>({{ $category->news->where('show', 1)->count() }})</p>
             </a>
         </li>
         @endforeach

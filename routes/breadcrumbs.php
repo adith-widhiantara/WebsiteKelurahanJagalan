@@ -35,3 +35,33 @@ Breadcrumbs::for('admin.category.show', function ($trail, $category) {
     $trail->parent('admin.category.index');
     $trail->push($category->name, route('admin.category.show', $category->slug));
 });
+
+// aduan index
+Breadcrumbs::for('admin.aduan.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Aduan Masyarakat', route('admin.aduan.index'));
+});
+
+// aduan belum selesai index
+Breadcrumbs::for('admin.aduan.thisMonthIndex', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Aduan Bulan Ini', route('admin.aduan.thisMonthIndex'));
+});
+
+// tindak lanjut aduan
+Breadcrumbs::for('admin.aduan.tindaklanjut.index', function ($trail) {
+    $trail->parent('admin.aduan.index');
+    $trail->push('Daftar Aduan Tindak Lanjut', route('admin.aduan.tindaklanjut.index'));
+});
+
+// aduan show
+Breadcrumbs::for('admin.aduan.show', function ($trail, $aduan) {
+    $trail->parent('admin.aduan.index');
+    $trail->push($aduan->judul_masalah, route('admin.aduan.show', $aduan->slug));
+});
+
+// aduan show timeline
+Breadcrumbs::for('admin.aduan.timeline', function ($trail, $aduan) {
+    $trail->parent('admin.aduan.show', $aduan);
+    $trail->push('Timeline', route('admin.aduan.timeline', $aduan->slug));
+});

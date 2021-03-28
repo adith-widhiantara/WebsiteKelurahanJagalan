@@ -16,9 +16,17 @@ class LandingController extends Controller
     public function __invoke(Request $request)
     {
         $recentNews = News::where('show', 1)
-            ->orderBy('id', 'desc')
+            ->latest()
             ->take(2)
             ->get();
+
+        // $takeCharacters = substr($recentNews->description, -4);
+        // $compareCharacters = '</p>';
+        // if ($takeCharacters == $compareCharacters) {
+        //     echo 'Masuk';
+        // } else {
+        //     echo 'Tidak Masuk';
+        // }
 
         return view('page.landing.index', compact('recentNews'));
     }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\News\News;
+use Faker\Factory as Faker;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class NewsSeeder extends Seeder
@@ -14,11 +16,24 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i < 6; $i++) {
-            News::where('id', $i)
-                ->update([
-                    'role' => 1
+
+        $faker = Faker::create();
+        for ($j = 1; $j < 5; $j++) {
+            for ($i = 3; $i < 9; $i++) {
+
+                $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+
+                News::create([
+                    'user_id' => $i,
+                    'category_id' => $j,
+                    'title' => $title,
+                    'slug' => Str::of($title)->slug('-'),
+                    'photo' => 'default.png',
+                    'description' => $faker->text($maxNbChars = 1000),
+                    'role' => 1,
+                    'show' => 1,
                 ]);
+            }
         }
     }
 }

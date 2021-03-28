@@ -6,8 +6,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="{{ route('landing') }}"><img src="{{ asset('assets/img/logo/logo.png') }}"
-                                        alt=""></a>
+                                <a href="{{ route('landing') }}"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10">
@@ -17,57 +16,59 @@
                                         <ul id="navigation">
                                             <li><a href="{{ route('landing') }}">Halaman Utama</a></li>
                                             <li><a href="{{ route('news.index') }}">Berita</a></li>
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="#">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog_details.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Element</a></li>
-                                                </ul>
+                                            <li>
+                                                <a href="{{ route('aduan.index') }}">Aduan Masyarakat</a>
                                             </li>
-                                            @guest
+
+                                            @guest {{-- Login --}}
                                             <li>
                                                 <a href="{{ route('login') }}">
                                                     Masuk
                                                 </a>
                                             </li>
-                                            @endguest
+                                            @endguest {{-- End Login --}}
 
-                                            @auth
-                                            @role('admin|petugas')
+                                            @auth {{-- Auth --}}
+                                            @role('admin|petugas|RW|kepala_kelurahan') {{-- role('admin|petugas|RW|kepala_kelurahan') --}}
                                             <li>
-                                                @role('admin')
-                                                <a href="#">Admin</a>
-                                                @endrole
-                                                @role('petugas')
-                                                <a href="#">Petugas</a>
-                                                @endrole
-                                                @php
-                                                $collectionOfRoles = ['admin', 'petugas'];
-                                                @endphp
-                                                @hasallroles($collectionOfRoles)
-                                                <a href="#">Warga</a>
-                                                @endhasallroles
+                                                @role('admin') <a href="#">Admin</a> @endrole
+
+                                                @role('petugas') <a href="#">Petugas</a> @endrole
+
+                                                @role('RW') <a href="#">RW</a> @endrole
+
+                                                @role('kepala_kelurahan') <a href="#">Kepala Kelurahan</a> @endrole
+
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('admin.index') }}">Lihat Panel</a></li>
                                                     <li>
-                                                        <a href="#"
-                                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                             Keluar
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            @else
+                                            @else {{-- role('admin|petugas|RW|kepala_kelurahan') --}}
                                             <li>
-                                                <a href="#">Profil Saya</a>
+                                                <a href="#">Warga</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="#">
+                                                            Lihat Profil
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                            Keluar
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
-                                            @endrole
-                                            <form style="display: none" action="{{ route('logout') }}" method="post"
-                                                id="logout-form">
+                                            @endrole {{-- role('admin|petugas|RW|kepala_kelurahan') --}}
+                                            <form style="display: none" action="{{ route('logout') }}" method="post" id="logout-form">
                                                 @csrf
                                             </form>
-                                            @endauth
+                                            @endauth {{-- endauth --}}
                                         </ul>
                                     </nav>
                                 </div>

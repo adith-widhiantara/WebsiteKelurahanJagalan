@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Aduan\Aduan;
 use App\Models\News\News;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function news()
     {
         return $this->hasMany(News::class);
+    }
+
+    public function aduan()
+    {
+        return $this->hasMany(Aduan::class);
     }
 }

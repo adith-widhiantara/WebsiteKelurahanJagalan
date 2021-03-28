@@ -14,7 +14,7 @@
                     <div class="row no-gutters">
                         <div class="col-xl-4 col-lg-6 col-md-5">
                             <div class="features-img features-img2">
-                                <img src="{{ asset('assets/img/gallery/services3.png') }}" alt="">
+                                <img src="{{ asset('image/news/'. $news->photo) }}" alt="">
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-6 col-md-7">
@@ -22,7 +22,7 @@
                                 <h3>
                                     <a href="{{ route('news.show', $news->slug) }}">{{ $news -> title }}</a>
                                 </h3>
-                                <?= $news -> description ?>
+                                <?= substr($news -> description, 0, 100).'...' ?>
                                 <div>
                                 </div>
                                 <a href="{{ route('news.show', $news->slug) }}" class="all-btn">Read More</a>

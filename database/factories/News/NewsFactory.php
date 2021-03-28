@@ -30,9 +30,10 @@ class NewsFactory extends Factory
             'category_id' => Category::factory(),
             'title' => $title,
             'slug' => Str::of($title)->slug('-'),
-            'photo' => 'https://placeimg.com/640/480/any',
-            'description' => $this->faker->text($maxNbChars = 100),
-            'role' => 0
+            'photo' => 'default.png',
+            'description' => '<p>' . $this->faker->text($maxNbChars = 1000) . '</p>',
+            'role' => 1,
+            'show' => 1
         ];
     }
 }
