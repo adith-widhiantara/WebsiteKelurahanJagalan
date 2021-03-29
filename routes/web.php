@@ -74,98 +74,90 @@ Route::prefix('aduan')->name('aduan.')->middleware('auth')->group(function () {
 // admin
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     // landing
-    Route::middleware('role:admin|petugas|RW|kepala_kelurahan')->group(function () {
-        // index
-        Route::view('', 'page.admin.landing.index')->name('index');
-    });
+    // index
+    Route::view('', 'page.admin.landing.index')->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('index');
     // end landing
 
     // news
-    Route::prefix('news')->name('news.')->middleware('role:admin|petugas|RW|kepala_kelurahan')->group(function () {
+    Route::prefix('news')->name('news.')->group(function () {
         // index
-        Route::get('', [AdminNewsController::class, 'index'])->name('index');
+        Route::get('', [AdminNewsController::class, 'index'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('index');
 
         // create
-        Route::get('create', [AdminNewsController::class, 'createNews'])->name('create');
+        Route::get('create', [AdminNewsController::class, 'createNews'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('create');
 
         // store
-        Route::post('create', [AdminNewsController::class, 'storeNews'])->name('store');
+        Route::post('create', [AdminNewsController::class, 'storeNews'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('store');
 
         // show
-        Route::get('detail/{news:slug}', [AdminNewsController::class, 'showNews'])->name('show');
+        Route::get('detail/{news:slug}', [AdminNewsController::class, 'showNews'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('show');
 
         // put
-        Route::put('put/{news:slug}', [AdminNewsController::class, 'putNews'])->name('put');
+        Route::put('put/{news:slug}', [AdminNewsController::class, 'putNews'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('put');
 
         // hide news
-        Route::put('hide/{news:slug}', [AdminNewsController::class, 'hideNews'])->name('hide');
+        Route::put('hide/{news:slug}', [AdminNewsController::class, 'hideNews'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('hide');
 
         // show news
-        Route::put('show/{news:slug}', [AdminNewsController::class, 'showNewsPut'])->name('showPut');
+        Route::put('show/{news:slug}', [AdminNewsController::class, 'showNewsPut'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('showPut');
     });
     // end news
 
     // news category
-    Route::prefix('category')->name('category.')->middleware('role:admin|petugas|RW|kepala_kelurahan')->group(function () {
+    Route::prefix('category')->name('category.')->group(function () {
         // index
-        Route::get('', [AdminNewsController::class, 'indexCategory'])->name('index');
+        Route::get('', [AdminNewsController::class, 'indexCategory'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('index');
 
         // store
-        Route::post('', [AdminNewsController::class, 'storeCategory'])->name('store');
+        Route::post('', [AdminNewsController::class, 'storeCategory'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('store');
 
         // put
-        Route::put('update/{category:slug}', [AdminNewsController::class, 'updateCategory'])->name('put');
+        Route::put('update/{category:slug}', [AdminNewsController::class, 'updateCategory'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('put');
 
         // show
-        Route::get('detail/{category:slug}', [AdminNewsController::class, 'showCategory'])->name('show');
+        Route::get('detail/{category:slug}', [AdminNewsController::class, 'showCategory'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('show');
     });
     // end news category
 
     // Aduan
-    Route::prefix('aduan')->name('aduan.')->middleware('role:admin|petugas|RW|kepala_kelurahan')->group(function () {
+    Route::prefix('aduan')->name('aduan.')->group(function () {
         // index
-        Route::get('', [AdminAduanController::class, 'index'])->name('index'); // admin.aduan.index
+        Route::get('', [AdminAduanController::class, 'index'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('index'); // admin.aduan.index
 
         // index Bulan Ini
-        Route::get('bulanini', [AdminAduanController::class, 'thisMonthIndex'])->name('thisMonthIndex'); // admin.aduan.thisMonthIndex
+        Route::get('bulanini', [AdminAduanController::class, 'thisMonthIndex'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('thisMonthIndex'); // admin.aduan.thisMonthIndex
 
         // store jenis aduan
-        Route::post('store', [AdminAduanController::class, 'storeJenisAduan'])->name('storeJenisAduan'); // admin.aduan.storeJenisAduan
+        Route::post('store', [AdminAduanController::class, 'storeJenisAduan'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('storeJenisAduan'); // admin.aduan.storeJenisAduan
 
         // show aduan
-        Route::get('detail/{aduan:slug}', [AdminAduanController::class, 'show'])->name('show'); // admin.aduan.show
+        Route::get('detail/{aduan:slug}', [AdminAduanController::class, 'show'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('show'); // admin.aduan.show
 
         // timeline show aduan
-        Route::get('detail/{aduan:slug}/timeline', [AdminAduanController::class, 'timeline'])->name('timeline'); // admin.aduan.timeline
+        Route::get('detail/{aduan:slug}/timeline', [AdminAduanController::class, 'timeline'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('timeline'); // admin.aduan.timeline
 
         // update jenis aduan
-        Route::put('put/{jenis_aduan:slug}', [AdminAduanController::class, 'updateJenisAduan'])->name('updateJenisAduan'); // admin.aduan.updateJenisAduan
+        Route::put('put/{jenis_aduan:slug}', [AdminAduanController::class, 'updateJenisAduan'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('updateJenisAduan'); // admin.aduan.updateJenisAduan
 
-        // tolak aduan group
-        Route::prefix('tolak')->name('tolak.')->group(function () {
-            // store
-            Route::post('{aduan:slug}/store', [TolakController::class, 'store'])->name('store'); // admin.aduan.tolak.store
-        });
+        // tolak aduan store
+        Route::post('tolak/{aduan:slug}/store', [TolakController::class, 'store'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('tolak.store'); // admin.aduan.tolak.store
 
-        // valid aduan group
-        Route::prefix('valid/{aduan:slug}')->name('valid.')->group(function () {
-            // store
-            Route::post('store', [ValidController::class, 'store'])->name('store'); // admin.aduan.valid.store
-        });
+        // store
+        Route::post('valid/{aduan:slug}/store', [ValidController::class, 'store'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('valid.store'); // admin.aduan.valid.store
 
         // tindak lanjut aduan group
         Route::prefix('tindaklanjut')->name('tindaklanjut.')->group(function () {
             // index
-            Route::get('', [TindakLanjutController::class, 'index'])->withoutMiddleware('role:petugas|kepala_kelurahan')->name('index'); // admin.aduan.tindaklanjut.index
+            Route::get('', [TindakLanjutController::class, 'index'])->middleware('role:admin|petugas|RW|kepala_kelurahan')->name('index'); // admin.aduan.tindaklanjut.index
 
             // store
-            Route::post('{aduan:slug}', [TindakLanjutController::class, 'store'])->withoutMiddleware('role:petugas|kepala_kelurahan')->name('store'); // admin.aduan.tindaklanjut.store
+            Route::post('{aduan:slug}', [TindakLanjutController::class, 'store'])->middleware('role:RW')->name('store'); // admin.aduan.tindaklanjut.store
 
             // upload foto bukti rw
-            Route::put('put/{aduan:slug}', [TindakLanjutController::class, 'put'])->withoutMiddleware('role:petugas|kepala_kelurahan')->name('put'); // admin.aduan.tindaklanjut.put
+            Route::put('put/{aduan:slug}', [TindakLanjutController::class, 'put'])->middleware('role:RW')->name('put'); // admin.aduan.tindaklanjut.put
 
             // comment kepala kelurahan
-            Route::post('comment/{aduan:slug}', [TindakLanjutController::class, 'commentKepalaKelurahan'])->name('commentKepalaKelurahan'); // admin.aduan.tindaklanjut.commentKepalaKelurahan
+            Route::post('comment/{aduan:slug}', [TindakLanjutController::class, 'commentKepalaKelurahan'])->middleware('role:kepala_kelurahan')->name('commentKepalaKelurahan'); // admin.aduan.tindaklanjut.commentKepalaKelurahan
         });
     });
     // end Aduan
