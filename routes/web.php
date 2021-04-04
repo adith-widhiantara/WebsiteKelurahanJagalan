@@ -7,14 +7,14 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Warga\AduanController;
-use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\Admin\News\AdminNewsController;
 use App\Http\Controllers\Warga\News\NewsController;
 use App\Http\Controllers\Admin\Aduan\TolakController;
 use App\Http\Controllers\Admin\Aduan\ValidController;
 use App\Http\Controllers\Warga\News\CategoryController;
 use App\Http\Controllers\Admin\Aduan\TindakLanjutController;
 use App\Http\Controllers\Admin\KartuKeluarga\KartuKeluargaController;
-use App\Http\Controllers\Admin\AduanController as AdminAduanController;
+use App\Http\Controllers\Admin\Aduan\AduanController as AdminAduanController;
 use App\Http\Controllers\Admin\KartuKeluarga\AnggotaKeluargaController;
 use App\Http\Controllers\Admin\KartuKeluarga\TabelKartuKeluargaController;
 

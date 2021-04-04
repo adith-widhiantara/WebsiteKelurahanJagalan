@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Aduan;
 
 use Carbon\Carbon;
 use App\Models\Aduan\Aduan;
