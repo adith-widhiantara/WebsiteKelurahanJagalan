@@ -65,3 +65,39 @@ Breadcrumbs::for('admin.aduan.timeline', function ($trail, $aduan) {
     $trail->parent('admin.aduan.show', $aduan);
     $trail->push('Timeline', route('admin.aduan.timeline', $aduan->slug));
 });
+
+// kartu keluarga index
+Breadcrumbs::for('admin.kartukeluarga.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Kartu Keluarga', route('admin.kartukeluarga.index'));
+});
+
+// kartu keluarga show
+Breadcrumbs::for('admin.kartukeluarga.show', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.kartukeluarga.index');
+    $trail->push($kartuKeluarga->nomorkk, route('admin.kartukeluarga.show', $kartuKeluarga->nomorkk));
+});
+
+// anggota keluarga create
+Breadcrumbs::for('admin.kartukeluarga.anggota.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.kartukeluarga.show', $kartuKeluarga);
+    $trail->push('Pendaftaran Anggota Keluarga', route('admin.kartukeluarga.anggota.create', $kartuKeluarga->nomorkk));
+});
+
+// anggota keluarga show
+Breadcrumbs::for('admin.kartukeluarga.anggota.show', function ($trail, $kartuKeluarga, $biodataAnggota) {
+    $trail->parent('admin.kartukeluarga.show', $kartuKeluarga);
+    $trail->push($biodataAnggota->nama, route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $kartuKeluarga->nomorkk, 'anggotaKeluarga' => $biodataAnggota->nomor_ktp]));
+});
+
+// tabel kartu keluarga
+Breadcrumbs::for('admin.tabelkartukeluarga.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Tabel Kartu Keluarga', route('admin.tabelkartukeluarga.index'));
+});
+
+// kartu keluarga create
+Breadcrumbs::for('admin.kartukeluarga.create', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Buat Kartu Keluarga', route('admin.kartukeluarga.create'));
+});

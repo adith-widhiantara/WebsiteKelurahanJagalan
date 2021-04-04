@@ -13,7 +13,10 @@ use App\Http\Controllers\Admin\Aduan\TolakController;
 use App\Http\Controllers\Admin\Aduan\ValidController;
 use App\Http\Controllers\Warga\News\CategoryController;
 use App\Http\Controllers\Admin\Aduan\TindakLanjutController;
+use App\Http\Controllers\Admin\KartuKeluarga\KartuKeluargaController;
 use App\Http\Controllers\Admin\AduanController as AdminAduanController;
+use App\Http\Controllers\Admin\KartuKeluarga\AnggotaKeluargaController;
+use App\Http\Controllers\Admin\KartuKeluarga\TabelKartuKeluargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -161,6 +164,96 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         });
     });
     // end Aduan
+
+    // Kartu Keluarga
+    Route::prefix('kartukeluarga')->name('kartukeluarga.')->group(function () {
+        // index
+        Route::get('', [KartuKeluargaController::class, 'index'])->name('index'); // admin.kartukeluarga.index
+
+        // create
+        Route::get('create', [KartuKeluargaController::class, 'create'])->name('create'); // admin.kartukeluarga.create
+
+        // store
+        Route::post('', [KartuKeluargaController::class, 'store'])->name('store'); // admin.kartukeluarga.store
+
+        // show
+        Route::get('{kartuKeluarga:nomorkk}', [KartuKeluargaController::class, 'show'])->name('show'); // admin.kartukeluarga.show
+
+        // update
+        Route::put('{kartuKeluarga:nomorkk}', [KartuKeluargaController::class, 'update'])->name('update'); // admin.kartukeluarga.update
+    });
+    // end Kartu Keluarga
+
+    // anggota keluarga
+    Route::prefix('kartukeluarga/{kartuKeluarga:nomorkk}')->name('kartukeluarga.anggota.')->group(function () {
+        // create
+        Route::get('create', [AnggotaKeluargaController::class, 'create'])->name('create'); // admin.kartukeluarga.anggota.create
+
+        // store
+        Route::post('', [AnggotaKeluargaController::class, 'store'])->name('store'); // admin.kartukeluarga.anggota.store
+
+        // show
+        Route::get('{anggotaKeluarga:nomor_ktp}', [AnggotaKeluargaController::class, 'show'])->name('show'); // admin.kartukeluarga.anggota.show
+
+        // update
+        Route::put('{anggotaKeluarga:nomor_ktp}', [AnggotaKeluargaController::class, 'update'])->name('update'); // admin.kartukeluarga.anggota.update
+    });
+    // end anggota keluarga
+
+    // Tabel kartu keluarga
+    Route::prefix('tabelkartukeluarga')->name('tabelkartukeluarga.')->group(function () {
+        // index
+        Route::get('', [TabelKartuKeluargaController::class, 'index'])->name('index'); // admin.tabelkartukeluarga.index
+
+        // store gelar
+        Route::post('gelar/store', [TabelKartuKeluargaController::class, 'storeGelar'])->name('storeGelar'); // admin.tabelkartukeluarga.storeGelar
+
+        // update gelar
+        Route::put('gelar/{gelar}/update', [TabelKartuKeluargaController::class, 'updateGelar'])->name('updateGelar'); // admin.tabelkartukeluarga.updateGelar
+
+        // store golongan darah
+        Route::post('golongandarah/store', [TabelKartuKeluargaController::class, 'storeGolonganDarah'])->name('storeGolonganDarah'); // admin.tabelkartukeluarga.storeGolonganDarah
+
+        // update golongan darah
+        Route::put('golongandarah/{golonganDarah}/update', [TabelKartuKeluargaController::class, 'updateGolonganDarah'])->name('updateGolonganDarah'); // admin.tabelkartukeluarga.updateGolonganDarah
+
+        // store agama
+        Route::post('agama/store', [TabelKartuKeluargaController::class, 'storeAgama'])->name('storeAgama'); // admin.tabelkartukeluarga.storeAgama
+
+        // update agama
+        Route::put('agama/{agama}/update', [TabelKartuKeluargaController::class, 'updateAgama'])->name('updateAgama'); // admin.tabelkartukeluarga.updateAgama
+
+        // store status perkawinan
+        Route::post('statusperkawinan/store', [TabelKartuKeluargaController::class, 'storeStatusPerkawinan'])->name('storeStatusPerkawinan'); // admin.tabelkartukeluarga.storeStatusPerkawinan
+
+        // update status perkawinan
+        Route::put('statusperkawinan/{statusPerkawinan}/update', [TabelKartuKeluargaController::class, 'updateStatusPerkawinan'])->name('updateStatusPerkawinan'); // admin.tabelkartukeluarga.updateStatusPerkawinan
+
+        // store status hubungan dengan kepala keluarga
+        Route::post('statushubungankepala/store', [TabelKartuKeluargaController::class, 'storeStatusHubunganKepala'])->name('storeStatusHubunganKepala'); // admin.tabelkartukeluarga.storeStatusHubunganKepala
+
+        // update status hubungan dengan kepala keluarga
+        Route::put('statushubungankepala/{statusHubunganKepala}/update', [TabelKartuKeluargaController::class, 'updateStatusHubunganKepala'])->name('updateStatusHubunganKepala'); // admin.tabelkartukeluarga.updateStatusHubunganKepala
+
+        // store penyandang cacat
+        Route::post('penyandangcacat/store', [TabelKartuKeluargaController::class, 'storePenyandangCacat'])->name('storePenyandangCacat'); // admin.tabelkartukeluarga.storePenyandangCacat
+
+        // update penyandang cacat
+        Route::put('penyandangcacat/{penyandangCacat}/update', [TabelKartuKeluargaController::class, 'updatePenyandangCacat'])->name('updatePenyandangCacat'); // admin.tabelkartukeluarga.updatePenyandangCacat
+
+        // store pendidikan terakhir
+        Route::post('pendidikan/store', [TabelKartuKeluargaController::class, 'storePendidikan'])->name('storePendidikan'); // admin.tabelkartukeluarga.storePendidikan
+
+        // update pendidikan terakhir
+        Route::put('pendidikan/{pendidikan}/update', [TabelKartuKeluargaController::class, 'updatePendidikan'])->name('updatePendidikan'); // admin.tabelkartukeluarga.updatePendidikan
+
+        // store pekerjaan
+        Route::post('pekerjaan/store', [TabelKartuKeluargaController::class, 'storePekerjaan'])->name('storePekerjaan'); // admin.tabelkartukeluarga.storePekerjaan
+
+        // update pekerjaan
+        Route::put('pekerjaan/{pekerjaan}/update', [TabelKartuKeluargaController::class, 'updatePekerjaan'])->name('updatePekerjaan'); // admin.tabelkartukeluarga.updatePekerjaan
+    });
+    // end Tabel kartu keluarga
 });
 // end admin
 

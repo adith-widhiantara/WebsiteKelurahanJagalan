@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Aduan\Aduan;
 use App\Models\News\News;
+use App\Models\Warga\AnggotaKeluarga;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'nomor_ktp',
         'password',
         'nomor_telepon',
+        'email',
     ];
 
     /**
@@ -53,5 +55,10 @@ class User extends Authenticatable
     public function aduan()
     {
         return $this->hasMany(Aduan::class);
+    }
+
+    public function anggota()
+    {
+        return $this->hasOne(AnggotaKeluarga::class);
     }
 }

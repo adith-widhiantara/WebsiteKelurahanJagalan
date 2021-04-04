@@ -4,7 +4,8 @@ Fitur
 3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian,
 5. pendataan warga,
-6. pengaturan akun.
+6. pengaturan akun,
+7. kartu dan anggota keluarga (done) v1.
 
 Role
 1. Admin (All)

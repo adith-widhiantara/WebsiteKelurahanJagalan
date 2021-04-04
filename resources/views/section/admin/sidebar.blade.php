@@ -62,6 +62,75 @@
                     @endif
                 </li>
 
+                {{-- Kartu Keluarga --}}
+                @php
+                $kartukeluargaActive =
+                url()->current() == route('admin.kartukeluarga.index') ||
+                url()->current() == route('admin.kartukeluarga.create') ||
+                url()->current() == route('admin.tabelkartukeluarga.index');
+                @endphp
+
+                <li class="nav-item @if ( $kartukeluargaActive ) menu-open @endif">
+                    <a href="#" class="nav-link @if ( $kartukeluargaActive ) active @endif">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Kartu Keluarga
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        @if (url()->current() == route('admin.kartukeluarga.index'))
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('admin.kartukeluarga.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if (url()->current() == route('admin.kartukeluarga.create'))
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Buat Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('admin.kartukeluarga.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Buat Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if (url()->current() == route('admin.tabelkartukeluarga.index'))
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tabel Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('admin.tabelkartukeluarga.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tabel Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @endif
+
+                    </ul>
+                </li>
+
                 {{-- Daftar Aduan --}}
                 @php
                 $aduanActive =
