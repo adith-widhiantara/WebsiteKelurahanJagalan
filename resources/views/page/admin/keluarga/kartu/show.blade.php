@@ -92,7 +92,7 @@ use App\Models\User;
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label>Jumlah Keluarga</label>
-                                <input type="text" class="form-control" value="{{ $kartuKeluarga -> anggota -> count() }}" disabled>
+                                <input type="text" class="form-control" value="{{ $user->count() }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -129,15 +129,15 @@ use App\Models\User;
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kartuKeluarga -> anggota as $anggota)
+                        @foreach ($user as $use)
                         <tr>
                             <td>{{ $loop -> iteration }}</td>
-                            <td>{{ User::find($anggota -> user_id)->nama }}</td>
-                            <td>{{ User::find($anggota -> user_id)->nomor_ktp }}</td>
-                            <td>{{ \Carbon\Carbon::parse($anggota -> tanggal_bulan_tahun_lahir)->age.__(' tahun') }}</td>
-                            <td>{{ $anggota -> status_hubungan -> keterangan }}</td>
+                            <td>{{ $use -> nama }}</td>
+                            <td>{{ $use -> nomor_ktp }}</td>
+                            <td>{{ \Carbon\Carbon::parse($use -> anggota -> tanggal_bulan_tahun_lahir)->age.__(' tahun') }}</td>
+                            <td>{{ $use -> anggota -> status_hubungan -> keterangan }}</td>
                             <td>
-                                <a href="{{ route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $kartuKeluarga->nomorkk, 'anggotaKeluarga' => User::find($anggota -> user_id)->nomor_ktp]) }}" class="btn btn-success btn-xs">
+                                <a href="#" class="btn btn-success btn-xs">
                                     Detail
                                 </a>
                             </td>

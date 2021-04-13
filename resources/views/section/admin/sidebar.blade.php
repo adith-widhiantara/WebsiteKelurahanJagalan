@@ -42,6 +42,7 @@
                         </p>
                     </a>
                 </li>
+                {{-- end Kembali Ke Website --}}
 
                 {{-- Halaman Utama --}}
                 <li class="nav-item">
@@ -61,6 +62,7 @@
                     </a>
                     @endif
                 </li>
+                {{-- end Halaman Utama --}}
 
                 {{-- Kartu Keluarga --}}
                 @php
@@ -130,6 +132,7 @@
 
                     </ul>
                 </li>
+                {{-- end Kartu Keluarga --}}
 
                 {{-- Daftar Aduan --}}
                 @php
@@ -191,6 +194,7 @@
                         </li>
                     </ul>
                 </li>
+                {{-- end Daftar Aduan --}}
 
                 {{-- News --}}
                 @php
@@ -200,8 +204,8 @@
                 url()->current() == route('admin.news.index');
                 @endphp
 
-                <li class="nav-item @if ( $newsActive ) menu-open @endif ">
-                    <a href="#" class="nav-link @if ( $newsActive ) active @endif ">
+                <li class="nav-item @if ( $newsActive ) menu-open @endif">
+                    <a href="#" class="nav-link @if ( $newsActive ) active @endif">
                         <i class="nav-icon fas ion-social-buffer"></i>
                         <p>
                             Daftar Berita
@@ -250,6 +254,7 @@
                         </li>
                     </ul>
                 </li>
+                {{-- end News --}}
 
                 {{-- Permintaan Surat --}}
                 <li class="nav-item">
@@ -287,6 +292,81 @@
                         </li>
                     </ul>
                 </li>
+                {{-- end Permintaan Surat --}}
+
+                {{-- Pendataan Warga --}}
+                @php
+                $pengaturanWargaActive =
+                url()->current() == route('admin.kelahiran.index') ||
+                url()->current() == route('admin.kematian.index') ||
+                url()->current() == route('admin.pindahmasuk.index') ||
+                url()->current() == route('admin.pindahkeluar.index');
+                @endphp
+
+                <li class="nav-item @if ( $pengaturanWargaActive ) menu-open @endif"">
+                    <a href=" #" class="nav-link @if ( $pengaturanWargaActive ) active @endif"">
+                        <i class=" nav-icon fas fa-people-carry"></i>
+                    <p>
+                        Pendataan Warga
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.kelahiran.index'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Kelahiran</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.kelahiran.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Kelahiran</p>
+                            </a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.kematian.index'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Kematian</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.kematian.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Kematian</p>
+                            </a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.pindahmasuk.index'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Pindah Masuk</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.pindahmasuk.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Pindah Masuk</p>
+                            </a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.pindahkeluar.index'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Pindah Keluar</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.pindahkeluar.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Pindah Keluar</p>
+                            </a>
+                            @endif
+                        </li>
+                    </ul>
+                </li>
+                {{-- end Pendataan Warga --}}
 
                 {{-- Daftar Pengguna --}}
                 @role('admin')
@@ -297,6 +377,7 @@
                     </a>
                 </li>
                 @endrole
+                {{-- end Daftar Pengguna --}}
 
             </ul>
         </nav>

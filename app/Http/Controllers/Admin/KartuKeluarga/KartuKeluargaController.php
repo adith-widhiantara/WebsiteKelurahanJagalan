@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\KartuKeluarga;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Warga\KartuKeluarga;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\KartuKeluargaRequest;
 
 class KartuKeluargaController extends Controller
@@ -31,7 +33,14 @@ class KartuKeluargaController extends Controller
 
     public function show(KartuKeluarga $kartuKeluarga)
     {
-        return view('page.admin.keluarga.kartu.show', compact('kartuKeluarga'));
+        $user = User::with('anggota.kartu')
+            ->doesntHave('kematian')
+            ->doesntHave('keluar')
+            ->whereHas('anggota.kartu', function (Builder $query) use ($kartuKeluarga) {
+                $query->where('id', $kartuKeluarga->id);
+            })->get();
+
+        return view('page.admin.keluarga.kartu.show', compact('kartuKeluarga', 'user'));
     }
 
     public function update(Request $request, KartuKeluarga $kartuKeluarga)

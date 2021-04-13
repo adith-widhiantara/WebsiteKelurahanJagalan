@@ -7,16 +7,20 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Warga\AduanController;
-use App\Http\Controllers\Admin\News\AdminNewsController;
 use App\Http\Controllers\Warga\News\NewsController;
 use App\Http\Controllers\Admin\Aduan\TolakController;
 use App\Http\Controllers\Admin\Aduan\ValidController;
 use App\Http\Controllers\Warga\News\CategoryController;
+use App\Http\Controllers\Admin\News\AdminNewsController;
 use App\Http\Controllers\Admin\Aduan\TindakLanjutController;
 use App\Http\Controllers\Admin\KartuKeluarga\KartuKeluargaController;
-use App\Http\Controllers\Admin\Aduan\AduanController as AdminAduanController;
+use App\Http\Controllers\Admin\PengaturanWarga\PindahMasukController;
+use App\Http\Controllers\Admin\PengaturanWarga\DataKematianController;
+use App\Http\Controllers\Admin\PengaturanWarga\PindahKeluarController;
 use App\Http\Controllers\Admin\KartuKeluarga\AnggotaKeluargaController;
+use App\Http\Controllers\Admin\PengaturanWarga\DataKelahiranController;
 use App\Http\Controllers\Admin\KartuKeluarga\TabelKartuKeluargaController;
+use App\Http\Controllers\Admin\Aduan\AduanController as AdminAduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -254,6 +258,94 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::put('pekerjaan/{pekerjaan}/update', [TabelKartuKeluargaController::class, 'updatePekerjaan'])->name('updatePekerjaan'); // admin.tabelkartukeluarga.updatePekerjaan
     });
     // end Tabel kartu keluarga
+
+    // Tabel Data Kelahiran
+    Route::prefix('kelahiran')->name('kelahiran.')->group(function () {
+        // index
+        Route::get('', [DataKelahiranController::class, 'index'])->name('index'); // admin.kelahiran.index
+
+        // create
+        Route::get('create/{kartuKeluarga:nomorkk}', [DataKelahiranController::class, 'create'])->name('create'); // admin.kelahiran.create
+
+        // create new
+        Route::get('create/{kartuKeluarga:nomorkk}/new', [DataKelahiranController::class, 'createNew'])->name('create.new'); // admin.kelahiran.create.new
+
+        // store exist
+        Route::post('store/exist', [DataKelahiranController::class, 'storeExists'])->name('storeExists'); // admin.kelahiran.storeExists
+
+        // store new
+        Route::post('store/{kartuKeluarga:nomorkk}', [DataKelahiranController::class, 'store'])->name('store'); // admin.kelahiran.store
+
+        // show
+        Route::get('{dataKelahiran}', [DataKelahiranController::class, 'show'])->name('show'); // admin.kelahiran.show
+
+        // print pdf
+        Route::get('{dataKelahiran}/pdf', [DataKelahiranController::class, 'showPDF'])->name('showPDF'); // admin.kelahiran.showPDF
+
+        // print pdf view
+        Route::get('{dataKelahiran}/pdf/view', [DataKelahiranController::class, 'showViewPDF'])->name('showViewPDF'); // admin.kelahiran.showViewPDF
+    });
+    // end Tabel Data Kelahiran
+
+    // Tabel kematian
+    Route::prefix('kematian')->name('kematian.')->group(function () {
+        // index
+        Route::get('', [DataKematianController::class, 'index'])->name('index'); // admin.kematian.index
+
+        // create
+        Route::get('create/{kartuKeluarga:nomorkk}', [DataKematianController::class, 'create'])->name('create'); // admin.kematian.create
+
+        // store
+        Route::post('post', [DataKematianController::class, 'store'])->name('store'); // admin.kematian.store
+
+        // show
+        Route::get('{dataKematian}', [DataKematianController::class, 'show'])->name('show'); // admin.kematian.show
+    });
+    // end Tabel kematian
+
+    // table pindah masuk
+    Route::prefix('pindahmasuk')->name('pindahmasuk.')->group(function () {
+        // index
+        Route::get('', [PindahMasukController::class, 'index'])->name('index'); // admin.pindahmasuk.index
+
+        // create
+        Route::get('create/{kartuKeluarga:nomorkk}', [PindahMasukController::class, 'create'])->name('create'); // admin.pindahmasuk.create
+
+        // create new
+        Route::get('create/{kartuKeluarga:nomorkk}/new', [PindahMasukController::class, 'createNew'])->name('create.new'); // admin.pindahmasuk.create.new
+
+        // store
+        Route::post('post/{kartuKeluarga:nomorkk}', [PindahMasukController::class, 'store'])->name('store'); // admin.pindahmasuk.store
+
+        // store new
+        Route::post('post/{kartuKeluarga:nomorkk}/new', [PindahMasukController::class, 'storeNew'])->name('store.new'); // admin.pindahmasuk.store.new
+
+        // show
+        Route::get('{pindahMasuk}', [PindahMasukController::class, 'show'])->name('show'); // admin.pindahmasuk.show
+
+        // show view file
+        Route::get('{pindahMasuk}/file', [PindahMasukController::class, 'showFile'])->name('show.file'); // admin.pindahmasuk.show.file
+    });
+    // end table pindah masuk
+
+    // table pindah keluar
+    Route::prefix('pindahkeluar')->name('pindahkeluar.')->group(function () {
+        // index
+        Route::get('', [PindahKeluarController::class, 'index'])->name('index'); // admin.pindahkeluar.index
+
+        // create
+        Route::get('create/{kartuKeluarga:nomorkk}', [PindahKeluarController::class, 'create'])->name('create'); // admin.pindahkeluar.create
+
+        // store
+        Route::post('store/{kartuKeluarga:nomorkk}', [PindahKeluarController::class, 'store'])->name('store'); // admin.pindahkeluar.store
+
+        // show
+        Route::get('{pindahKeluar}', [PindahKeluarController::class, 'show'])->name('show'); // admin.pindahkeluar.show
+
+        // show view file
+        Route::get('{pindahKeluar}/file', [PindahKeluarController::class, 'showFile'])->name('show.file'); // admin.pindahkeluar.show.file
+    });
+    // end table pindah keluar
 });
 // end admin
 

@@ -101,3 +101,87 @@ Breadcrumbs::for('admin.kartukeluarga.create', function ($trail) {
     $trail->parent('admin.index');
     $trail->push('Buat Kartu Keluarga', route('admin.kartukeluarga.create'));
 });
+
+// data kelahiran index
+Breadcrumbs::for('admin.kelahiran.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Data Kelahiran Warga', route('admin.kelahiran.index'));
+});
+
+// data kelahiran create
+Breadcrumbs::for('admin.kelahiran.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.kelahiran.index');
+    $trail->push('Buat Data Kelahiran', route('admin.kelahiran.create', $kartuKeluarga->nomorkk));
+});
+
+// data kelahiran create new
+Breadcrumbs::for('admin.kelahiran.create.new', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.kelahiran.create', $kartuKeluarga);
+    $trail->push('Buat Anggota Keluarga Baru', route('admin.kelahiran.create.new', $kartuKeluarga->nomorkk));
+});
+
+// data kelahiran show
+Breadcrumbs::for('admin.kelahiran.show', function ($trail, $dataKelahiran) {
+    $trail->parent('admin.kelahiran.index');
+    $trail->push('Detail Data Kelahiran Warga', route('admin.kelahiran.show', $dataKelahiran->id));
+});
+
+// data kematian index
+Breadcrumbs::for('admin.kematian.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Data Kematian Warga', route('admin.kematian.index'));
+});
+
+// data kematian create
+Breadcrumbs::for('admin.kematian.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.kematian.index');
+    $trail->push('Buat Data Kematian Warga', route('admin.kematian.create', $kartuKeluarga->nomorkk));
+});
+
+// data kematian show
+Breadcrumbs::for('admin.kematian.show', function ($trail, $dataKematian) {
+    $trail->parent('admin.kematian.index');
+    $trail->push('Detail Data Kematian Warga', route('admin.kematian.show', $dataKematian->id));
+});
+
+// data pindah masuk index
+Breadcrumbs::for('admin.pindahmasuk.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Data Pindah Masuk', route('admin.pindahmasuk.index'));
+});
+
+// data pindah masuk create
+Breadcrumbs::for('admin.pindahmasuk.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.pindahmasuk.index');
+    $trail->push('Buat Data Pindah Masuk', route('admin.pindahmasuk.create', $kartuKeluarga->nomorkk));
+});
+
+// data pindah masuk create new
+Breadcrumbs::for('admin.pindahmasuk.create.new', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.pindahmasuk.index');
+    $trail->push('Buat Data Pindah Masuk Anggota Baru', route('admin.pindahmasuk.create.new', $kartuKeluarga->nomorkk));
+});
+
+// data pindah masuk show
+Breadcrumbs::for('admin.pindahmasuk.show', function ($trail, $dataPindahMasuk) {
+    $trail->parent('admin.pindahmasuk.index');
+    $trail->push('Detail Data Pindah Masuk', route('admin.pindahmasuk.show', $dataPindahMasuk->id));
+});
+
+// data pindah keluar index
+Breadcrumbs::for('admin.pindahkeluar.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Data Pindah Keluar', route('admin.pindahkeluar.index'));
+});
+
+// data pindah keluar create
+Breadcrumbs::for('admin.pindahkeluar.create', function ($trail, $kartuKeluarga) {
+    $trail->parent('admin.pindahkeluar.index');
+    $trail->push('Buat Data Pindah Keluar', route('admin.pindahkeluar.create', $kartuKeluarga->nomorkk));
+});
+
+// data pindah keluar show
+Breadcrumbs::for('admin.pindahkeluar.show', function ($trail, $dataPindahKeluar) {
+    $trail->parent('admin.pindahkeluar.index');
+    $trail->push('Detail Data Pindah Keluar', route('admin.pindahkeluar.show', $dataPindahKeluar->id));
+});

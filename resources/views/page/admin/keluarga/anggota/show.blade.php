@@ -28,6 +28,29 @@
                 @csrf
                 @method('put')
                 <div class="card-body">
+
+                    @isset($userKeluarga -> kematian)
+                    <div class="alert alert-warning" role="alert">
+                        <div class="d-flex justify-content-between">
+                            Data Warga Ini Sudah Meninggal
+                            <a href="{{ route('admin.kematian.show', $userKeluarga -> kematian -> id) }}" class="btn btn-xs btn-info">
+                                Lihat Data Meninggal
+                            </a>
+                        </div>
+                    </div>
+                    @endisset
+
+                    @isset($userKeluarga -> keluar)
+                    <div class="alert alert-warning" role="alert">
+                        <div class="d-flex justify-content-between">
+                            Data Warga Ini Sudah Pindah Keluar
+                            <a href="{{ route('admin.pindahkeluar.show', $userKeluarga -> keluar -> id) }}" class="btn btn-xs btn-info">
+                                Lihat Data Pindah Keluar
+                            </a>
+                        </div>
+                    </div>
+                    @endisset
+
                     <div class="form-group">
                         <label>
                             Nama

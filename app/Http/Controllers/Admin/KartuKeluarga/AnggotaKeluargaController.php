@@ -58,12 +58,6 @@ class AnggotaKeluargaController extends Controller
             'creator_id' => Auth::id(),
         ]);
 
-        if ($request->status_hubungan_kepala_id == 1) {
-            $kartuKeluarga->update([
-                'kepala_keluarga_id' => $user->id,
-            ]);
-        }
-
         return redirect()->route('admin.kartukeluarga.show', $kartuKeluarga->nomorkk)->with('success', 'Anggota Keluarga Berhasil Ditambah!');
     }
 

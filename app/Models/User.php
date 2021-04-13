@@ -4,6 +4,10 @@ namespace App\Models;
 
 use App\Models\Aduan\Aduan;
 use App\Models\News\News;
+use App\Models\PengaturanWarga\DataKelahiran;
+use App\Models\PengaturanWarga\DataKematian;
+use App\Models\PengaturanWarga\PindahKeluar;
+use App\Models\PengaturanWarga\PindahMasuk;
 use App\Models\Warga\AnggotaKeluarga;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +64,25 @@ class User extends Authenticatable
     public function anggota()
     {
         return $this->hasOne(AnggotaKeluarga::class);
+    }
+
+    public function kelahiran()
+    {
+        return $this->hasOne(DataKelahiran::class);
+    }
+
+    public function kematian()
+    {
+        return $this->hasOne(DataKematian::class);
+    }
+
+    public function masuk()
+    {
+        return $this->hasOne(PindahMasuk::class);
+    }
+
+    public function keluar()
+    {
+        return $this->hasOne(PindahKeluar::class);
     }
 }

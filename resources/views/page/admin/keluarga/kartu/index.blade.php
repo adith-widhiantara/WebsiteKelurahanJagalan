@@ -41,11 +41,15 @@ Daftar Kartu Keluarga
                             <td>{{ $loop -> iteration }}</td>
                             <td>{{ $kartu -> nomorkk }}</td>
                             <td>
-                                @empty($kartu -> kepala_keluarga_id)
-                                ( Kosong )
-                                @else
-                                {{ \App\Models\User::where('id', $kartu -> kepala_keluarga_id)->firstOrFail()->nama }}
-                                @endisset
+                                @php
+                                if ($kartu -> anggota() -> where('status_hubungan_kepala_id', 1) -> count() > 0) {
+                                $getName = $kartu -> anggota() -> where('status_hubungan_kepala_id', 1) -> firstOrFail()->user_id;
+                                $namaKepala = \App\Models\User::where('id', $getName)->firstOrFail()->nama;
+                                } else {
+                                $namaKepala = '( Kosong )';
+                                }
+                                @endphp
+                                {{ $namaKepala }}
                             </td>
                             <td>{{ $kartu -> alamat }}</td>
                             <td>{{ $kartu -> telepon_rumah }}</td>

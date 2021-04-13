@@ -35,7 +35,7 @@ $title = "Masuk";
                 @csrf
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Harap Masukkan Nomor KTP">
                     <span class="label-input100">Nomor KTP</span>
-                    <input class="input100" type="text" name="nomor_ktp" placeholder="Masukkan Nomor KTP" required>
+                    <input class="input100" type="text" name="nomor_ktp" placeholder="Masukkan Nomor KTP" value="{{ old('nomor_ktp') }}" required autofocus>
                     <span class="focus-input100"></span>
                 </div>
 

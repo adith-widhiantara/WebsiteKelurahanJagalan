@@ -56,7 +56,7 @@ class AnggotaKeluarga extends Model
 
     public function kartu()
     {
-        return $this->belongsTo(KartuKeluarga::class);
+        return $this->belongsTo(KartuKeluarga::class, 'kartu_keluarga_id');
     }
 
     public function gelar()
