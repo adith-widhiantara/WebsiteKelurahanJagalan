@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Surat Kelahiran</title>
+    <title>Surat Pindah Keluar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style type="text/css" media="screen">
@@ -161,7 +161,7 @@
         <tbody>
             <tr>
                 <td>
-                    <h1 style="text-align: center">Surat Keterangan Kelahiran</h1>
+                    <h1 style="text-align: center">Surat Keterangan Pindah Keluar</h1>
                     <h3 style="text-align: center">Nomor Surat : {{ $data['data']['nomor_surat']['format'].$data['data']['nomor_surat']['index'] }}</h3>
                 </td>
             </tr>
@@ -252,7 +252,7 @@
         <tbody>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Adalah anak dari :</p>
+                    <p style="font-size: 12px">Telah pindah keluar :</p>
                 </td>
             </tr>
         </tbody>
@@ -262,28 +262,38 @@
         <tbody>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Nama ayah kandung</p>
+                    <p style="font-size: 12px">Alamat Asal</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['ayah'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['pindahKeluar']['alamat'] }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Nama ibu kandung</p>
+                    <p style="font-size: 12px">Tanggal Surat</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['ibu'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['pindahKeluar']['tanggal'] }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Anak ke</p>
+                    <p style="font-size: 12px">Nomor Surat</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['anak'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['pindahKeluar']['nomor'] }}</p>
                 </td>
             </tr>
+            @isset($data['pindahKeluar']['keterangan'])
+            <tr>
+                <td>
+                    <p style="font-size: 12px">Keterangan</p>
+                </td>
+                <td>
+                    <p style="font-size: 12px">: {{ $data['pindahKeluar']['keterangan'] }}</p>
+                </td>
+            </tr>
+            @endisset
         </tbody>
     </table>
 
@@ -291,7 +301,7 @@
         <tbody>x
             <tr>
                 <td>
-                    <p style="font-size: 12px">Demikian surat keterangan kelahiran ini dibuat untuk dapat digunakan seperlunya.</p>
+                    <p style="font-size: 12px">Demikian surat keterangan pindah keluar ini dibuat untuk dapat digunakan seperlunya.</p>
                 </td>
             </tr>
         </tbody>

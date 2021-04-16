@@ -3,7 +3,7 @@ Fitur
 2. pengaduan warga, (done) v1
 3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian,
-5. pendataan warga, (done) v1
+5. pendataan warga, (done) v2 (print PDF)
 6. pengaturan akun,
 7. kartu dan anggota keluarga (done) v2.
 

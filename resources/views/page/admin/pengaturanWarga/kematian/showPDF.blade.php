@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Surat Kelahiran</title>
+    <title>Surat Kematian</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style type="text/css" media="screen">
@@ -161,7 +161,7 @@
         <tbody>
             <tr>
                 <td>
-                    <h1 style="text-align: center">Surat Keterangan Kelahiran</h1>
+                    <h1 style="text-align: center">Surat Keterangan Kematian</h1>
                     <h3 style="text-align: center">Nomor Surat : {{ $data['data']['nomor_surat']['format'].$data['data']['nomor_surat']['index'] }}</h3>
                 </td>
             </tr>
@@ -217,6 +217,17 @@
                     <p style="font-size: 12px">c.</p>
                 </td>
                 <td>
+                    <p style="font-size: 12px">Usia</p>
+                </td>
+                <td>
+                    <p style="font-size: 12px">: {{ $data['self']['usia'].__(' tahun') }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: 12px">d.</p>
+                </td>
+                <td>
                     <p style="font-size: 12px">Jenis Kelamin</p>
                 </td>
                 <td>
@@ -225,7 +236,7 @@
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">d.</p>
+                    <p style="font-size: 12px">e.</p>
                 </td>
                 <td>
                     <p style="font-size: 12px">Pekerjaan</p>
@@ -236,7 +247,7 @@
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">e.</p>
+                    <p style="font-size: 12px">f.</p>
                 </td>
                 <td>
                     <p style="font-size: 12px">Alamat</p>
@@ -252,7 +263,7 @@
         <tbody>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Adalah anak dari :</p>
+                    <p style="font-size: 12px">Telah meninggal pada :</p>
                 </td>
             </tr>
         </tbody>
@@ -262,28 +273,38 @@
         <tbody>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Nama ayah kandung</p>
+                    <p style="font-size: 12px">Tanggal</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['ayah'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['meninggal']['tanggal'] }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Nama ibu kandung</p>
+                    <p style="font-size: 12px">Tempat</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['ibu'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['meninggal']['tempat'] }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Anak ke</p>
+                    <p style="font-size: 12px">Sebab</p>
                 </td>
                 <td>
-                    <p style="font-size: 12px">: {{ $data['orangTua']['anak'] }}</p>
+                    <p style="font-size: 12px">: {{ $data['meninggal']['sebab'] }}</p>
                 </td>
             </tr>
+            @isset($data['meninggal']['keterangan'])
+            <tr>
+                <td>
+                    <p style="font-size: 12px">Keterangan</p>
+                </td>
+                <td>
+                    <p style="font-size: 12px">: {{ $data['meninggal']['keterangan'] }}</p>
+                </td>
+            </tr>
+            @endisset
         </tbody>
     </table>
 
@@ -291,7 +312,7 @@
         <tbody>x
             <tr>
                 <td>
-                    <p style="font-size: 12px">Demikian surat keterangan kelahiran ini dibuat untuk dapat digunakan seperlunya.</p>
+                    <p style="font-size: 12px">Demikian surat keterangan kematian ini dibuat untuk dapat digunakan seperlunya.</p>
                 </td>
             </tr>
         </tbody>

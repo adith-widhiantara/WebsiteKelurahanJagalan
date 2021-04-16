@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\PengaturanWarga;
 
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,6 +15,7 @@ use App\Models\Warga\AnggotaKeluarga;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\PengaturanWarga\DataKelahiran;
 use App\Http\Requests\CreateAnggotaKeluargaRequest;
+use Carbon\Carbon;
 
 class DataKelahiranController extends Controller
 {
@@ -106,12 +107,43 @@ class DataKelahiranController extends Controller
         return view('page.admin.pengaturanWarga.kelahiran.show', compact('dataKelahiran'));
     }
 
-    public function showPDF(DataKelahiran $dataKelahiran)
+    public function showPDF($kelahiran)
     {
-        // $getNama = Str::slug($dataKelahiran->user->nama, '_');
+        $dataKelahiran = DataKelahiran::with('user.anggota')
+            ->findOrFail($kelahiran);
 
-        // $pdf = PDF::loadView('page.admin.pengaturanWarga.kelahiran.showPDF', ['dataKelahiran' => $dataKelahiran]);
-        // return $pdf->download('data_kelahiran_' . $getNama . '.pdf');
+        $data = [
+            'data' => [
+                'logo' => 'image/assets/Logo-Kota-Kediri.png',
+                'alamat' => 'Jl. Patiunus No.69, Jagalan, Kec. Kota Kediri, Kota Kediri, Jawa Timur 64129',
+                'nomor_surat' => [
+                    'format' => 'surat_lahir/',
+                    'index' => $dataKelahiran->id
+                ]
+            ],
+            'self' => [
+                'nama' => $dataKelahiran->user->nama,
+                'tempat_lahir' => $dataKelahiran->user->anggota->tempat_lahir,
+                'tanggal_lahir' => Carbon::parse($dataKelahiran->user->anggota->tanggal_bulan_tahun_lahir)->isoFormat('D MMMM Y'),
+                'jenis_kelamin' => $dataKelahiran->user->anggota->jenis_kelamin,
+                'pekerjaan' => $dataKelahiran->user->anggota->pekerjaan->keterangan,
+                'alamat' => $dataKelahiran->user->anggota->kartu->alamat,
+            ],
+            'orangTua' => [
+                'ayah' => $dataKelahiran->user->anggota->nama_ayah,
+                'ibu' => $dataKelahiran->user->anggota->nama_ibu,
+                'anak' => $dataKelahiran->nomor_anak
+            ],
+            'bottom' => [
+                'place' => 'Kediri',
+                'date' => now()->isoFormat('D MMMM Y'),
+                'ttd' => 'image/assets/ttd.png',
+                'person' => 'Drs. John Doe'
+            ],
+        ];
+
+        $pdf = PDF::loadView('page.admin.pengaturanWarga.kelahiran.showPDF', ['data' => $data]);
+        return $pdf->stream();
     }
 
     public function showViewPDF(DataKelahiran $dataKelahiran)

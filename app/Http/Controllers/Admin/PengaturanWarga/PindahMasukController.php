@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\PengaturanWarga;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -138,5 +140,45 @@ class PindahMasukController extends Controller
     {
         $path = Storage::path('public/berkas_pindah_masuk/' . $pindahMasuk->file_surat);
         return response()->file($path);
+    }
+
+    public function showPDF($pindahMasuk)
+    {
+        $dataPindahMasuk = PindahMasuk::with('user.anggota.kartu')
+            ->findOrFail($pindahMasuk);
+
+        $data = [
+            'data' => [
+                'logo' => 'image/assets/Logo-Kota-Kediri.png',
+                'alamat' => 'Jl. Patiunus No.69, Jagalan, Kec. Kota Kediri, Kota Kediri, Jawa Timur 64129',
+                'nomor_surat' => [
+                    'format' => 'surat_pindah_masuk/',
+                    'index' => $dataPindahMasuk->id
+                ]
+            ],
+            'self' => [
+                'nama' => $dataPindahMasuk->user->nama,
+                'tempat_lahir' => $dataPindahMasuk->user->anggota->tempat_lahir,
+                'tanggal_lahir' => Carbon::parse($dataPindahMasuk->user->anggota->tanggal_bulan_tahun_lahir)->isoFormat('D MMMM Y'),
+                'jenis_kelamin' => $dataPindahMasuk->user->anggota->jenis_kelamin,
+                'pekerjaan' => $dataPindahMasuk->user->anggota->pekerjaan->keterangan,
+                'alamat' => $dataPindahMasuk->user->anggota->kartu->alamat,
+            ],
+            'pindahMasuk' => [
+                'alamat' => $dataPindahMasuk->alamat_asal,
+                'tanggal' => Carbon::parse($dataPindahMasuk->tanggal_surat)->isoFormat('D MMMM Y'),
+                'nomor' => $dataPindahMasuk->nomor_surat,
+                'keterangan' => $dataPindahMasuk->keterangan,
+            ],
+            'bottom' => [
+                'place' => 'Kediri',
+                'date' => now()->isoFormat('D MMMM Y'),
+                'ttd' => 'image/assets/ttd.png',
+                'person' => 'Drs. John Doe'
+            ],
+        ];
+
+        $pdf = PDF::loadView('page.admin.pengaturanWarga.pindahMasuk.showPDF', ['data' => $data]);
+        return $pdf->stream();
     }
 }

@@ -74,7 +74,7 @@ $title = 'Detail Data Pindah Masuk';
                     <a href="{{ route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $dataPindahMasuk -> user -> anggota -> kartu -> nomorkk,'anggotaKeluarga' => $dataPindahMasuk -> user -> nomor_ktp]) }}" class="btn btn-success">
                         Detail Warga
                     </a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('admin.pindahmasuk.show.pdf', $dataPindahMasuk->id) }}" class="btn btn-primary">
                         <i class="far fa-file-pdf"></i>
                         Download sebagai PDF
                     </a>

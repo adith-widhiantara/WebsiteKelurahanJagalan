@@ -280,7 +280,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::get('{dataKelahiran}', [DataKelahiranController::class, 'show'])->name('show'); // admin.kelahiran.show
 
         // print pdf
-        Route::get('{dataKelahiran}/pdf', [DataKelahiranController::class, 'showPDF'])->name('showPDF'); // admin.kelahiran.showPDF
+        Route::get('{dataKelahiran}/pdf', [DataKelahiranController::class, 'showPDF'])->name('show.pdf'); // admin.kelahiran.show.pdf
     });
     // end Tabel Data Kelahiran
 
@@ -297,6 +297,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         // show
         Route::get('{dataKematian}', [DataKematianController::class, 'show'])->name('show'); // admin.kematian.show
+
+        // print pdf
+        Route::get('{dataKematian}/pdf', [DataKematianController::class, 'showPDF'])->name('show.pdf'); // admin.kematian.show.pdf
     });
     // end Tabel kematian
 
@@ -322,6 +325,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         // show view file
         Route::get('{pindahMasuk}/file', [PindahMasukController::class, 'showFile'])->name('show.file'); // admin.pindahmasuk.show.file
+
+        // print pdf
+        Route::get('{pindahMasuk}/pdf', [PindahMasukController::class, 'showPDF'])->name('show.pdf'); // admin.pindahmasuk.show.pdf
     });
     // end table pindah masuk
 
@@ -341,6 +347,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         // show view file
         Route::get('{pindahKeluar}/file', [PindahKeluarController::class, 'showFile'])->name('show.file'); // admin.pindahkeluar.show.file
+
+        // print pdf
+        Route::get('{pindahKeluar}/pdf', [PindahKeluarController::class, 'showPDF'])->name('show.pdf'); // admin.pindahkeluar.show.pdf
     });
     // end table pindah keluar
 });
