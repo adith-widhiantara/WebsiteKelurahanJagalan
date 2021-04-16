@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\PengaturanWarga;
 
+use PDF;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Warga\KartuKeluarga;
@@ -32,7 +32,6 @@ class DataKelahiranController extends Controller
         $user = User::with('anggota.kartu')
             ->doesntHave('kelahiran')
             ->doesntHave('kematian')
-            ->doesntHave('masuk')
             ->doesntHave('keluar')
             ->whereHas('anggota.kartu', function (Builder $query) use ($kartuKeluarga) {
                 $query->where('id', $kartuKeluarga->id);
@@ -109,34 +108,10 @@ class DataKelahiranController extends Controller
 
     public function showPDF(DataKelahiran $dataKelahiran)
     {
-        $data = [
-            'data' => [
-                'logo' => 'img/Logo-Kota-Kediri.png',
-                'alamat' => 'Jl. Patiunus No.69, Jagalan, Kec. Kota Kediri, Kota Kediri, Jawa Timur 64129'
-            ],
-            'self' => [
-                'nama' => 'Aditya Saktyawan Widhiantara',
-                'tempat_lahir' => 'Kediri',
-                'tanggal_lahir' => '28 September 1999',
-                'jenis_kelamin' => 'Laki-Laki',
-                'pekerjaan' => 'Mahasiswa',
-                'alamat' => 'Jln. Jagalan 1 No. 25 Kota Kediri'
-            ],
-            'orangTua' => [
-                'ayah' => 'Didik Supriantoro',
-                'ibu' => 'Widhiasari Rahajeng W',
-                'anak' => '1'
-            ],
-            'bottom' => [
-                'place' => 'Kediri',
-                'date' => '16 April 2021',
-                'ttd' => 'img/ttd.png',
-                'person' => 'Drs. John Doe'
-            ],
-        ];
+        // $getNama = Str::slug($dataKelahiran->user->nama, '_');
 
-        $pdf = PDF::loadView('page.admin.pengaturanWarga.kelahiran.showPDF', ['data' => $data]);
-        return $pdf->stream('invoice.pdf');
+        // $pdf = PDF::loadView('page.admin.pengaturanWarga.kelahiran.showPDF', ['dataKelahiran' => $dataKelahiran]);
+        // return $pdf->download('data_kelahiran_' . $getNama . '.pdf');
     }
 
     public function showViewPDF(DataKelahiran $dataKelahiran)

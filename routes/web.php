@@ -281,9 +281,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         // print pdf
         Route::get('{dataKelahiran}/pdf', [DataKelahiranController::class, 'showPDF'])->name('showPDF'); // admin.kelahiran.showPDF
-
-        // print pdf view
-        Route::get('{dataKelahiran}/pdf/view', [DataKelahiranController::class, 'showViewPDF'])->name('showViewPDF'); // admin.kelahiran.showViewPDF
     });
     // end Tabel Data Kelahiran
 

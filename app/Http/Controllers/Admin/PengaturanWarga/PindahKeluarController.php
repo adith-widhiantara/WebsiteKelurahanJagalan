@@ -25,9 +25,7 @@ class PindahKeluarController extends Controller
     public function create(KartuKeluarga $kartuKeluarga)
     {
         $user = User::with('anggota.kartu')
-            ->doesntHave('kelahiran')
             ->doesntHave('kematian')
-            ->doesntHave('masuk')
             ->doesntHave('keluar')
             ->whereHas('anggota.kartu', function (Builder $query) use ($kartuKeluarga) {
                 $query->where('id', $kartuKeluarga->id);

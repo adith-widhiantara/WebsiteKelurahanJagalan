@@ -70,8 +70,8 @@ $title = 'Buat Data Kelahiran'
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="nama_pelapor_id" required>
                             <option value="" selected="selected">...</option>
-                            @foreach ( $kartuKeluarga -> anggota as $anggota )
-                            <option @if( old('nama_pelapor_id')==$anggota -> user -> id ) selected="selected" @endif value="{{ $anggota -> user -> id }}">{{ $anggota -> user -> nama }}</option>
+                            @foreach ( $user as $use )
+                            <option @if( old('nama_pelapor_id')==$use -> id ) selected="selected" @endif value="{{ $use -> id }}">{{ $use -> nama }}</option>
                             @endforeach
                         </select>
                     </div>
