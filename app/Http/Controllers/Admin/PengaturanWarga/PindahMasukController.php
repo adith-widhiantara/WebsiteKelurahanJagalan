@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\PengaturanWarga;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
@@ -19,7 +20,8 @@ class PindahMasukController extends Controller
 {
     public function index()
     {
-        $dataPindahMasuk = PindahMasuk::all();
+        $dataPindahMasuk = PindahMasuk::latest()
+            ->get();
         $dataKartuKeluarga = KartuKeluarga::all();
 
         return view('page.admin.pengaturanWarga.pindahMasuk.index', compact('dataPindahMasuk', 'dataKartuKeluarga'));
@@ -138,7 +140,7 @@ class PindahMasukController extends Controller
 
     public function showFile(PindahMasuk $pindahMasuk)
     {
-        $path = Storage::path('public/berkas_pindah_masuk/' . $pindahMasuk->file_surat);
+        $path = Storage::path('public/pindah_masuk/berkas/' . $pindahMasuk->file_surat);
         return response()->file($path);
     }
 
@@ -178,7 +180,18 @@ class PindahMasukController extends Controller
             ],
         ];
 
+        $fileName =  Str::slug($data['data']['nomor_surat']['format'] . ' ' . $data['data']['nomor_surat']['index'] . ' ' . $data['self']['nama'], '_') . '.pdf';
+
+        if (Storage::disk('local')->exists('public/pindah_masuk/result/' . $fileName)) {
+            $pdfUrl = Storage::path('public/pindah_masuk/result/' . $fileName);
+            return response()->file($pdfUrl);
+        }
+
         $pdf = PDF::loadView('page.admin.pengaturanWarga.pindahMasuk.showPDF', ['data' => $data]);
-        return $pdf->stream();
+        $pdf->save(base_path() . '/storage/app/public/pindah_masuk/result/pindah_masuk.pdf');
+        Storage::move('public/pindah_masuk/result/pindah_masuk.pdf', 'public/pindah_masuk/result/' . $fileName);
+
+        $pdfUrl = Storage::path('public/pindah_masuk/result/' . $fileName);
+        return response()->file($pdfUrl);
     }
 }

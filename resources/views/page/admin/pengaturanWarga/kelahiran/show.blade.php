@@ -53,7 +53,7 @@
                     <a href="{{ route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $dataKelahiran -> user -> anggota -> kartu -> nomorkk,'anggotaKeluarga' => $dataKelahiran -> user -> nomor_ktp]) }}" class="btn btn-success">
                         Detail Warga
                     </a>
-                    <a href="{{ route('admin.kelahiran.show.pdf', $dataKelahiran -> id) }}" class="btn btn-primary">
+                    <a href="{{ route('admin.kelahiran.show.pdf', $dataKelahiran -> id) }}" class="btn btn-primary" target="_blank">
                         <i class="far fa-file-pdf"></i>
                         Download sebagai PDF
                     </a>

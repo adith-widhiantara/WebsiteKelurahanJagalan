@@ -92,7 +92,7 @@ $title = 'Detail Data Pindah Keluar';
                     <a href="{{ route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $dataPindahKeluar -> user -> anggota -> kartu -> nomorkk,'anggotaKeluarga' => $dataPindahKeluar -> user -> nomor_ktp]) }}" class="btn btn-success">
                         Detail Warga
                     </a>
-                    <a href="{{ route('admin.pindahkeluar.show.pdf', $dataPindahKeluar -> id) }}" class="btn btn-primary">
+                    <a href="{{ route('admin.pindahkeluar.show.pdf', $dataPindahKeluar -> id) }}" class="btn btn-primary" target="_blank">
                         <i class="far fa-file-pdf"></i>
                         Download sebagai PDF
                     </a>

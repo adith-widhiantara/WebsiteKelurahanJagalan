@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin\PengaturanWarga;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\PengaturanWarga\DataKematian;
 
@@ -103,7 +105,18 @@ class DataKematianController extends Controller
             ],
         ];
 
+        $fileName =  Str::slug($data['data']['nomor_surat']['format'] . ' ' . $data['data']['nomor_surat']['index'] . ' ' . $data['self']['nama'], '_') . '.pdf';
+
+        if (Storage::disk('local')->exists('public/kematian/' . $fileName)) {
+            $pdfUrl = Storage::path('public/kematian/' . $fileName);
+            return response()->file($pdfUrl);
+        }
+
         $pdf = PDF::loadView('page.admin.pengaturanWarga.kematian.showPDF', ['data' => $data]);
-        return $pdf->stream();
+        $pdf->save(base_path() . '/storage/app/public/kematian/kematian.pdf');
+        Storage::move('public/kematian/kematian.pdf', 'public/kematian/' . $fileName);
+
+        $pdfUrl = Storage::path('public/kematian/' . $fileName);
+        return response()->file($pdfUrl);
     }
 }

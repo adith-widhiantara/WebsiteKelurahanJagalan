@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\PengaturanWarga;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
@@ -113,8 +114,18 @@ class PindahKeluarController extends Controller
             ],
         ];
 
-        $pdf = PDF::loadView('page.admin.pengaturanWarga.pindahKeluar.showPDF', ['data' => $data])
-            ->save(base_path() . '/storage/app/public/file.pdf');
-        return $pdf->stream();
+        $fileName =  Str::slug($data['data']['nomor_surat']['format'] . ' ' . $data['data']['nomor_surat']['index'] . ' ' . $data['self']['nama'], '_') . '.pdf';
+
+        if (Storage::disk('local')->exists('public/pindah_keluar/result/' . $fileName)) {
+            $pdfUrl = Storage::path('public/pindah_keluar/result/' . $fileName);
+            return response()->file($pdfUrl);
+        }
+
+        $pdf = PDF::loadView('page.admin.pengaturanWarga.pindahKeluar.showPDF', ['data' => $data]);
+        $pdf->save(base_path() . '/storage/app/public/pindah_keluar/result/pindah_keluar.pdf');
+        Storage::move('public/pindah_keluar/result/pindah_keluar.pdf', 'public/pindah_keluar/result/' . $fileName);
+
+        $pdfUrl = Storage::path('public/pindah_keluar/result/' . $fileName);
+        return response()->file($pdfUrl);
     }
 }

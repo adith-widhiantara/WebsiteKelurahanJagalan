@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\PengaturanWarga\DataKelahiran;
 use App\Http\Requests\CreateAnggotaKeluargaRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class DataKelahiranController extends Controller
 {
@@ -142,8 +143,19 @@ class DataKelahiranController extends Controller
             ],
         ];
 
+        $fileName =  Str::slug($data['data']['nomor_surat']['format'] . ' ' . $data['data']['nomor_surat']['index'] . ' ' . $data['self']['nama'], '_') . '.pdf';
+
+        if (Storage::disk('local')->exists('public/kelahiran/' . $fileName)) {
+            $pdfUrl = Storage::path('public/kelahiran/' . $fileName);
+            return response()->file($pdfUrl);
+        }
+
         $pdf = PDF::loadView('page.admin.pengaturanWarga.kelahiran.showPDF', ['data' => $data]);
-        return $pdf->stream();
+        $pdf->save(base_path() . '/storage/app/public/kelahiran/kelahiran.pdf');
+        Storage::move('public/kelahiran/kelahiran.pdf', 'public/kelahiran/' . $fileName);
+
+        $pdfUrl = Storage::path('public/kelahiran/' . $fileName);
+        return response()->file($pdfUrl);
     }
 
     public function showViewPDF(DataKelahiran $dataKelahiran)
