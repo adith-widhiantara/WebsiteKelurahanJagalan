@@ -257,14 +257,21 @@
                 {{-- end News --}}
 
                 {{-- Permintaan Surat --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas ion-android-clipboard"></i>
-                        <p>
-                            Permintaan Surat
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                @php
+                $suratActive =
+                url()->current() == route('admin.jenis.index') ||
+                url()->current() == route('admin.surat.index');
+                @endphp
+
+                <li class="nav-item @if ( $suratActive ) menu-open @endif"">
+                    <a href=" #" class="nav-link @if ( $suratActive ) active @endif"">
+                        <i class=" nav-icon fas ion-android-clipboard"></i>
+                    <p>
+                        Permintaan Surat
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
                     </a>
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -279,16 +286,30 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            @if (url()->current() == route('admin.surat.index'))
+                            <a href="#" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Lihat Seluruh Surat</p>
                             </a>
+                            @else
+                            <a href="{{ route('admin.surat.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lihat Seluruh Surat</p>
+                            </a>
+                            @endif
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            @if (url()->current() == route('admin.jenis.index'))
+                            <a href="#" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Lihat Jenis Surat</p>
                             </a>
+                            @else
+                            <a href="{{ route('admin.jenis.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lihat Jenis Surat</p>
+                            </a>
+                            @endif
                         </li>
                     </ul>
                 </li>

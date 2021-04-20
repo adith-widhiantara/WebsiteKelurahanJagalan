@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Aduan\Aduan;
 use App\Models\News\News;
-use App\Models\PengaturanWarga\DataKelahiran;
-use App\Models\PengaturanWarga\DataKematian;
-use App\Models\PengaturanWarga\PindahKeluar;
-use App\Models\PengaturanWarga\PindahMasuk;
+use App\Models\Aduan\Aduan;
+use App\Models\Surat\Administrasi;
 use App\Models\Warga\AnggotaKeluarga;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use App\Models\PengaturanWarga\PindahMasuk;
+use App\Models\PengaturanWarga\PindahKeluar;
+use App\Models\PengaturanWarga\DataKematian;
+use App\Models\PengaturanWarga\DataKelahiran;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -84,5 +85,10 @@ class User extends Authenticatable
     public function keluar()
     {
         return $this->hasOne(PindahKeluar::class);
+    }
+
+    public function surat()
+    {
+        return $this->hasMany(Administrasi::class);
     }
 }

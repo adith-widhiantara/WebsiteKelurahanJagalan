@@ -185,3 +185,39 @@ Breadcrumbs::for('admin.pindahkeluar.show', function ($trail, $dataPindahKeluar)
     $trail->parent('admin.pindahkeluar.index');
     $trail->push('Detail Data Pindah Keluar', route('admin.pindahkeluar.show', $dataPindahKeluar->id));
 });
+
+// surat index
+Breadcrumbs::for('admin.surat.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Seluruh Permintaan Surat Warga', route('admin.surat.index'));
+});
+
+// surat create
+Breadcrumbs::for('admin.surat.create', function ($trail, $dataJenisSurat) {
+    $trail->parent('admin.surat.index');
+    $trail->push($dataJenisSurat->nama_surat, route('admin.surat.create', $dataJenisSurat->id));
+});
+
+// surat show
+Breadcrumbs::for('admin.surat.show', function ($trail, $dataSurat) {
+    $trail->parent('admin.surat.index');
+    $trail->push($dataSurat->jenis->nama_surat, route('admin.surat.show', $dataSurat->id));
+});
+
+// jenis surat index
+Breadcrumbs::for('admin.jenis.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Jenis Pelayanan Surat', route('admin.jenis.index'));
+});
+
+// jenis surat list
+Breadcrumbs::for('admin.jenis.list', function ($trail, $jenisSurat) {
+    $trail->parent('admin.jenis.index');
+    $trail->push($jenisSurat->nama_surat, route('admin.jenis.list', $jenisSurat->id));
+});
+
+// jenis surat show
+Breadcrumbs::for('admin.jenis.show', function ($trail, $jenisSurat) {
+    $trail->parent('admin.jenis.list', $jenisSurat);
+    $trail->push('Lihat data', route('admin.jenis.show', $jenisSurat->id));
+});

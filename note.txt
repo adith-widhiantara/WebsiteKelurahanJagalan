@@ -1,5 +1,5 @@
 Fitur
-1. administrasi surat (permintaan surat),
+1. administrasi surat (permintaan surat) (done admin) v1,
 2. pengaduan warga, (done) v1
 3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian,

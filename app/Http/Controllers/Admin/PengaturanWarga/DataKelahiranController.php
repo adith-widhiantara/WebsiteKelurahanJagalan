@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin\PengaturanWarga;
 
-use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;

@@ -10,8 +10,10 @@ use App\Http\Controllers\Warga\AduanController;
 use App\Http\Controllers\Warga\News\NewsController;
 use App\Http\Controllers\Admin\Aduan\TolakController;
 use App\Http\Controllers\Admin\Aduan\ValidController;
+use App\Http\Controllers\Admin\Surat\SuratController;
 use App\Http\Controllers\Warga\News\CategoryController;
 use App\Http\Controllers\Admin\News\AdminNewsController;
+use App\Http\Controllers\Admin\Surat\JenisSuratController;
 use App\Http\Controllers\Admin\Aduan\TindakLanjutController;
 use App\Http\Controllers\Admin\KartuKeluarga\KartuKeluargaController;
 use App\Http\Controllers\Admin\PengaturanWarga\PindahMasukController;
@@ -352,6 +354,47 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::get('{pindahKeluar}/pdf', [PindahKeluarController::class, 'showPDF'])->name('show.pdf'); // admin.pindahkeluar.show.pdf
     });
     // end table pindah keluar
+
+    // semua surat
+    Route::prefix('surat')->name('surat.')->group(function () {
+        // index
+        Route::get('', [SuratController::class, 'index'])->name('index'); // admin.surat.index
+
+        // create
+        Route::get('create/{jenisSurat}', [SuratController::class, 'create'])->name('create'); // admin.surat.create
+
+        // show anggota keluarga (chained dropdown)
+        Route::get('create/anggotakeluargadropdown/{kartuKeluarga}', [SuratController::class, 'dropdown'])->name('dropdown'); // admin.surat.dropdown
+
+        // store
+        Route::post('post/{jenisSurat}', [SuratController::class, 'store'])->name('store'); // admin.surat.store
+
+        // show
+        Route::get('{administrasi}', [SuratController::class, 'show'])->name('show'); // admin.surat.show
+
+        // show file
+        Route::get('{administrasi}/file', [SuratController::class, 'showFile'])->name('show.file'); // admin.surat.show.file
+
+        // show file result
+        Route::get('{administrasi}/result/file', [SuratController::class, 'showResult'])->name('show.file.result'); // admin.surat.show.file.result
+    });
+    // end semua surat
+
+    // jenis surat
+    Route::prefix('jenis/surat')->name('jenis.')->group(function () {
+        // index
+        Route::get('', [JenisSuratController::class, 'index'])->name('index'); // admin.jenis.index
+
+        // list
+        Route::get('{jenisSurat}', [JenisSuratController::class, 'list'])->name('list'); // admin.jenis.list
+
+        // show
+        Route::get('{jenisSurat}/show', [JenisSuratController::class, 'show'])->name('show'); // admin.jenis.show
+
+        // update
+        Route::post('{jenisSurat}/show', [JenisSuratController::class, 'update'])->name('update'); // admin.jenis.update
+    });
+    // end jenis surat
 });
 // end admin
 
