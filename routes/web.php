@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\KartuKeluarga\AnggotaKeluargaController;
 use App\Http\Controllers\Admin\PengaturanWarga\DataKelahiranController;
 use App\Http\Controllers\Admin\KartuKeluarga\TabelKartuKeluargaController;
 use App\Http\Controllers\Admin\Aduan\AduanController as AdminAduanController;
+use App\Http\Controllers\Warga\Surat\SuratController as WargaSuratController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,27 @@ Route::prefix('aduan')->name('aduan.')->middleware('auth')->group(function () {
     Route::post('{aduan:slug}/comment', [AduanController::class, 'comment'])->name('comment'); // aduan.comment
 });
 // end aduan
+
+// surat warga
+Route::name('warga.')->group(function () {
+    Route::middleware(['auth'])->prefix('surat')->name('surat.')->group(function () {
+        // index
+        Route::get('', [WargaSuratController::class, 'index'])->name('index'); // warga.surat.index
+
+        // create
+        Route::get('create/{jenisSurat:slug}', [WargaSuratController::class, 'create'])->name('create'); // warga.surat.create
+
+        // store
+        Route::post('post/{jenisSurat:slug}', [WargaSuratController::class, 'store'])->name('store'); // warga.surat.store
+
+        // show file
+        Route::get('show/file/{administrasi}', [WargaSuratController::class, 'showFile'])->name('show.file'); // warga.surat.show.file
+
+        // show result
+        Route::get('show/result/{administrasi}', [WargaSuratController::class, 'showResult'])->name('show.result'); // warga.surat.show.result
+    });
+});
+// end surat warga
 
 // admin
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
@@ -368,6 +390,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         // store
         Route::post('post/{jenisSurat}', [SuratController::class, 'store'])->name('store'); // admin.surat.store
+
+        // setuju pengajuan surat
+        Route::put('post/accept/{administrasi}', [SuratController::class, 'acceptAdministrasi'])->name('store.acceptAdministrasi'); // admin.surat.store.acceptAdministrasi
+
+        // setuju pengajuan surat
+        Route::put('post/decline/{administrasi}', [SuratController::class, 'declineAdministrasi'])->name('store.declineAdministrasi'); // admin.surat.store.declineAdministrasi
 
         // show
         Route::get('{administrasi}', [SuratController::class, 'show'])->name('show'); // admin.surat.show

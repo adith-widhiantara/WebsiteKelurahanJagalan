@@ -139,7 +139,7 @@
                     <label>
                         Penghasilan
                     </label>
-                    <input type="text" class="form-control" value="{{ $dataSurat->penghasilan->penghasilan }}" disabled>
+                    <input type="text" class="form-control" value="{{ $dataSurat->getPenghasilan() }}" disabled>
                 </div>
 
                 <div class="form-group">
@@ -243,13 +243,73 @@
                     </label>
                     <input type="text" class="form-control" value="{{ $dataSurat->keterangan }}" disabled>
                 </div>
+
+                @isset($dataSurat -> ditolak)
+                <div class="form-group">
+                    <label>
+                        Ditolak
+                    </label>
+                    <input type="text" class="form-control is-invalid" value="{{ $dataSurat->ditolak->komentar }}" disabled>
+                </div>
+                @endisset
             </div>
             <div class="card-footer">
+                @if ($dataSurat -> status === 1)
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('admin.surat.show.file.result', $dataSurat->id) }}" class="btn btn-success" target="_blank">
                         Lihat Hasil Surat
                     </a>
                 </div>
+                @elseif ($dataSurat -> status === 0)
+                <div class="d-flex justify-content-end">
+                    <div class="alert alert-danger" role="alert">
+                        Pengajuan Surat Telah Ditolak
+                    </div>
+                </div>
+                @elseif (!$dataSurat -> status)
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#decline-modal">
+                        Tolak
+                    </a>
+
+                    <div class="modal fade" id="decline-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Komentar Surat Ditolak</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ route('admin.surat.store.declineAdministrasi', $dataSurat->id) }}" method="post">
+                                    <div class="modal-body">
+                                        @csrf
+                                        @method('put')
+                                        <div class="form-group">
+                                            <label>
+                                                Komentar
+                                            </label>
+                                            <input type="text" class="form-control" name="komentar" placeholder="Mengapa surat ini ditolak?" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <a class="btn btn-default" data-dismiss="modal">Batalkan</a>
+                                        <button type="submit" class="btn btn-danger">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('accept-surat').submit();">
+                        Setuju
+                    </a>
+                    <form style="display: none" action="{{ route('admin.surat.store.acceptAdministrasi', $dataSurat->id) }}" method="post" id="accept-surat">
+                        @csrf
+                        @method('put')
+                    </form>
+                </div>
+                @endif
             </div>
         </div>
     </div>

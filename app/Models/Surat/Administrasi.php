@@ -5,6 +5,7 @@ namespace App\Models\Surat;
 use App\Models\User;
 use App\Models\Surat\Jenis;
 use App\Models\Surat\Usaha;
+use App\Models\Surat\Ditolak;
 use App\Models\Surat\BedaNama;
 use App\Models\Surat\HargaTanah;
 use App\Models\Surat\Penghasilan;
@@ -27,6 +28,11 @@ class Administrasi extends Model
         'status',
         'keterangan',
     ];
+
+    public function getPenghasilan()
+    {
+        return 'Rp.' . number_format($this->penghasilan->penghasilan, 2);
+    }
 
     public function jenis()
     {
@@ -51,6 +57,11 @@ class Administrasi extends Model
     public function hargaTanah()
     {
         return $this->hasOne(HargaTanah::class, 'surat_administrasi_id');
+    }
+
+    public function ditolak()
+    {
+        return $this->hasOne(Ditolak::class, 'surat_administrasi_id');
     }
 
     public function user()

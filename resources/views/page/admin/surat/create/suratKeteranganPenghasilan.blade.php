@@ -63,7 +63,7 @@ $title = 'Buat Surat Warga';
                         <label>
                             Penghasilan
                         </label>
-                        <input type="text" class="form-control" placeholder="Cth. Penghasilan" name="penghasilan" required>
+                        <input type="text" class="form-control" placeholder="Cth. Penghasilan" name="penghasilan" value="{{ old('penghasilan') }}" required>
                     </div>
 
                     <div class="form-group">
@@ -83,21 +83,21 @@ $title = 'Buat Surat Warga';
                         <label>
                             Keperluan
                         </label>
-                        <input type="text" class="form-control" placeholder="Cth. Keperluan" name="keperluan" required>
+                        <input type="text" class="form-control" placeholder="Cth. Keperluan" name="keperluan" value="{{ old('keperluan') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Pesan
                         </label>
-                        <input type="text" class="form-control" placeholder="Cth. Pesan" name="pesan" required>
+                        <input type="text" class="form-control" placeholder="Cth. Pesan" name="pesan" value="{{ old('pesan') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label>
                             Keterangan
                         </label>
-                        <input type="text" class="form-control" placeholder="Cth. Keterangan" name="keterangan">
+                        <input type="text" class="form-control" placeholder="Cth. Keterangan" name="keterangan" value="{{ old('keterangan') }}">
                     </div>
 
                 </div>

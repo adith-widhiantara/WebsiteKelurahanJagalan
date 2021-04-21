@@ -85,10 +85,12 @@ $title = 'Daftar Seluruh Permintaan Surat Warga';
                             <td>{{ $data -> jenis -> nama_surat }}</td>
                             <td>{{ $data -> keperluan }}</td>
                             <td>
-                                @if ($data -> status)
+                                @if ($data -> status === 1)
                                 <span class="badge badge-pill badge-success">Diterima</span>
-                                @else
+                                @elseif ($data -> status === 0)
                                 <span class="badge badge-pill badge-danger">Ditolak</span>
+                                @elseif (!$data -> status)
+                                <span class="badge badge-pill badge-warning">Menunggu</span>
                                 @endif
                             </td>
                             <td>

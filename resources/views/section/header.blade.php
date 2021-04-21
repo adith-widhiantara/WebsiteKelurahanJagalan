@@ -14,10 +14,34 @@
                                 <div class="main-menu d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="{{ route('landing') }}">Halaman Utama</a></li>
-                                            <li><a href="{{ route('news.index') }}">Berita</a></li>
+                                            <li>
+                                                <a href="{{ route('landing') }}">Halaman Utama</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('news.index') }}">Berita</a>
+                                            </li>
                                             <li>
                                                 <a href="{{ route('aduan.index') }}">Aduan Masyarakat</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Pengajuan Surat</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{ route('warga.surat.index') }}">Lihat Surat Saya</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Buat Surat Pengajuan</a>
+                                                        <ul class="submenu">
+                                                            @foreach (\App\Models\Surat\Jenis::all() as $jenis)
+                                                            <li>
+                                                                <a href="{{ route('warga.surat.create', $jenis->slug) }}">
+                                                                    {{ $jenis -> nama_surat }}
+                                                                </a>
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </ul>
                                             </li>
 
                                             @guest {{-- Login --}}
@@ -40,7 +64,9 @@
                                                 @role('kepala_kelurahan') <a href="#">Kepala Kelurahan</a> @endrole
 
                                                 <ul class="submenu">
-                                                    <li><a href="{{ route('admin.index') }}">Lihat Panel</a></li>
+                                                    <li>
+                                                        <a href="{{ route('admin.index') }}">Lihat Panel</a>
+                                                    </li>
                                                     <li>
                                                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                             Keluar

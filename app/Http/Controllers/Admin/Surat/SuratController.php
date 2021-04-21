@@ -239,6 +239,30 @@ class SuratController extends Controller
         return redirect()->route('admin.surat.index')->with('success', 'Permintaan surat berhasil dibuat');
     }
 
+    public function acceptAdministrasi(Administrasi $administrasi)
+    {
+        $administrasi->update([
+            'status' => 1
+        ]);
+
+        $this->printPDF($administrasi);
+
+        return back()->with('success', 'Pengajuan Surat Disetujui');
+    }
+
+    public function declineAdministrasi(Request $request, Administrasi $administrasi)
+    {
+        $administrasi->update([
+            'status' => 0
+        ]);
+
+        $administrasi->ditolak()->create([
+            'komentar' => $request->komentar
+        ]);
+
+        return back()->with('success', 'Pengajuan Surat Ditolak');
+    }
+
     public function show($administrasi)
     {
         $dataSurat = Administrasi::with('jenis')
@@ -277,6 +301,7 @@ class SuratController extends Controller
         if (!$administrasi->file_surat) {
             $this->printPDF($administrasi);
         }
+
         if ($administrasi->jenis->slug == 'surat_keterangan_usaha') {
             $pdfUrl = Storage::path('public/surat/result/usaha/' . $administrasi->file_surat);
         } elseif ($administrasi->jenis->slug == 'surat_keterangan_tidak_mampu') {
@@ -430,7 +455,7 @@ class SuratController extends Controller
                     'jenis_kelamin' => $administrasi->user->anggota->jenis_kelamin,
                     'pekerjaan' => $administrasi->user->anggota->pekerjaan->keterangan,
                     'alamat' => $administrasi->user->anggota->kartu->alamat,
-                    'penghasilan' => 'Rp.' . number_format($administrasi->penghasilan->penghasilan, 2),
+                    'penghasilan' => $administrasi->getPenghasilan(),
                     'keperluan' => $administrasi->keperluan,
                     'keterangan' => $administrasi->keterangan,
                 ],

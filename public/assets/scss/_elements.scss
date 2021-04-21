@@ -1,11 +1,11 @@
 $default: #f9f9ff;
 $primary: $theme-color2;
-$success: #4cd3e3;
+$success: #25771b;
 $info: #38a4ff;
 $warning: #f4e700;
 $danger: #f44a40;
 $link: #f9f9ff;
-$disable: (#222222, .3);
+$disable: (#222222, 0.3);
 $primary-color: #7c32ff;
 $primary-color1: #c738d8;
 $title-color: #415094;
@@ -44,14 +44,14 @@ $black: #000;
 }
 
 @mixin filter($filter-type, $filter-amount) {
-    -webkit-filter: $filter-type+unquote("(#{$filter-amount})");
-    -moz-filter: $filter-type+unquote("(#{$filter-amount})");
-    -ms-filter: $filter-type+unquote("(#{$filter-amount})");
-    -o-filter: $filter-type+unquote("(#{$filter-amount})");
-    filter: $filter-type+unquote("(#{$filter-amount})");
+    -webkit-filter: $filter-type + unquote("(#{$filter-amount})");
+    -moz-filter: $filter-type + unquote("(#{$filter-amount})");
+    -ms-filter: $filter-type + unquote("(#{$filter-amount})");
+    -o-filter: $filter-type + unquote("(#{$filter-amount})");
+    filter: $filter-type + unquote("(#{$filter-amount})");
 }
 
-@mixin gradient($deg, $args1,$args2){
+@mixin gradient($deg, $args1, $args2) {
     background: -webkit-linear-gradient($deg, $args1, $args2);
     background: -moz-linear-gradient($deg, $args1, $args2);
     background: -o-linear-gradient($deg, $args1, $args2);
@@ -125,7 +125,7 @@ del {
     outline: none;
     line-height: 40px;
     padding: 0 30px;
-    font-size: .8em;
+    font-size: 0.8em;
     text-align: center;
     text-decoration: none;
     font-weight: 500;
@@ -584,7 +584,7 @@ del {
         height: 100%;
         opacity: 0;
         cursor: pointer;
-        +label {
+        + label {
             position: absolute;
             top: 1px;
             left: 1px;
@@ -592,12 +592,12 @@ del {
             height: 15px;
             border-radius: 50%;
             background: $primary;
-            @include transition (all .2s);
+            @include transition(all 0.2s);
             box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
         &:checked {
-            +label {
+            + label {
                 left: 19px;
             }
         }
@@ -620,7 +620,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -640,7 +640,7 @@ del {
                 background: transparent;
                 border-radius: 8.5px;
                 cursor: pointer;
-                @include transition (all .2s);
+                @include transition(all 0.2s);
             }
             &:after {
                 content: "";
@@ -651,13 +651,13 @@ del {
                 height: 15px;
                 border-radius: 50%;
                 background: $white;
-                @include transition (all .2s);
+                @include transition(all 0.2s);
                 box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
                 cursor: pointer;
             }
         }
         &:checked {
-            +label {
+            + label {
                 &:after {
                     left: 19px;
                 }
@@ -685,7 +685,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -704,7 +704,7 @@ del {
                 height: 100%;
                 background: transparent;
                 border-radius: 8.5px;
-                @include transition (all .2s);
+                @include transition(all 0.2s);
                 cursor: pointer;
             }
             &:after {
@@ -716,13 +716,13 @@ del {
                 height: 15px;
                 border-radius: 50%;
                 background: $white;
-                @include transition (all .2s);
+                @include transition(all 0.2s);
                 box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
                 cursor: pointer;
             }
         }
         &:checked {
-            +label {
+            + label {
                 &:after {
                     left: 19px;
                 }
@@ -750,7 +750,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -763,8 +763,9 @@ del {
             border: 1px solid #f1f1f1;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/primary-check.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/primary-check.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -787,7 +788,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -800,8 +801,9 @@ del {
             border: 1px solid #f1f1f1;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/success-check.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/success-check.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -824,7 +826,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -841,8 +843,9 @@ del {
             z-index: 3;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/disabled-check.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -865,7 +868,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -878,8 +881,9 @@ del {
             border: 1px solid #f1f1f1;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/primary-radio.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -902,7 +906,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -915,8 +919,9 @@ del {
             border: 1px solid #f1f1f1;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/success-radio.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/success-radio.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -939,7 +944,7 @@ del {
         width: 100%;
         height: 100%;
         opacity: 0;
-        +label {
+        + label {
             position: absolute;
             left: 0;
             top: 0;
@@ -956,8 +961,9 @@ del {
             z-index: 3;
         }
         &:checked {
-            +label {
-                background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
+            + label {
+                background: url(../img/elements/disabled-radio.png) no-repeat
+                    center center/cover;
                 border: none;
             }
         }
@@ -1026,11 +1032,11 @@ del {
             width: 100%;
             padding: 10px 0 10px 0px;
             .option {
-                font-weight: 300;
+                font-weight: 700;
                 @include transition();
-                line-height: 28px;
-                min-height: 28px;
-                font-size: 12px;
+                line-height: 35px;
+                min-height: 35px;
+                font-size: 15px;
                 padding-left: 45px;
                 &.selected {
                     color: $primary;
