@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Aduan\ValidController;
 use App\Http\Controllers\Admin\Surat\SuratController;
 use App\Http\Controllers\Warga\News\CategoryController;
 use App\Http\Controllers\Admin\News\AdminNewsController;
+use App\Http\Controllers\Admin\Antrian\AntrianController;
 use App\Http\Controllers\Admin\Surat\JenisSuratController;
 use App\Http\Controllers\Admin\Aduan\TindakLanjutController;
 use App\Http\Controllers\Admin\KartuKeluarga\KartuKeluargaController;
@@ -423,6 +424,40 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::post('{jenisSurat}/show', [JenisSuratController::class, 'update'])->name('update'); // admin.jenis.update
     });
     // end jenis surat
+
+    // antrian
+    Route::prefix('antrian')->name('antrian.')->group(function () {
+        // layar pendaftaran
+        Route::get('layarpendaftaran', [AntrianController::class, 'pendaftaran'])->name('pendaftaran'); // admin.antrian.pendaftaran
+
+        // layar pemanggilan
+        Route::get('layarpemanggilan', [AntrianController::class, 'pemanggilan'])->name('pemanggilan'); // admin.antrian.pemanggilan
+
+        // index
+        Route::get('', [AntrianController::class, 'index'])->name('index'); // admin.antrian.index
+
+        // index today
+        Route::get('today', [AntrianController::class, 'indexToday'])->name('index.today'); // admin.antrian.index.today
+
+        // store petugas kelurahan
+        Route::post('petugaskelurahan', [AntrianController::class, 'petugasKelurahanStore'])->name('petugasKelurahan.store'); // admin.antrian.petugasKelurahan.store
+
+        // store petugas pajak
+        Route::post('petugaspajak', [AntrianController::class, 'petugasPajakStore'])->name('petugasPajak.store'); // admin.antrian.petugasPajak.store
+
+        // store petugas pajak
+        Route::post('kepalakelurahan', [AntrianController::class, 'kepalaKelurahanStore'])->name('kepalaKelurahan.store'); // admin.antrian.kepalaKelurahan.store
+
+        // terima antrian
+        Route::put('antrian/{dataAntrian}', [AntrianController::class, 'antrianTerima'])->name('terima'); // admin.antrian.terima
+
+        // selesai antrian
+        Route::put('antrian/{dataAntrian}/selesai', [AntrianController::class, 'antrianSelesai'])->name('selesai'); // admin.antrian.selesai
+
+        // tidak ada orang antrian
+        Route::put('antrian/{dataAntrian}/tidakselesai', [AntrianController::class, 'antrianTidakSelesai'])->name('tidak.selesai'); // admin.antrian.tidak.selesai
+    });
+    // end antrian
 });
 // end admin
 

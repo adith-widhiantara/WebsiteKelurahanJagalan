@@ -23,7 +23,6 @@ class SuratController extends Controller
             ->get();
         $dataJenisSurat = Jenis::all();
 
-
         return view('page.admin.surat.index', compact('dataSurat', 'dataJenisSurat'));
     }
 

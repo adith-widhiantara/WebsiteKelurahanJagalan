@@ -1,3 +1,3 @@
-<div {{ $attributes->merge(['class' => 'mt-10']) }}>
-    <input {{ $attributes->merge(['class' => 'single-input', 'type' => 'text', 'class' => 'single-input']) }}>
-</div>
+@props(['disabled' => false])
+
+<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50']) !!}>

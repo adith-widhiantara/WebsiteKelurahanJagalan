@@ -55,13 +55,16 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-secondary">
             <div class="inner">
-                <h3>-</h3>
-                <p>Permintaan Surat<br>Warga</p>
+                @php
+                $suratCount = App\Models\Surat\Administrasi::where('status', null)->count();
+                @endphp
+                <h3>{{ $suratCount }}</h3>
+                <p>Permintaan Surat<br>Warga (Menunggu)</p>
             </div>
             <div class="icon">
                 <i class="ion ion-android-clipboard"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('admin.surat.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 </div>
@@ -205,7 +208,7 @@ Halaman Admin
     <div class="col-md-6">
         <div class="card card-secondary">
             <div class="card-header">
-                <h3 class="card-title">Permintaan Surat Warga</h3>
+                <h3 class="card-title">Permintaan Surat Warga (Belum DIkonfirmasi)</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -225,34 +228,17 @@ Halaman Admin
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (App\Models\Surat\Administrasi::where('status', null)->latest()->take(4)->get() as $surat)
                         <tr>
-                            <td>1.</td>
-                            <td>Brian James</td>
-                            <td>Keterangan Penduduk Jagalan</td>
-                            <td>Untuk Nikah</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
+                            <td>{{ $loop -> iteration }}</td>
+                            <td>{{ $surat -> user -> nama }}</td>
+                            <td>{{ $surat -> jenis -> nama_surat }}</td>
+                            <td>{{ $surat -> keperluan }}</td>
+                            <td>
+                                <a href="{{ route('admin.surat.show', $surat -> id) }}" class="btn btn-info btn-xs">Detail</a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Brian James</td>
-                            <td>Keterangan Penduduk Jagalan</td>
-                            <td>Untuk Nikah</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Brian James</td>
-                            <td>Keterangan Penduduk Jagalan</td>
-                            <td>Untuk Nikah</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Brian James</td>
-                            <td>Keterangan Penduduk Jagalan</td>
-                            <td>Untuk Nikah</td>
-                            <td><a href="#" class="btn btn-info btn-xs">Detail</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

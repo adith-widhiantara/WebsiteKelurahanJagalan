@@ -221,3 +221,15 @@ Breadcrumbs::for('admin.jenis.show', function ($trail, $jenisSurat) {
     $trail->parent('admin.jenis.list', $jenisSurat);
     $trail->push('Lihat data', route('admin.jenis.show', $jenisSurat->id));
 });
+
+// antrian index today
+Breadcrumbs::for('admin.antrian.index.today', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Antrian Hari Ini', route('admin.antrian.index.today'));
+});
+
+// antrian index today
+Breadcrumbs::for('admin.antrian.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Seluruh Antrian Warga', route('admin.antrian.index'));
+});

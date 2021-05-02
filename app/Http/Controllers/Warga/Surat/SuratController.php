@@ -233,7 +233,7 @@ class SuratController extends Controller
             //
         }
 
-        return redirect()->route('admin.surat.index')->with('success', 'Pengajuan Surat Berhasil Dikirim');
+        return redirect()->route('warga.surat.index')->with('success', 'Pengajuan Surat Berhasil Dikirim');
     }
 
     public function showResult(Administrasi $administrasi)

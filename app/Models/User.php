@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\News\News;
 use App\Models\Aduan\Aduan;
+use App\Models\Antrian\NomorAntrian;
 use App\Models\Surat\Administrasi;
 use App\Models\Warga\AnggotaKeluarga;
 use Spatie\Permission\Traits\HasRoles;
@@ -90,5 +91,10 @@ class User extends Authenticatable
     public function surat()
     {
         return $this->hasMany(Administrasi::class);
+    }
+
+    public function antrian()
+    {
+        return $this->hasMany(NomorAntrian::class);
     }
 }

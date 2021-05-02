@@ -13,8 +13,7 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 Route::get('/register', function () {
     return redirect()->route('login');
-})
-    ->middleware('guest');
+})->middleware('guest');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')

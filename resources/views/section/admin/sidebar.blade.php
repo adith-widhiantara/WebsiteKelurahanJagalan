@@ -263,28 +263,16 @@
                 url()->current() == route('admin.surat.index');
                 @endphp
 
-                <li class="nav-item @if ( $suratActive ) menu-open @endif"">
-                    <a href=" #" class="nav-link @if ( $suratActive ) active @endif"">
+                <li class="nav-item @if ( $suratActive ) menu-open @endif">
+                    <a href=" #" class="nav-link @if ( $suratActive ) active @endif">
                         <i class=" nav-icon fas ion-android-clipboard"></i>
-                    <p>
-                        Permintaan Surat
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
+                        <p>
+                            Permintaan Surat
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
 
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Permintaan Surat</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Lihat Surat Kelurahan</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             @if (url()->current() == route('admin.surat.index'))
                             <a href="#" class="nav-link active">
@@ -324,13 +312,13 @@
                 url()->current() == route('admin.pindahkeluar.index');
                 @endphp
 
-                <li class="nav-item @if ( $pengaturanWargaActive ) menu-open @endif"">
-                    <a href=" #" class="nav-link @if ( $pengaturanWargaActive ) active @endif"">
+                <li class="nav-item @if ( $pengaturanWargaActive ) menu-open @endif">
+                    <a href=" #" class="nav-link @if ( $pengaturanWargaActive ) active @endif">
                         <i class=" nav-icon fas fa-people-carry"></i>
-                    <p>
-                        Pendataan Warga
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
+                        <p>
+                            Pendataan Warga
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -388,6 +376,64 @@
                     </ul>
                 </li>
                 {{-- end Pendataan Warga --}}
+
+                {{-- Daftar Antrian --}}
+                @php
+                $daftarAntrianActive =
+                url()->current() == route('admin.antrian.index.today') ||
+                url()->current() == route('admin.antrian.index');
+                @endphp
+
+                <li class="nav-item @if ( $daftarAntrianActive ) menu-open @endif">
+                    <a href=" #" class="nav-link @if ( $daftarAntrianActive ) active @endif">
+                        <i class="nav-icon fas fa-ellipsis-h"></i>
+                        <p>
+                            Daftar Antrian
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.antrian.index.today'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Antrian Hari Ini</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.antrian.index.today') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Antrian Hari Ini</p>
+                            </a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if (url()->current() == route('admin.antrian.index'))
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Seluruh Antrian</p>
+                            </a>
+                            @else
+                            <a href="{{ route('admin.antrian.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Seluruh Antrian</p>
+                            </a>
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.antrian.pendaftaran') }}" class="nav-link" target="_blank">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Layar Pendaftaran</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.antrian.pemanggilan') }}" class="nav-link" target="_blank">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Layar Pemanggilan</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- end Daftar Antrian --}}
 
                 {{-- Daftar Pengguna --}}
                 @role('admin')
