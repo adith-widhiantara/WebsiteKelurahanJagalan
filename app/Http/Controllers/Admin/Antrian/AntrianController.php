@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Antrian;
 
+use App\Events\PanggilAntrianEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian\JenisAntrian;
 use App\Models\Antrian\NomorAntrian;
@@ -87,6 +88,7 @@ class AntrianController extends Controller
         $dataAllAntrian = NomorAntrian::query()
             ->with('jenisAntrian')
             ->with('user')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('page.admin.antrian.index', compact('dataAllAntrian'));
@@ -242,6 +244,56 @@ class AntrianController extends Controller
             'status' => 1,
             'called_at' => now()
         ]);
+
+        $lastCalledAntrian = NomorAntrian::query()
+            ->with('jenisAntrian')
+            ->with('user')
+            ->whereNotNull('called_at')
+            ->where('status', '<', 2)
+            ->orderBy('called_at', 'desc')
+            ->first();
+
+        $lastAntrianPetugasKelurahan = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'petugas_kelurahan');
+            })
+            ->with('jenisAntrian')
+            ->with('user')
+            ->whereNotNull('called_at')
+            ->where('status', '<', 2)
+            ->orderBy('called_at', 'desc')
+            ->first();
+
+        $lastAntrianPetugasPajak = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'petugas_pajak');
+            })
+            ->with('jenisAntrian')
+            ->with('user')
+            ->whereNotNull('called_at')
+            ->where('status', '<', 2)
+            ->orderBy('called_at', 'desc')
+            ->first();
+
+        $lastAntrianKepalaKelurahan = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'kepala_kelurahan');
+            })
+            ->with('jenisAntrian')
+            ->with('user')
+            ->whereNotNull('called_at')
+            ->where('status', '<', 2)
+            ->orderBy('called_at', 'desc')
+            ->first();
+
+        $data = [
+            'lastCalledAntrian' => $lastCalledAntrian,
+            'lastAntrianPetugasKelurahan' => $lastAntrianPetugasKelurahan,
+            'lastAntrianPetugasPajak' => $lastAntrianPetugasPajak,
+            'lastAntrianKepalaKelurahan' => $lastAntrianKepalaKelurahan
+        ];
+
+        event(new PanggilAntrianEvent($data));
 
         return back()->with('success', 'Antrian berhasil dipanggil');
     }

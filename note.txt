@@ -2,7 +2,7 @@ Fitur
 1. administrasi surat (permintaan surat) (done) v2,
 2. pengaduan warga, (done) v1
 3. penyiaran berita, (done) v1
-4. pengajuan nomor antrian, v1
+4. pengajuan nomor antrian, (done realtime pemanggilan) v2
 5. pendataan warga, (done) v2 (print PDF)
 6. pengaturan akun,
 7. kartu dan anggota keluarga (done) v2.
