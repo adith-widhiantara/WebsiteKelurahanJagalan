@@ -2,40 +2,26 @@
 
 namespace App\Http\Controllers\Admin\Antrian;
 
+use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Events\PanggilAntrianEvent;
+use App\Events\ShowCountAntrianEvent;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian\JenisAntrian;
 use App\Models\Antrian\NomorAntrian;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AntrianController extends Controller
 {
     public function pendaftaran()
     {
-        $antrianPetugasKelurahanCount = NomorAntrian::query()
-            ->whereHas('jenisAntrian', function (Builder $query) {
-                $query->where('slug', '=', 'petugas_kelurahan');
-            })
-            ->whereDate('created_at', Carbon::today())
-            ->count();
+        $antrianPetugasKelurahanCount = $this->antrianCount()['antrianPetugasKelurahanCount'];
 
-        $antrianPetugasPajakCount = NomorAntrian::query()
-            ->whereHas('jenisAntrian', function (Builder $query) {
-                $query->where('slug', '=', 'petugas_pajak');
-            })
-            ->whereDate('created_at', Carbon::today())
-            ->count();
+        $antrianPetugasPajakCount = $this->antrianCount()['antrianPetugasPajakCount'];
 
-        $antrianKepalaKelurahanCount = NomorAntrian::query()
-            ->whereHas('jenisAntrian', function (Builder $query) {
-                $query->where('slug', '=', 'kepala_kelurahan');
-            })
-            ->whereDate('created_at', Carbon::today())
-            ->count();
+        $antrianKepalaKelurahanCount = $this->antrianCount()['antrianKepalaKelurahanCount'];
 
         return view('page.admin.antrian.layarPendaftaran', compact('antrianPetugasKelurahanCount', 'antrianPetugasPajakCount', 'antrianKepalaKelurahanCount'));
     }
@@ -295,6 +281,18 @@ class AntrianController extends Controller
 
         event(new PanggilAntrianEvent($data));
 
+        $antrianPetugasKelurahanCount = $this->antrianCount()['antrianPetugasKelurahanCount'];
+        $antrianPetugasPajakCount = $this->antrianCount()['antrianPetugasPajakCount'];
+        $antrianKepalaKelurahanCount = $this->antrianCount()['antrianKepalaKelurahanCount'];
+
+        $showCount = [
+            'antrianPetugasKelurahanCount' => $antrianPetugasKelurahanCount,
+            'antrianPetugasPajakCount' => $antrianPetugasPajakCount,
+            'antrianKepalaKelurahanCount' => $antrianKepalaKelurahanCount,
+        ];
+
+        event(new ShowCountAntrianEvent($showCount));
+
         return back()->with('success', 'Antrian berhasil dipanggil');
     }
 
@@ -303,6 +301,18 @@ class AntrianController extends Controller
         $dataAntrian->update([
             'status' => 2
         ]);
+
+        $antrianPetugasKelurahanCount = $this->antrianCount()['antrianPetugasKelurahanCount'];
+        $antrianPetugasPajakCount = $this->antrianCount()['antrianPetugasPajakCount'];
+        $antrianKepalaKelurahanCount = $this->antrianCount()['antrianKepalaKelurahanCount'];
+
+        $showCount = [
+            'antrianPetugasKelurahanCount' => $antrianPetugasKelurahanCount,
+            'antrianPetugasPajakCount' => $antrianPetugasPajakCount,
+            'antrianKepalaKelurahanCount' => $antrianKepalaKelurahanCount,
+        ];
+
+        event(new ShowCountAntrianEvent($showCount));
 
         return back()->with('success', 'Antrian telah selesai');
     }
@@ -313,6 +323,53 @@ class AntrianController extends Controller
             'status' => 3
         ]);
 
+        $antrianPetugasKelurahanCount = $this->antrianCount()['antrianPetugasKelurahanCount'];
+        $antrianPetugasPajakCount = $this->antrianCount()['antrianPetugasPajakCount'];
+        $antrianKepalaKelurahanCount = $this->antrianCount()['antrianKepalaKelurahanCount'];
+
+        $showCount = [
+            'antrianPetugasKelurahanCount' => $antrianPetugasKelurahanCount,
+            'antrianPetugasPajakCount' => $antrianPetugasPajakCount,
+            'antrianKepalaKelurahanCount' => $antrianKepalaKelurahanCount,
+        ];
+
+        event(new ShowCountAntrianEvent($showCount));
+
         return back()->with('warning', 'Antrian Tidak Ada Orang');
+    }
+
+    public function antrianCount()
+    {
+        $antrianPetugasKelurahanCount = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'petugas_kelurahan');
+            })
+            ->whereDate('created_at', Carbon::today())
+            ->where('status', '<=', 1)
+            ->count();
+
+        $antrianPetugasPajakCount = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'petugas_pajak');
+            })
+            ->whereDate('created_at', Carbon::today())
+            ->where('status', '<=', 1)
+            ->count();
+
+        $antrianKepalaKelurahanCount = NomorAntrian::query()
+            ->whereHas('jenisAntrian', function (Builder $query) {
+                $query->where('slug', '=', 'kepala_kelurahan');
+            })
+            ->whereDate('created_at', Carbon::today())
+            ->where('status', '<=', 1)
+            ->count();
+
+        $data = [
+            'antrianPetugasKelurahanCount' => $antrianPetugasKelurahanCount,
+            'antrianPetugasPajakCount' => $antrianPetugasPajakCount,
+            'antrianKepalaKelurahanCount' => $antrianKepalaKelurahanCount
+        ];
+
+        return $data;
     }
 }

@@ -20,3 +20,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('panggilAntrianChannel', function () {
     return true;
 });
+
+Broadcast::channel('countAntrianChannel', function () {
+    return true;
+});

@@ -53,7 +53,9 @@ $title = 'Daftar Seluruh Antrian Warga';
                                 @elseif ($data -> status == 2)
                                 <span class="badge badge-pill badge-success">Sudah Dipanggil</span>
                                 @elseif ($data -> status == 3)
-                                <span class="badge badge-pill badge-danger">Tidak Ada Ornag</span>
+                                <span class="badge badge-pill badge-danger">Tidak Ada Orang</span>
+                                @elseif ($data -> status == 4)
+                                <span class="badge badge-pill badge-warning">Diluar Batas Waktu</span>
                                 @endif
                             </td>
                         </tr>

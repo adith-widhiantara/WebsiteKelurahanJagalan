@@ -4,6 +4,31 @@
 Layar Pendaftaran
 @endsection
 
+@section('head')
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('b86dd85b9690beb7a5b2', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('countAntrianChannel');
+    channel.bind('countAntrian-event', function(data) {
+        $('#antrianPetugasKelurahanCountSpan').empty();
+        $('#antrianPetugasPajakCountSpan').empty();
+        $('#antrianKepalaKelurahanCountSpan').empty();
+
+        $('#antrianPetugasKelurahanCountSpan').append(data['countAntrianEvent']['antrianPetugasKelurahanCount']);
+        $('#antrianPetugasPajakCountSpan').append(data['countAntrianEvent']['antrianPetugasPajakCount']);
+        $('#antrianKepalaKelurahanCountSpan').append(data['countAntrianEvent']['antrianKepalaKelurahanCount']);
+    });
+</script>
+@endsection
+
 @section('base')
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
@@ -37,7 +62,7 @@ Layar Pendaftaran
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Petugas Kelurahan</h1>
-                    <p class="card-text">Jumlah antrian : <span>{{ $antrianPetugasKelurahanCount }}</span></p>
+                    <p class="card-text">Jumlah antrian : <span id="antrianPetugasKelurahanCountSpan">{{ $antrianPetugasKelurahanCount }}</span></p>
                 </div>
                 <div class="card-footer d-grid gap-2">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-daftar-petugas-kelurahan">
@@ -75,7 +100,7 @@ Layar Pendaftaran
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Petugas<br>Pajak</h1>
-                    <p class="card-text">Jumlah antrian : <span>{{ $antrianPetugasPajakCount }}</span></p>
+                    <p class="card-text">Jumlah antrian : <span id="antrianPetugasPajakCountSpan">{{ $antrianPetugasPajakCount }}</span></p>
                 </div>
                 <div class="card-footer d-grid gap-2">
                     <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-daftar-petugas-pajak">
@@ -113,7 +138,7 @@ Layar Pendaftaran
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Kepala<br>Kelurahan</h1>
-                    <p class="card-text">Jumlah antrian : <span>{{ $antrianKepalaKelurahanCount }}</span></p>
+                    <p class="card-text">Jumlah antrian : <span id="antrianKepalaKelurahanCountSpan">{{ $antrianKepalaKelurahanCount }}</span></p>
                 </div>
                 <div class="card-footer d-grid gap-2">
                     <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-daftar-kepala-kelurahan">
