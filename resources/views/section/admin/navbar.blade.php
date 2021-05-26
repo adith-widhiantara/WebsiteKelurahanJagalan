@@ -115,18 +115,18 @@
         {{-- profile --}}
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="user-image img-circle elevation-2" alt="User Image">
+                <img src="{{ Auth::user()->foto ? asset('storage/user/foto/'.Auth::user()->foto) : asset('lte/dist/img/user2-160x160.jpg') }}" class="user-image img-circle elevation-2" alt="User Image" style="object-fit: cover">
                 <span class="d-none d-md-inline">{{ Auth::user()->nama }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <li class="user-header bg-primary">
-                    <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{ Auth::user()->foto ? asset('storage/user/foto/'.Auth::user()->foto) : asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image" style="object-fit: cover">
                     <p>
                         {{ Auth::user()->nama.__(' - ').Auth::user()->getRoleNames()[0] }}
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profil Saya</a>
+                    <a href="{{ route('admin.pengurus.profilSaya') }}" class="btn btn-default btn-flat">Profil Saya</a>
                     <a href="#" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
 
                     <form style="display: none" action="{{ route('logout') }}" method="post" id="logout-form">

@@ -18,6 +18,13 @@ class AccountController extends Controller
             if (empty(Auth::user()->getRoleNames()[0])) {
                 return redirect()->route('landing')->with('login', 'Selamat Datang!');
             } else {
+                if (isset(Auth::user()->pengurus)) {
+                    Auth::user()->pengurus()
+                        ->update([
+                            'terakhir_masuk_sistem' => now(),
+                        ]);
+                }
+
                 return redirect()->route('admin.index')->with('success', 'Selamat Datang!');
             }
         }

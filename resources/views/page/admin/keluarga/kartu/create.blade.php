@@ -22,7 +22,7 @@ Buat Kartu Keluarga
                 <div class="card-body">
                     <div class="form-group">
                         <label for="inputNomorKK">Nomor Kartu Keluarga</label>
-                        <input type="text" class="form-control" id="inputNomorKK" placeholder="Masukkan Nomor Kartu Keluarga" required name="nomorkk" value="{{ old('nomorkk') }}">
+                        <input type="number" min="1000000000000000" max="9999999999999999" class="form-control" id="inputNomorKK" placeholder="Masukkan Nomor Kartu Keluarga" required name="nomorkk" value="{{ old('nomorkk') }}">
                     </div>
                     <div class="form-group">
                         <label for="inputAlamat">Alamat</label>
@@ -42,7 +42,7 @@ Buat Kartu Keluarga
                     </div>
                     <div class="form-group">
                         <label for="inputTeleponRumah">Telepon Rumah</label>
-                        <input type="text" class="form-control" id="inputTeleponRumah" placeholder="Masukkan Telepon Rumah" required name="telepon_rumah" value="{{ old('telepon_rumah') }}">
+                        <input type="number" class="form-control" id="inputTeleponRumah" placeholder="Masukkan Telepon Rumah" required name="telepon_rumah" value="{{ old('telepon_rumah') }}">
                     </div>
                 </div>
                 <div class="card-footer">

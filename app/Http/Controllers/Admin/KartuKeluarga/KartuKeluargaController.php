@@ -13,7 +13,10 @@ class KartuKeluargaController extends Controller
 {
     public function index()
     {
-        $kartuKeluarga = KartuKeluarga::all();
+        $kartuKeluarga = KartuKeluarga::query()
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('page.admin.keluarga.kartu.index', compact('kartuKeluarga'));
     }
 
@@ -24,21 +27,22 @@ class KartuKeluargaController extends Controller
 
     public function store(KartuKeluargaRequest $request)
     {
-        KartuKeluarga::create($request->validated());
+        $kartuKeluarga = KartuKeluarga::create($request->validated());
 
         return redirect()
-            ->route('admin.kartukeluarga.index')
+            ->route('admin.kartukeluarga.show', $kartuKeluarga->nomorkk)
             ->with('success', 'Kartu Keluarga Berhasil Ditambahkan');
     }
 
     public function show(KartuKeluarga $kartuKeluarga)
     {
-        $user = User::with('anggota.kartu')
+        $user = User::query()
             ->doesntHave('kematian')
             ->doesntHave('keluar')
             ->whereHas('anggota.kartu', function (Builder $query) use ($kartuKeluarga) {
                 $query->where('id', $kartuKeluarga->id);
-            })->get();
+            })
+            ->get();
 
         return view('page.admin.keluarga.kartu.show', compact('kartuKeluarga', 'user'));
     }

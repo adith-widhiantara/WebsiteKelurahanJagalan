@@ -79,7 +79,7 @@
                                                 <a href="#">Warga</a>
                                                 <ul class="submenu">
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="{{ route('user.show') }}">
                                                             Lihat Profil
                                                         </a>
                                                     </li>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Pengurus;
 use App\Models\News\News;
 use App\Models\Aduan\Aduan;
 use App\Models\Antrian\NomorAntrian;
@@ -32,6 +33,7 @@ class User extends Authenticatable
         'password',
         'nomor_telepon',
         'email',
+        'foto',
     ];
 
     /**
@@ -96,5 +98,10 @@ class User extends Authenticatable
     public function antrian()
     {
         return $this->hasMany(NomorAntrian::class);
+    }
+
+    public function pengurus()
+    {
+        return $this->hasOne(Pengurus::class, 'user_id');
     }
 }

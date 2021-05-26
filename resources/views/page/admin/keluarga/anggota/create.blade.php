@@ -55,7 +55,7 @@ Pendaftaran Anggota Keluarga
                         <label>
                             Nomor KTP
                         </label>
-                        <input type="text" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ old('nomor_ktp') }}">
+                        <input type="number" min="1000000000000000" max="9999999999999999" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ old('nomor_ktp') }}">
                         <small class="form-text text-muted">Nomor KTP tidak bisa diganti.</small>
                     </div>
 
@@ -63,7 +63,7 @@ Pendaftaran Anggota Keluarga
                         <label>
                             Nomor Telepon
                         </label>
-                        <input type="text" required class="form-control" placeholder="Masukkan Nomor Telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
+                        <input type="number" required class="form-control" placeholder="Masukkan Nomor Telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
                     </div>
 
                     <div class="form-group">

@@ -10,7 +10,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ Auth::user()->foto ? asset('storage/user/foto/'.Auth::user()->foto) : asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image" style="height: 30px; object-fit: cover">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->nama }}</a>
@@ -437,11 +437,23 @@
 
                 {{-- Daftar Pengguna --}}
                 @role('admin')
+                @php
+                $pengurusActive =
+                url()->current() == route('admin.pengurus.index');
+                @endphp
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    @if (url()->current() == route('admin.pengurus.index'))
+                    <a href="#" class="nav-link active">
                         <i class="fas fa-user-friends nav-icon"></i>
                         <p>Daftar Pengguna</p>
                     </a>
+                    @else
+                    <a href="{{ route('admin.pengurus.index') }}" class="nav-link">
+                        <i class="fas fa-user-friends nav-icon"></i>
+                        <p>Daftar Pengguna</p>
+                    </a>
+                    @endif
                 </li>
                 @endrole
                 {{-- end Daftar Pengguna --}}

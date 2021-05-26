@@ -50,7 +50,7 @@ use App\Models\User;
                                 <label>Nama Kepala Keluarga</label>
                                 @php
                                 if ($kartuKeluarga -> anggota() -> where('status_hubungan_kepala_id', 1) -> count() > 0) {
-                                $getName = $kartuKeluarga -> anggota() -> where('status_hubungan_kepala_id', 1) -> firstOrFail()->user_id;
+                                $getName = $kartuKeluarga -> anggota() -> where('status_hubungan_kepala_id', 1) -> firstOrFail() -> user_id;
                                 $namaKepala = User::where('id', $getName)->firstOrFail()->nama;
                                 } else {
                                 $namaKepala = '( Kosong )';
@@ -137,9 +137,15 @@ use App\Models\User;
                             <td>{{ \Carbon\Carbon::parse($use -> anggota -> tanggal_bulan_tahun_lahir)->age.__(' tahun') }}</td>
                             <td>{{ $use -> anggota -> status_hubungan -> keterangan }}</td>
                             <td>
-                                <a href="#" class="btn btn-success btn-xs">
+                                <a href="{{ route('admin.kartukeluarga.anggota.show', ['kartuKeluarga' => $kartuKeluarga->nomorkk, 'anggotaKeluarga' => $use->nomor_ktp]) }}" class="btn btn-success btn-xs">
                                     Detail
                                 </a>
+
+                                @isset($use -> pengurus)
+                                <a href="#" class="btn btn-xs btn-secondary">
+                                    Pengurus
+                                </a>
+                                @endisset
                             </td>
                         </tr>
                         @endforeach

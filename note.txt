@@ -4,7 +4,7 @@ Fitur
 3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian, (done realtime pemanggilan & pendaftaran) v3
 5. pendataan warga, (done) v2 (print PDF)
-6. pengaturan akun,
+6. pengaturan akun (done) v1,
 7. kartu dan anggota keluarga (done) v2.
 
 Role

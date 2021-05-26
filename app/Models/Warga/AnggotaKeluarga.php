@@ -91,7 +91,7 @@ class AnggotaKeluarga extends Model
 
     public function pendidikan()
     {
-        return $this->belongsTo(Pendidikan::class);
+        return $this->belongsTo(Pendidikan::class, 'pendidikan_terakhir_id');
     }
 
     public function pekerjaan()

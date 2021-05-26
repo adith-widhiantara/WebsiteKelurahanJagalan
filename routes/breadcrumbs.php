@@ -233,3 +233,45 @@ Breadcrumbs::for('admin.antrian.index', function ($trail) {
     $trail->parent('admin.index');
     $trail->push('Daftar Seluruh Antrian Warga', route('admin.antrian.index'));
 });
+
+// pengurus index
+Breadcrumbs::for('admin.pengurus.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Pengguna & Pengurus Website', route('admin.pengurus.index'));
+});
+
+// pengurus create
+Breadcrumbs::for('admin.pengurus.create', function ($trail) {
+    $trail->parent('admin.pengurus.index');
+    $trail->push('Daftarkan Pengurus', route('admin.pengurus.create'));
+});
+
+// pengurus show
+Breadcrumbs::for('admin.pengurus.show.pegawai', function ($trail, $user) {
+    $trail->parent('admin.pengurus.index');
+    $trail->push($user->nama, route('admin.pengurus.show.pegawai', $user->id));
+});
+
+// pengurus kepala kelurahan create
+Breadcrumbs::for('admin.pengurus.kepalakelurahan.create.new', function ($trail) {
+    $trail->parent('admin.pengurus.index');
+    $trail->push('Pendataan Kepala Kelurahan', route('admin.pengurus.kepalakelurahan.create.new'));
+});
+
+// pengurus RW RT create
+Breadcrumbs::for('admin.pengurus.rukunWarga.create', function ($trail) {
+    $trail->parent('admin.pengurus.index');
+    $trail->push('Pendataan RW dan RT', route('admin.pengurus.rukunWarga.create'));
+});
+
+// pengurus RW RT show
+Breadcrumbs::for('admin.pengurus.dataRtRw.show', function ($trail, $user) {
+    $trail->parent('admin.pengurus.index');
+    $trail->push($user->nama, route('admin.pengurus.dataRtRw.show', $user->nomor_ktp));
+});
+
+// pengurus profil saya
+Breadcrumbs::for('admin.pengurus.profilSaya', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Profil Saya', route('admin.pengurus.profilSaya'));
+});

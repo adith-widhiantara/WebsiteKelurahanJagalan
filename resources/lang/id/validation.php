@@ -143,6 +143,9 @@ return [
         'comment' => [
             'min' => 'Komentar minimal :min huruf.'
         ],
+        'foto' => [
+            'max' => 'Ukuran foto maksimal :max kb.'
+        ]
     ],
 
     /*

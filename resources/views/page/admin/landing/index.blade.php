@@ -28,13 +28,16 @@ Halaman Admin
     <div class="col-lg-3 col-6">
         <div class="small-box bg-dark">
             <div class="inner">
-                <h3>-</h3>
-                <p>Jumlah Antrian<br>Untuk Besok</p>
+                @php
+                $antrianCount = \App\Models\Antrian\NomorAntrian::where('status', '<=', 1)->whereDate('created_at', \Carbon\Carbon::today())->count();
+                    @endphp
+                    <h3>{{ $antrianCount }}</h3>
+                    <p>Jumlah Antrian<br>Untuk Besok</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('admin.antrian.index.today') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <div class="col-lg-3 col-6">
@@ -117,7 +120,7 @@ Halaman Admin
     <div class="col-md-6">
         <div class="card card-dark">
             <div class="card-header">
-                <h3 class="card-title">Jumlah Antrian Hari Ini (Sisa 4 Orang)</h3>
+                <h3 class="card-title">Jumlah Antrian Hari Ini (Sisa {{ $antrianCount }} Orang)</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -131,35 +134,22 @@ Halaman Admin
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Nama</th>
-                            <th>Kepentingan</th>
-                            <th style="width: 40px">Aksi</th>
+                            <th>Antrian</th>
+                            <th>Nomor Antrian</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Brian James</td>
-                            <td>Ambil KTP</td>
-                            <td><a href="#" class="btn btn-success btn-xs">Selesai</a></td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Brian James</td>
-                            <td>Ambil KTP</td>
-                            <td><a href="#" class="btn btn-success btn-xs">Selesai</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Brian James</td>
-                            <td>Ambil KTP</td>
-                            <td><a href="#" class="btn btn-success btn-xs">Selesai</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Brian James</td>
-                            <td>Ambil KTP</td>
-                            <td><a href="#" class="btn btn-success btn-xs">Selesai</a></td>
-                        </tr>
+                        @php
+                        $antrianList = \App\Models\Antrian\NomorAntrian::where('status', '<=', 1)->whereDate('created_at', \Carbon\Carbon::today())->get();
+                            @endphp
+                            @foreach ($antrianList as $antrian)
+                            <tr>
+                                <td>{{ $loop -> iteration }}</td>
+                                <td>{{ $antrian -> user -> nama }}</td>
+                                <td>{{ $antrian -> jenisAntrian -> name }}</td>
+                                <td>{{ $antrian -> nomor_antrian }}</td>
+                            </tr>
+                            @endforeach
                     </tbody>
                 </table>
             </div>
