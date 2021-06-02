@@ -275,3 +275,9 @@ Breadcrumbs::for('admin.pengurus.profilSaya', function ($trail) {
     $trail->parent('admin.index');
     $trail->push('Profil Saya', route('admin.pengurus.profilSaya'));
 });
+
+// pengaturan website index
+Breadcrumbs::for('admin.pengaturan.index', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Pengaturan Website', route('admin.pengaturan.index'));
+});

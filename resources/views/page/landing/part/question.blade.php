@@ -4,9 +4,10 @@
         <div class="starups-details">
             <!-- Section Tittle -->
             <div class="section-tittle mb-35">
-                <h2>Need any help?</h2>
-                <p>The information is also part of the MF Rural, where you can find news, quotes, technological
-                    information and others, in addition.</p>
+                <h2>Butuh Bantuan?</h2>
+                <p>
+                    Informasi bantuan meliputi bagian layanan kelurahan, seperti penayangan berita, informasi kelurahan, dan lain-lain.
+                </p>
             </div>
             <!-- Details -->
             <div class="starups-list mb-30">
@@ -15,7 +16,9 @@
                         <i class="fas fa-phone"></i>
                     </li>
                     <li>
-                        <p>(10) 892-293 2678</p>
+                        <p>
+                            {{ App\Models\PengaturanWebsite::where('name', 'telepon')->first()->description }}
+                        </p>
                     </li>
                 </ul>
                 <ul>
@@ -23,7 +26,7 @@
                         <i class="far fa-envelope"></i>
                     </li>
                     <li>
-                        <p>contact@agrica.com</p>
+                        <p>{{ App\Models\PengaturanWebsite::where('name', 'email')->first()->description }}</p>
                     </li>
                 </ul>
                 <ul>
@@ -31,11 +34,13 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </li>
                     <li>
-                        <p>768/A, Green lane 790, Max town New York</p>
+                        <p>{{ App\Models\PengaturanWebsite::where('name', 'alamat')->first()->description }}</p>
                     </li>
                 </ul>
             </div>
-            <a href="#" class="border-btn">Drop Your Message</a>
+            <a href="{{ __('https://wa.me/').App\Models\PengaturanWebsite::where('name', 'telepon')->first()->description.__('?text=').App\Models\PengaturanWebsite::where('name', 'whatsapp_text_render')->first()->description }}" class="border-btn" target="_blank">
+                Kirim Pesan melalui Whatsapp
+            </a>
         </div>
     </div>
     <!--Right Contents  -->

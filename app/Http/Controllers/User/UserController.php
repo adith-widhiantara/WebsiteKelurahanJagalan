@@ -65,4 +65,13 @@ class UserController extends Controller
 
         return view('page.warga.show', compact('user', 'dataUser', 'dataKartuKeluarga'));
     }
+
+    public function gantiPassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'confirmed', 'min:8']
+        ]);
+
+        return 'oke';
+    }
 }

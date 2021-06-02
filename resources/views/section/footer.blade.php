@@ -9,20 +9,26 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo mb-25">
-                                    <a href="index.html"><img src="{{ asset('assets/img/logo/logo2_footer.png') }}"
-                                            alt=""></a>
+                                    <a href="{{ route('landing') }}">
+                                        <img src="{{ asset('assets/img/logo/logo2_footer.png') }}" alt="">
+                                    </a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>The information is also part of the MF Rural, where you can find news,
-                                            quotes, technological information and others, in addition.</p>
+                                        <p>{{ App\Models\PengaturanWebsite::where('name', 'deskripsi_website')->first()->description }}</p>
                                     </div>
                                 </div>
                                 <!-- social -->
                                 <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                    <a href="{{ __('https://wa.me/').App\Models\PengaturanWebsite::where('name', 'telepon')->first()->description.__('?text=').App\Models\PengaturanWebsite::where('name', 'whatsapp_text_render')->first()->description }}" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="{{ __('tel:').App\Models\PengaturanWebsite::where('name', 'telepon')->first()->description }}" target="_blank">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                    <a href="{{ __('tel:').App\Models\PengaturanWebsite::where('name', 'home')->first()->description }}" target="_blank">
+                                        <i class="fas fa-home"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -30,13 +36,20 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Quick Links</h4>
+                                <h4>Daftar Layanan</h4>
                                 <ul>
-                                    <li><a href="#">Design & creatives</a></li>
-                                    <li><a href="#">Telecommunication</a></li>
-                                    <li><a href="#">Restaurant</a></li>
-                                    <li><a href="#">Programing</a></li>
-                                    <li><a href="#">Architecture</a></li>
+                                    <li>
+                                        <a href="#">Berita Terbaru</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Aduan Masyarakat</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pengajuan Surat</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Profil Saya</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -44,13 +57,13 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Company</h4>
+                                <h4>Berita Kelurahan</h4>
                                 <ul>
-                                    <li><a href="#">Design & creatives</a></li>
-                                    <li><a href="#">Telecommunication</a></li>
-                                    <li><a href="#">Restaurant</a></li>
-                                    <li><a href="#">Programing</a></li>
-                                    <li><a href="#">Architecture</a></li>
+                                    @foreach (App\Models\News\Category::take(4)->orderBy('created_at', 'desc')->get() as $cat)
+                                    <li>
+                                        <a href="{{ route('category.show', $cat->slug) }}">{{ $cat->name }}</a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -66,16 +79,11 @@
                         <div class="col-xl-12 ">
                             <div class="footer-copy-right text-center">
                                 <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>
+                                    Copyright &copy;
+                                    <script>
                                         document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                                        aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                        target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    </script> Kelurahan Jagalan
                                 </p>
-
-
                             </div>
                         </div>
                     </div>

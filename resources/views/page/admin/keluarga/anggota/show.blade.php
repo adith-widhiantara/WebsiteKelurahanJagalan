@@ -333,8 +333,8 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.kartukeluarga.show', $kartuKeluarga -> nomorkk) }}" class="btn btn-warning">
-                            Kembali
+                        <a href="{{ route('admin.kartukeluarga.show', $kartuKeluarga -> nomorkk) }}" class="btn btn-secondary">
+                            Lihat Kartu Keluarga
                         </a>
                         <button type="submit" class="btn btn-primary">
                             Simpan

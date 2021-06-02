@@ -7,41 +7,53 @@
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <!-- Counter Up -->
                             <div class="single-counter">
-                                <span class="counter ">20</span>
-                                <p class="">+</p>
+                                <span class="counter">
+                                    {{ App\Models\News\News::count() }}
+                                </span>
                             </div>
                             <div class="pera-count mb-50">
-                                <p>List of any and all companies related to agribusiness.</p>
+                                <p>
+                                    Banyak berita yang dapat dilihat oleh masyarakat umum.
+                                </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <!-- Counter Up -->
                             <div class="single-counter">
-                                <span class="counter ">10</span>
-                                <p class="">K</p>
+                                <span class="counter">
+                                    {{ App\Models\Warga\KartuKeluarga::count() }}
+                                </span>
                             </div>
                             <div class="pera-count mb-50">
-                                <p>List of any and all companies related to agribusiness.</p>
+                                <p>
+                                    Jumlah kartu keluarga yang berada di Kelurahan Jagalan.
+                                </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <!-- Counter Up -->
                             <div class="single-counter">
-                                <span class="counter ">12</span>
-                                <p class="">+</p>
+                                <span class="counter">
+                                    {{ App\Models\Warga\AnggotaKeluarga::count() }}
+                                </span>
                             </div>
                             <div class="pera-count">
-                                <p>List of any and all companies related to agribusiness.</p>
+                                <p>
+                                    Jumlah warga yang berada di Kelurahan Jagalan.
+                                </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <!-- Counter Up -->
                             <div class="single-counter">
-                                <span class="counter ">280</span>
-                                <p class="">+</p>
+                                <span class="counter">
+                                    {{ App\Models\Surat\Administrasi::count() }}
+                                </span>
                             </div>
                             <div class="pera-count mb-50">
-                                <p>List of any and all companies related to agribusiness.</p>
+                                <p>
+                                    Banyak surat warga yang telah diproses.
+                                </p>
                             </div>
                         </div>
                     </div>

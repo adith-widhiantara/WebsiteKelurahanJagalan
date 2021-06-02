@@ -327,7 +327,7 @@ Pendaftaran Anggota Keluarga
                     <button type="submit" class="btn btn-primary float-right">
                         Simpan
                     </button>
-                    <a href="{{ route('admin.kartukeluarga.index', $kartuKeluarga->nomorkk) }}" class="btn btn-warning">
+                    <a href="{{ route('admin.kartukeluarga.index', $kartuKeluarga->nomorkk) }}" class="btn btn-secondary">
                         Kembali
                     </a>
                 </div>

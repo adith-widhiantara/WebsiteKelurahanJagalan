@@ -5,34 +5,38 @@
                 <div class="about-caption about-caption2 mb-50">
                     <!-- Section Tittle -->
                     <div class="section-tittle mb-25">
-                        <h2>Why you should<br> choose us</h2>
-                        <p class="mb-20">Technological information and others, in addition to information about
-                            companies in the sector, list of any and all companies related to agribusiness. </p>
+                        <h2>Pencapaian<br>Kami</h2>
+                        <p class="mb-20">
+                            {{ App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan')->first() ? App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan')->first()->description : '' }}
+                        </p>
                     </div>
                     <div class="single-features">
                         <div class="features-icon">
-                            <img src="{{ asset('assets/img/icon/right-icon.svg') }}" alt="">
+                            <i class="fas fa-caret-right" style="color: #285D25"></i>
                         </div>
                         <div class="features-caption">
-                            <p>Technological information and others, in addition to information about companies.
+                            <p>
+                                {{ App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_1')->first() ? App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_1')->first()->description : '' }}
                             </p>
                         </div>
                     </div>
                     <div class="single-features">
                         <div class="features-icon">
-                            <img src="{{ asset('assets/img/icon/right-icon.svg') }}" alt="">
+                            <i class="fas fa-caret-right" style="color: #285D25"></i>
                         </div>
                         <div class="features-caption">
-                            <p>Technological information and others, in addition to information about companies.
+                            <p>
+                                {{ App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_2')->first() ? App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_2')->first()->description : '' }}
                             </p>
                         </div>
                     </div>
                     <div class="single-features mb-40">
                         <div class="features-icon">
-                            <img src="{{ asset('assets/img/icon/right-icon.svg') }}" alt="">
+                            <i class="fas fa-caret-right" style="color: #285D25"></i>
                         </div>
                         <div class="features-caption">
-                            <p>Technological information and others, in addition to information about companies.
+                            <p>
+                                {{ App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_3')->first() ? App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_3')->first()->description : '' }}
                             </p>
                         </div>
                     </div>

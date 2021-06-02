@@ -41,6 +41,30 @@ $title = 'Profil Saya';
                         @endforeach
                     </tbody>
                 </table>
+
+                <h1 class="my-5 text-center">
+                    Ganti Password Saya
+                </h1>
+                <form method="post">
+                    @csrf
+                    <div class="mt-40">
+                        <label>
+                            Password
+                        </label>
+                        <input type="password" name="password" required class="single-input">
+                    </div>
+
+                    <div class="mt-40">
+                        <label>
+                            Ulangi Password
+                        </label>
+                        <input type="password" name="password-confirmation" required class="single-input">
+                    </div>
+
+                    <button type="submit" class="btn mt-5 float-right">
+                        Simpan
+                    </button>
+                </form>
             </div>
         </div>
     </div>

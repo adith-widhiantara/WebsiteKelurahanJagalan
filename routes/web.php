@@ -11,6 +11,7 @@ use App\Http\Controllers\Warga\News\NewsController;
 use App\Http\Controllers\Admin\Aduan\TolakController;
 use App\Http\Controllers\Admin\Aduan\ValidController;
 use App\Http\Controllers\Admin\Surat\SuratController;
+use App\Http\Controllers\Admin\PengaturanWebController;
 use App\Http\Controllers\Warga\News\CategoryController;
 use App\Http\Controllers\Admin\News\AdminNewsController;
 use App\Http\Controllers\Admin\Antrian\AntrianController;
@@ -41,9 +42,12 @@ use App\Http\Controllers\Warga\Surat\SuratController as WargaSuratController;
 Route::get('/', LandingController::class)->name('landing');
 
 // User
-Route::prefix('profil-saya')->name('user.')->group(function () {
+Route::middleware('auth')->prefix('profil-saya')->name('user.')->group(function () {
     // show
     Route::get('', [UserController::class, 'show'])->name('show'); // user.show
+
+    // ganti password
+    Route::post('', [UserController::class, 'gantiPassword'])->name('gantiPassword'); // user.gantiPassword
 });
 // end User
 
@@ -509,6 +513,19 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::put('profil-saya', [PengurusController::class, 'putProfilSaya'])->name('putProfilSaya'); // admin.pengurus.profilSaya.put
     });
     // end my profile
+
+    // pengaturan website
+    Route::prefix('pengaturan')->name('pengaturan.')->group(function () {
+        // index
+        Route::get('', [PengaturanWebController::class, 'index'])->name('index'); // admin.pengaturan.index
+
+        // store
+        Route::post('', [PengaturanWebController::class, 'store'])->name('store'); // admin.pengaturan.store
+
+        // store pencapaian
+        Route::post('pencapaian', [PengaturanWebController::class, 'storePencapaian'])->name('store.pencapaian'); // admin.pengaturan.store.pencapaian
+    });
+    // end pengaturan website
 });
 // end admin
 

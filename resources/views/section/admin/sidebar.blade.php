@@ -35,7 +35,7 @@
 
                 {{-- Kembali Ke Website --}}
                 <li class="nav-item">
-                    <a href="{{ route('landing') }}" class="nav-link">
+                    <a href="{{ route('landing') }}" class="nav-link" target="_blank">
                         <i class="nav-icon fas fa-globe"></i>
                         <p>
                             Kembali Ke Website
@@ -458,6 +458,23 @@
                 @endrole
                 {{-- end Daftar Pengguna --}}
 
+                {{-- Informasi Website --}}
+                @role('admin')
+                <li class="nav-item">
+                    @if (url()->current() == route('admin.pengaturan.index'))
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <p>Pengaturan Website</p>
+                    </a>
+                    @else
+                    <a href="{{ route('admin.pengaturan.index') }}" class="nav-link">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <p>Pengaturan Website</p>
+                    </a>
+                    @endif
+                </li>
+                @endrole
+                {{-- End Informasi Website --}}
             </ul>
         </nav>
     </div>
