@@ -1,36 +1,52 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('base.base')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@php
+$title = "Lupa Password";
+@endphp
+
+@section('title')
+{{ $title }}
+@endsection
+
+@section('base')
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(assets/img/hero/hero2.png);">
+                <span class="login100-form-title-1">
+                    {{ $title }}
+                </span>
+            </div>
+
+            <div class="container my-4">
+                <div class="alert alert-warning text-center" role="alert">
+                    Alangkah baiknya, apabila anda menghubungi petugas kelurahan terlebih dahulu, setelah itu anda mengisi form dibawah.
+                </div>
+                @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>
+                @endforeach
+                @endif
+            </div>
+
+
+            <form class="login100-form validate-form" method="POST">
+                @csrf
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Harap Masukkan Nomor KTP">
+                    <span class="label-input100">Nomor KTP</span>
+                    <input class="input100" type="text" name="nomor_ktp" placeholder="Masukkan Nomor KTP" value="{{ old('nomor_ktp') }}" required autofocus autocomplete="off">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Lupa Password
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</div>
+@endsection

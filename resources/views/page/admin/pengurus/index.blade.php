@@ -300,6 +300,51 @@ $title = 'Daftar Pengguna & Pengurus Website';
                 </table>
             </div>
         </div>
+
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Daftar Akun Warga Lupa Password</h3>
+            </div>
+            <div class="card-body">
+                <table id='akunWargaLupaPassword' class='table table-bordered table-striped table-hover'>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataLupaPassword as $lupaPass)
+                        <tr>
+                            <td>{{ $loop -> iteration }}</td>
+                            <td>{{ $lupaPass -> nama }}</td>
+                            <td>{{ $lupaPass -> nomor_ktp }}</td>
+                            <td>
+                                <a href="#" class="btn btn-xs btn-warning" onclick="event.preventDefault(); document.getElementById('lupaPassword-{{ $lupaPass -> nomor_ktp }}').submit()">
+                                    Reset Password
+                                </a>
+
+                                <form style="display: none" id="lupaPassword-{{ $lupaPass -> nomor_ktp }}" action="{{ route('admin.pengurus.lupaPassword.admin', $lupaPass -> nomor_ktp) }}" method="post">
+                                    @csrf
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="card-footer"></div>
+        </div>
     </div>
 </div>
 @endsection
@@ -347,6 +392,17 @@ $title = 'Daftar Pengguna & Pengurus Website';
             "responsive": true,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         }).buttons().container().appendTo('#RwAndRtTable_wrapper .col-md-6:eq(0)');
+
+        $("#akunWargaLupaPassword").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        }).buttons().container().appendTo('#akunWargaLupaPassword_wrapper .col-md-6:eq(0)');
 
         // Select2
         $('.select2').select2();

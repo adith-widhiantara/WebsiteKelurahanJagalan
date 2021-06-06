@@ -145,7 +145,11 @@ return [
         ],
         'foto' => [
             'max' => 'Ukuran foto maksimal :max kb.'
-        ]
+        ],
+        'password' => [
+            'min' => 'Password minimal :min huruf.',
+
+        ],
     ],
 
     /*

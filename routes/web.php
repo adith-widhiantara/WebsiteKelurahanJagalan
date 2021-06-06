@@ -499,6 +499,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         // show rt rw
         Route::get('datartrw/{user:nomor_ktp}', [PengurusController::class, 'dataRtRwShow'])->name('dataRtRw.show'); // admin.pengurus.dataRtRw.show
 
+        // reset password
+        Route::post('lupa-password/{user:nomor_ktp}', [UserController::class, 'lupaPasswordAdmin'])->name('lupaPassword.admin'); // admin.pengurus.lupaPassword.admin
+
         // show anggota keluarga (chained dropdown)
         Route::get('anggotakeluargadropdown/{kartuKeluarga}', [PengurusController::class, 'dropdown']);
     });

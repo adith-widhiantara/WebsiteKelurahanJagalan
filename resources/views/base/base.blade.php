@@ -27,7 +27,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/dist/sweetalert2.min.css') }}">
 
-    @if (url()->current() == route('login'))
+    @if (url()->current() == route('login') || url()->current() == route('password.request') )
     <link rel="stylesheet" href="{{ asset('vendor/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/animate/animate.css') }}">

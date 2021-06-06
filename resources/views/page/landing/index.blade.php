@@ -1,7 +1,11 @@
 @extends('base.base')
 
 @section('title')
+@guest
 Selamat Datang
+@else
+{{ Auth::user()->nama }}
+@endguest
 @endsection
 
 @section('base')

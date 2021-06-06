@@ -104,4 +104,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pengurus::class, 'user_id');
     }
+
+    public function forgetPassword()
+    {
+        return $this->hasOne(UserForgetPassword::class, 'user_id');
+    }
 }

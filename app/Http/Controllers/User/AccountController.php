@@ -15,6 +15,11 @@ class AccountController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            if (isset(Auth::user()->forgetPassword)) {
+                Auth::user()->forgetPassword()->delete();
+            }
+
             if (empty(Auth::user()->getRoleNames()[0])) {
                 return redirect()->route('landing')->with('login', 'Selamat Datang!');
             } else {

@@ -51,14 +51,14 @@ $title = 'Profil Saya';
                         <label>
                             Password
                         </label>
-                        <input type="password" name="password" required class="single-input">
+                        <input type="password" class="single-input" name="password" placeholder="Ketikkan Password" required>
                     </div>
 
                     <div class="mt-40">
                         <label>
                             Ulangi Password
                         </label>
-                        <input type="password" name="password-confirmation" required class="single-input">
+                        <input type="password" class="single-input" name="password_confirmation" placeholder="Ketikkan Password Lagi" required>
                     </div>
 
                     <button type="submit" class="btn mt-5 float-right">

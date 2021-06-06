@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Warga\AnggotaKeluarga;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,6 +74,50 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', 'min:8']
         ]);
 
-        return 'oke';
+        Auth::user()->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return back()
+            ->with('success', 'Password anda berhasil diganti');
+    }
+
+    public function lupaPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function lupaPasswordStore(Request $request)
+    {
+        $request->validate([
+            'nomor_ktp' => ['required', 'digits:16', 'numeric']
+        ], [
+            'nomor_ktp.required' => 'Mohon diisi untuk formulir nomor KTP',
+            'nomor_ktp.digits' => 'Isian nomor KTP tidak :digits digit. Mohon untuk diisi kembali',
+            'nomor_ktp.numeric' => 'Pengisian nomor KTP hanya angka',
+        ]);
+
+        $user = User::query()
+            ->where('nomor_ktp', $request->nomor_ktp)
+            ->with('anggota')
+            ->first();
+
+        $user->forgetPassword()->create();
+
+        return redirect()
+            ->route('login')
+            ->with('success', 'Tunggu admin untuk me-reset akun anda');
+    }
+
+    public function lupaPasswordAdmin(Request $request, User $user)
+    {
+        $user->update([
+            'password' => Hash::make('12345678')
+        ]);
+
+        $user->forgetPassword()->delete();
+
+        return back()
+            ->with('success', 'Akun berhasil di-reset password');
     }
 }

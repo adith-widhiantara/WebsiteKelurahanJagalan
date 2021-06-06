@@ -73,7 +73,12 @@ class PengurusController extends Controller
 
         $dataKartuKeluarga = KartuKeluarga::all();
 
-        return view('page.admin.pengurus.index', compact('pengurusUser', 'dataKartuKeluarga', 'kepalaKelurahanUser', 'RwDanRtData'));
+        $dataLupaPassword = User::query()
+            ->has('forgetPassword')
+            ->with('forgetPassword')
+            ->get();
+
+        return view('page.admin.pengurus.index', compact('pengurusUser', 'dataKartuKeluarga', 'kepalaKelurahanUser', 'RwDanRtData', 'dataLupaPassword'));
     }
 
     public function profilSaya()

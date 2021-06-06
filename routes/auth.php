@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\User\UserController;
 
 Route::get('/register', function () {
     return redirect()->route('login');
@@ -23,11 +24,11 @@ Route::post('/login', [AccountController::class, 'login'])
     ->middleware('guest')
     ->name('login');
 
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+Route::get('/lupa-password', [UserController::class, 'lupaPassword'])
     ->middleware('guest')
     ->name('password.request');
 
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('/lupa-password', [UserController::class, 'lupaPasswordStore'])
     ->middleware('guest')
     ->name('password.email');
 
