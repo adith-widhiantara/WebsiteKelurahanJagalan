@@ -6,7 +6,7 @@ Fitur
 5. pendataan warga, (done) v2 (print PDF)
 6. pengaturan akun (done) v1,
 7. kartu dan anggota keluarga (done) v2,
-8. pengaturan website.
+8. pengaturan website (done).
 
 Role
 1. Admin (All)
