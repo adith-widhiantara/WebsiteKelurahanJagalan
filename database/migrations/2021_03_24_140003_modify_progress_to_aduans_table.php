@@ -14,7 +14,7 @@ class ModifyProgressToAduansTable extends Migration
     public function up()
     {
         Schema::table('aduans', function (Blueprint $table) {
-            $table->integer('progress')->default(0)->after('detail_pengaduan');
+            $table->integer('progress')->default(0)->after('detail_pengaduan')->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ModifyProgressToAduansTable extends Migration
     public function down()
     {
         Schema::table('aduans', function (Blueprint $table) {
-            $table->dropColumn('progress');
+            $table->integer('progress')->after('detail_pengaduan')->change();
         });
     }
 }
