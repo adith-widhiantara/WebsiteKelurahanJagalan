@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Warga\AduanController;
 use App\Http\Controllers\Warga\News\NewsController;
 use App\Http\Controllers\Admin\Aduan\TolakController;
@@ -146,10 +145,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::get('', [AdminNewsController::class, 'indexCategory'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('index');
 
         // store
-        Route::post('', [AdminNewsController::class, 'storeCategory'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('store');
+        Route::post('', [AdminNewsController::class, 'storeCategory'])->middleware('role:admin|petugas')->name('store');
 
         // put
-        Route::put('update/{category:slug}', [AdminNewsController::class, 'updateCategory'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('put');
+        Route::put('update/{category:slug}', [AdminNewsController::class, 'updateCategory'])->middleware('role:admin|petugas')->name('put');
 
         // show
         Route::get('detail/{category:slug}', [AdminNewsController::class, 'showCategory'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('show');
@@ -177,10 +176,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::put('put/{jenis_aduan:slug}', [AdminAduanController::class, 'updateJenisAduan'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('updateJenisAduan'); // admin.aduan.updateJenisAduan
 
         // tolak aduan store
-        Route::post('tolak/{aduan:slug}/store', [TolakController::class, 'store'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('tolak.store'); // admin.aduan.tolak.store
+        Route::post('tolak/{aduan:slug}/store', [TolakController::class, 'store'])->middleware('role:admin|petugas|kepala_kelurahan')->name('tolak.store'); // admin.aduan.tolak.store
 
         // store
-        Route::post('valid/{aduan:slug}/store', [ValidController::class, 'store'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('valid.store'); // admin.aduan.valid.store
+        Route::post('valid/{aduan:slug}/store', [ValidController::class, 'store'])->middleware('role:admin|petugas|kepala_kelurahan')->name('valid.store'); // admin.aduan.valid.store
 
         // tindak lanjut aduan group
         Route::prefix('tindaklanjut')->name('tindaklanjut.')->group(function () {
@@ -188,10 +187,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             Route::get('', [TindakLanjutController::class, 'index'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('index'); // admin.aduan.tindaklanjut.index
 
             // store
-            Route::post('{aduan:slug}', [TindakLanjutController::class, 'store'])->middleware('role:RW')->name('store'); // admin.aduan.tindaklanjut.store
+            Route::post('{aduan:slug}', [TindakLanjutController::class, 'store'])->middleware('role:RW|RT')->name('store'); // admin.aduan.tindaklanjut.store
 
             // upload foto bukti rw
-            Route::put('put/{aduan:slug}', [TindakLanjutController::class, 'put'])->middleware('role:RW')->name('put'); // admin.aduan.tindaklanjut.put
+            Route::put('put/{aduan:slug}', [TindakLanjutController::class, 'put'])->middleware('role:RW|RT')->name('put'); // admin.aduan.tindaklanjut.put
 
             // comment kepala kelurahan
             Route::post('comment/{aduan:slug}', [TindakLanjutController::class, 'commentKepalaKelurahan'])->middleware('role:kepala_kelurahan')->name('commentKepalaKelurahan'); // admin.aduan.tindaklanjut.commentKepalaKelurahan
