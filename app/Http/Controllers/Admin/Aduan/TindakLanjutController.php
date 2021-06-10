@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Admin\Aduan;
 
-use App\Http\Controllers\Controller;
 use App\Models\Aduan\Aduan;
-use App\Models\Aduan\Valid\ValidAduan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Aduan\Valid\ValidAduan;
+use Illuminate\Support\Facades\Storage;
 
 class TindakLanjutController extends Controller
 {
     public function index()
     {
-        $aduan = ValidAduan::doesntHave('commentKepala')
+        $aduan = ValidAduan::query()
+            ->doesntHave('commentKepala')
             ->doesntHave('commentWarga')
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('page.admin.aduan.tindaklanjut.index', compact('aduan'));
     }
@@ -36,7 +39,8 @@ class TindakLanjutController extends Controller
     public function put(Request $request, Aduan $aduan)
     {
         if ($aduan->valid->commentRW->user_id != Auth::id()) {
-            return back()->with('error', 'Anda tidak bisa menyelesaikan aduan!');
+            return back()
+                ->with('error', 'Anda tidak bisa menyelesaikan aduan!');
         }
 
         $request->validate([
@@ -55,11 +59,15 @@ class TindakLanjutController extends Controller
         ]);
 
         foreach ($request->file('foto') as $image) {
-            $name = time() . '.' . $image->getClientOriginalName();
-            $image->move('image/aduan/valid', $name);
+            $nameFile = $aduan->id . '_' . time() . '.' . $image->extension();
+            Storage::putFileAs(
+                'public/aduan/valid',
+                $image,
+                $nameFile
+            );
 
             $aduan->valid->foto()->create([
-                'foto' => $name,
+                'foto' => $nameFile,
                 'user_id' => Auth::id()
             ]);
         }

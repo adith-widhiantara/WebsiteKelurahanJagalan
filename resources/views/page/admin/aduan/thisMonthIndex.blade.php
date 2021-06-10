@@ -42,7 +42,13 @@ Aduan Bulan Ini
                             <td>{{ $adu-> judul_masalah }}</td>
                             <td>{{ $adu-> jenisAduan -> nama_aduan }}</td>
                             <td>{{ $adu-> user -> nama }}</td>
-                            <td>{{ $adu-> progress.__('%') }}</td>
+                            <td>
+                                @if ( $adu -> nonValid )
+                                -
+                                @else
+                                {{ ($adu-> progress * 20).__('%') }}
+                                @endif
+                            </td>
                             <td>
                                 @if ( $adu -> nonValid )
                                 <span class="badge badge-danger">

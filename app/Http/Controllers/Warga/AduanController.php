@@ -6,9 +6,8 @@ use App\Models\Aduan\Aduan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Aduan\Foto_Aduan;
-use App\Models\Aduan\Jenis_Aduan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AduanController extends Controller
 {
@@ -42,11 +41,15 @@ class AduanController extends Controller
         ]);
 
         foreach ($request->file('foto') as $image) {
-            $name = time() . '.' . $image->getClientOriginalName();
-            $image->move('image/aduan', $name);
+            $nameFile = $aduan->id . '_' . time() . '.' . $image->extension();
+            Storage::putFileAs(
+                'public/aduan',
+                $image,
+                $nameFile
+            );
 
             $aduan->foto()->create([
-                'foto' => $name
+                'foto' => $nameFile
             ]);
         }
 

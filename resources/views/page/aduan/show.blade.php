@@ -31,9 +31,9 @@ $title = $aduan -> judul_masalah;
                     <div class="row gal lery-item">
                         @foreach ($aduan->foto as $foto)
                         <div class="col-md-4">
-                            <a href="{{ asset('image/aduan/'.$foto->foto) }}" class="img-pop-up">
+                            <a href="{{ asset('storage/aduan/'.$foto->foto) }}" class="img-pop-up">
                                 <div class="single-gallery-image">
-                                    <img src="{{ asset('image/aduan/'.$foto->foto) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
+                                    <img src="{{ asset('storage/aduan/'.$foto->foto) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
                                 </div>
                             </a>
                         </div>
@@ -59,9 +59,9 @@ $title = $aduan -> judul_masalah;
                     <div class="row gal lery-item">
                         @foreach ($aduan -> nonValid -> foto as $foto)
                         <div class="col-md-4">
-                            <a href="{{ asset('image/aduan/nonValid/'.$foto->photo) }}" class="img-pop-up">
+                            <a href="{{ asset('storage/aduan/nonValid/'.$foto->photo) }}" class="img-pop-up">
                                 <div class="single-gallery-image">
-                                    <img src="{{ asset('image/aduan/nonValid/'.$foto->photo) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
+                                    <img src="{{ asset('storage/aduan/nonValid/'.$foto->photo) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
                                 </div>
                             </a>
                         </div>
@@ -145,9 +145,9 @@ $title = $aduan -> judul_masalah;
                     <div class="row">
                         @foreach ($aduan -> valid -> foto as $foto)
                         <div class="col-md-4">
-                            <a href="{{ asset('image/aduan/valid/'.$foto->foto) }}" class="img-pop-up">
+                            <a href="{{ asset('storage/aduan/valid/'.$foto->foto) }}" class="img-pop-up">
                                 <div class="single-gallery-image">
-                                    <img src="{{ asset('image/aduan/valid/'.$foto->foto) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
+                                    <img src="{{ asset('storage/aduan/valid/'.$foto->foto) }}" alt="" style="width: 100%; height: 150px; object-fit: cover">
                                 </div>
                             </a>
                         </div>

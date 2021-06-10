@@ -27,33 +27,37 @@ $title = 'Aduan Saya';
 
             @forelse ($aduan as $adu)
             <div class="card mb-5">
-                <img src="{{ asset('image/aduan/'. $adu->foto->first()->foto) }}" class="card-img-top" alt="...">
+                <img src="{{ asset('storage/aduan/'. $adu->foto->first()->foto) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $adu -> jenisAduan -> nama_aduan }}</h5>
                     <p class="card-text">{{ $adu -> judul_masalah }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    @if (isset($adu->nonValid))
                     <li class="list-group-item">
-                        @if (isset($adu->nonValid))
                         <div class="progress">
                             <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        @elseif (isset($adu->valid))
+                    </li>
+                    @elseif (isset($adu->valid))
+                    <li class="list-group-item">
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar" style="width: {{ ($adu -> progress / 5)*100 }}%" aria-valuenow="{{ ($adu -> progress / 5)*100 }}" aria-valuemin="0" aria-valuemax="100">
                                 {{ ($adu -> progress / 5)*100 }}%
                             </div>
                         </div>
-                        @endif
                     </li>
+                    @endif
                     <li class="list-group-item">{{ $adu -> detail_pengaduan }}</li>
+                    @if (isset($adu->nonValid))
                     <li class="list-group-item">
-                        @if (isset($adu->nonValid))
                         Mohon maaf aduan tidak valid
-                        @elseif (isset($adu->valid))
-                        Valid
-                        @endif
                     </li>
+                    @elseif (isset($adu->valid))
+                    <li class="list-group-item">
+                        Valid
+                    </li>
+                    @endif
                 </ul>
                 <div class="card-body">
                     <a href="{{ route('aduan.show', $adu -> slug) }}" class="btn btn-block">Informasi selengkapnya</a>

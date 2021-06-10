@@ -12,6 +12,7 @@ Kategori Berita
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Daftar Kategori Berita</h3>
+        @role('admin|petugas')
         <a href="#" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#create-category">
             Tambah Kategori
         </a>
@@ -30,8 +31,7 @@ Kategori Berita
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nama kategori" name="name"
-                                    required>
+                                <input type="text" class="form-control" placeholder="Masukkan nama kategori" name="name" required>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -42,6 +42,7 @@ Kategori Berita
                 </div>
             </div>
         </div>
+        @endrole
 
     </div>
     <div class="card-body p-0">
@@ -64,8 +65,7 @@ Kategori Berita
                         <a href="{{ route('admin.category.show', $cat->slug) }}" class="btn btn-xs btn-primary">
                             Lihat Kategori
                         </a>
-                        <a href="#" class="btn btn-xs btn-warning" data-toggle="modal"
-                            data-target="#edit-category-{{ $cat->id }}">
+                        <a href="#" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#edit-category-{{ $cat->id }}">
                             Edit
                         </a>
                     </td>
@@ -90,8 +90,7 @@ Kategori Berita
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nama kategori" name="name"
-                                    required value="{{ $cat->name }}">
+                                <input type="text" class="form-control" placeholder="Masukkan nama kategori" name="name" required value="{{ $cat->name }}">
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">

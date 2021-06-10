@@ -85,7 +85,7 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label>Komentar RW</label>
-                                        <input type="text" name="comment" class="form-control" required>
+                                        <input type="text" name="comment" class="form-control" value="{{ old('comment') }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Foto Penindaklanjutan</label>
@@ -181,7 +181,7 @@
                             <div class="timeline-footer">
                                 @foreach ($aduan -> nonValid -> foto as $key => $foto)
                                 <a href="#" data-toggle="modal" data-target="#image-show-{{ $key }}">
-                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('image/aduan/nonValid/'. $foto -> photo) }}" alt="...">
+                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('storage/aduan/nonValid/'. $foto -> photo) }}" alt="...">
                                 </a>
 
                                 <div class="modal fade" id="image-show-{{ $key }}">
@@ -194,7 +194,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="{{ asset('image/aduan/nonValid/'. $foto -> photo) }}" alt="" class="img-fluid">
+                                                <img src="{{ asset('storage/aduan/nonValid/'. $foto -> photo) }}" alt="" class="img-fluid">
                                             </div>
                                             <div class="modal-footer justify-content-end">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -288,7 +288,7 @@
                             <div class="timeline-footer">
                                 @foreach ($aduan -> valid -> foto as $key => $fotoTindakLanjut)
                                 <a href="#" data-toggle="modal" data-target="#image-fotoTindakLanjut-{{ $key }}">
-                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('image/aduan/valid/'. $fotoTindakLanjut-> foto) }}" alt="...">
+                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('storage/aduan/valid/'. $fotoTindakLanjut-> foto) }}" alt="...">
                                 </a>
 
                                 <div class="modal fade" id="image-fotoTindakLanjut-{{ $key }}">
@@ -301,7 +301,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="{{ asset('image/aduan/valid/'. $fotoTindakLanjut-> foto) }}" alt="" class="img-fluid">
+                                                <img src="{{ asset('storage/aduan/valid/'. $fotoTindakLanjut-> foto) }}" alt="" class="img-fluid">
                                             </div>
                                             <div class="modal-footer justify-content-end">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -354,9 +354,25 @@
                                 menerima aduan
                             </h3>
                             <div class="timeline-body">
-                                <h5>
-                                    Aduan ini akan ditindaklanjut oleh RT/RW
-                                </h5>
+                                <div class="d-flex justify-content-between">
+                                    <h5>
+                                        Aduan ini akan ditindaklanjut oleh RT/RW
+                                    </h5>
+
+                                    @role('RW')
+                                    @if ( $aduan->valid->commentRW->status == 0 )
+                                    <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-tindak-lanjut-RW">
+                                        Tindak Lanjut
+                                    </a>
+                                    @endif {{-- $aduan->valid->commentRW->status == 0 --}}
+
+                                    @if ( $aduan->valid->commentRW->status == 1 )
+                                    <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-tindak-lanjut-form">
+                                        Kirim Bukti Penindaklanjutan
+                                    </a>
+                                    @endif {{-- $aduan->valid->commentRW->status == 1 --}}
+                                    @endrole
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -385,11 +401,11 @@
                             </div>
                             <div class="timeline-footer">
                                 @foreach ($aduan -> foto as $key => $foto)
-                                <a href="#" data-toggle="modal" data-target="#image-show-{{ $key }}">
-                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('image/aduan/'. $foto-> foto) }}" alt="...">
+                                <a href="#" data-toggle="modal" data-target="#image-show-early-{{ $key }}">
+                                    <img style="width: 150px; height: 100px; object-fit: cover" src="{{ asset('storage/aduan/'. $foto-> foto) }}" alt="...">
                                 </a>
 
-                                <div class="modal fade" id="image-show-{{ $key }}">
+                                <div class="modal fade" id="image-show-early-{{ $key }}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -399,7 +415,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="{{ asset('image/aduan/'. $foto-> foto) }}" alt="" class="img-fluid">
+                                                <img src="{{ asset('storage/aduan/'. $foto-> foto) }}" alt="" class="img-fluid">
                                             </div>
                                             <div class="modal-footer justify-content-end">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>

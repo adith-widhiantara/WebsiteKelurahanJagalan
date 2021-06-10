@@ -6,6 +6,7 @@ use App\Models\Aduan\Aduan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TolakController extends Controller
 {
@@ -25,11 +26,15 @@ class TolakController extends Controller
         ]);
 
         foreach ($request->file('foto') as $image) {
-            $name = time() . '.' . $image->getClientOriginalName();
-            $image->move('image/aduan/nonValid', $name);
+            $nameFile = $aduan->id . '_' . time() . '.' . $image->extension();
+            Storage::putFileAs(
+                'public/aduan/nonValid',
+                $image,
+                $nameFile
+            );
 
             $aduanNonValid->foto()->create([
-                'photo' => $name,
+                'photo' => $nameFile,
                 'user_id' => Auth::id()
             ]);
         }

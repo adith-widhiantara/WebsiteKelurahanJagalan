@@ -41,7 +41,7 @@ Daftar Aduan
                             <td>{{ $adu -> aduan -> judul_masalah }}</td>
                             <td>{{ $adu -> aduan -> jenisAduan -> nama_aduan }}</td>
                             <td>{{ $adu -> aduan -> user -> nama }}</td>
-                            <td>{{ $adu -> aduan -> progress.__('%') }}</td>
+                            <td>{{ ($adu -> aduan -> progress * 20).__('%') }}</td>
                             <td>{{ \Carbon\Carbon::parse($adu -> aduan-> created_at)->isoFormat('HH:mm dddd, D/M/Y') }}</td>
                             <td>
                                 <a href="{{ route('admin.aduan.show', $adu -> aduan -> slug) }}" class="btn btn-primary btn-xs">

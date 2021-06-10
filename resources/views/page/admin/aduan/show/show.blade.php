@@ -137,7 +137,7 @@
             <div class="carousel-inner">
                 @foreach ($aduan->foto as $foto)
                 <div class="carousel-item @if ($loop->first) active @endif">
-                    <img src="{{ asset('image/aduan/'. $foto-> foto) }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('storage/aduan/'. $foto-> foto) }}" class="d-block w-100" alt="...">
                 </div>
                 @endforeach
             </div>

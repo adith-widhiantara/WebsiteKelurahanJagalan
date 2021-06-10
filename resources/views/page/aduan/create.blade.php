@@ -45,7 +45,7 @@ $title = 'Buat Aduan';
                     </div>
 
                     <button type="submit" class="btn mt-5 float-right">
-                        Simpan
+                        Laporkan
                     </button>
                 </form>
             </div>
