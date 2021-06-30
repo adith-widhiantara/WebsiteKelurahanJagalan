@@ -53,7 +53,7 @@ $title = $jenisSurat -> nama_surat;
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ url()->previous() }}" class="btn btn-success">
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">
                             Kembali
                         </a>
                         <button type="submit" class="btn btn-primary">

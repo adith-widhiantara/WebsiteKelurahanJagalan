@@ -138,9 +138,15 @@ $title = 'Daftar Pengguna & Pengurus Website';
                                     Ubah
                                 </a>
 
+                                @isset($rw['nama']->nomor_ktp)
                                 <a href="{{ route('admin.pengurus.dataRtRw.show', $rw['nama']->nomor_ktp) }}" class="btn btn-xs btn-primary">
                                     Detail
                                 </a>
+                                @else
+                                <a href="#" class="btn btn-xs btn-primary">
+                                    Detail
+                                </a>
+                                @endisset
                             </td>
                         </tr>
 

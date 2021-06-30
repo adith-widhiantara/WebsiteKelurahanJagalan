@@ -1,7 +1,7 @@
 <section class="slider-area ">
     <div class="slider-active">
         <!-- Single Slider -->
-        <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center" style="background-image: url({{ asset('assets/img/hero/h1_hero.png') }});">
+        <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center" style="background-image: url({{ asset('assets/img/hero/imagecon-group.jpg') }});">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-10 col-lg-9 col-md-12">

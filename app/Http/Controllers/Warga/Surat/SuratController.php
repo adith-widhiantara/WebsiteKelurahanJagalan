@@ -66,6 +66,9 @@ class SuratController extends Controller
         } elseif ($jenisSurat->slug == 'surat_keterangan_harga_tanah') {
             return view('page.warga.surat.create.suratKeteranganHargaTanah', compact('jenisSurat'));
         }
+
+        return redirect()
+            ->route('warga.surat.index');
     }
 
     public function store(Request $request, Jenis $jenisSurat)

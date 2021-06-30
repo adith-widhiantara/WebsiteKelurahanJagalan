@@ -93,7 +93,7 @@ Route::name('warga.')->group(function () {
         Route::get('', [WargaSuratController::class, 'index'])->name('index'); // warga.surat.index
 
         // create
-        Route::get('create/{jenisSurat:slug}', [WargaSuratController::class, 'create'])->name('create'); // warga.surat.create
+        Route::get('create/{jenisSurat:slug?}', [WargaSuratController::class, 'create'])->name('create'); // warga.surat.create
 
         // store
         Route::post('post/{jenisSurat:slug}', [WargaSuratController::class, 'store'])->name('store'); // warga.surat.store

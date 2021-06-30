@@ -25,5 +25,12 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 2; $i++) {
             News::factory()->count(3)->forUser()->forCategory()->create();
         }
+
+        $this->call([
+            PengaturanWebsiteSeeder::class,
+            DataKartuKeluargaSeeder::class,
+            GolonganDarahSeeder::class,
+            JenisAntrianSeeder::class
+        ]);
     }
 }

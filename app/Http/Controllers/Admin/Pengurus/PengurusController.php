@@ -224,7 +224,9 @@ class PengurusController extends Controller
         $this->revokeKepalaKelurahan();
 
         $lastKepalaKelurahan = Pengurus::firstWhere('bagian_kerja', 'Kepala Kelurahan');
-        $lastKepalaKelurahanIDUser = $lastKepalaKelurahan->user_id;
+        if (!is_null($lastKepalaKelurahan)) {
+            $lastKepalaKelurahanIDUser = $lastKepalaKelurahan->user_id;
+        }
 
         $user = User::create([
             'nama' => $request->nama,
@@ -248,9 +250,11 @@ class PengurusController extends Controller
             ]
         );
 
-        $lastKepalaKelurahanIDUserCheck = User::find($lastKepalaKelurahanIDUser);
-        if (empty($lastKepalaKelurahanIDUserCheck->anggota)) {
-            User::find($lastKepalaKelurahanIDUser)->delete();
+        if (!is_null($lastKepalaKelurahan)) {
+            $lastKepalaKelurahanIDUserCheck = User::find($lastKepalaKelurahanIDUser);
+            if (empty($lastKepalaKelurahanIDUserCheck->anggota)) {
+                User::find($lastKepalaKelurahanIDUser)->delete();
+            }
         }
 
         return redirect()

@@ -16,7 +16,7 @@ $title = 'Daftar Pengajuan Surat Saya'
 <div class="container-fluid my-5">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            @foreach ($dataSurat as $data)
+            @forelse ($dataSurat as $data)
             <div class="card mb-5">
                 <div class="card-body">
                     <h5 class="card-title">{{ \Carbon\Carbon::parse($data->created_at)->isoFormat('dddd, D MMMM Y') }}</h5>
@@ -83,7 +83,19 @@ $title = 'Daftar Pengajuan Surat Saya'
                     @endif
                 </ul>
             </div>
-            @endforeach
+            @empty
+            <div class="card">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <img src="{{ asset('image/empty.png') }}" alt="empty.png" class="card-img-top">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Selamat datang, {{ Auth::user()->nama }}.</h5>
+                    <p class="card-text" style="color: #000000">Pengajuan surat anda masih kosong.</p>
+                </div>
+            </div>
+            @endforelse
         </div>
     </div>
 </div>

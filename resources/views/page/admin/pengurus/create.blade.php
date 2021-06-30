@@ -90,7 +90,7 @@ Daftarkan Pengurus Website Kelurahan
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ url()->previous() }}" class="btn btn-warning">Kembali</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                         <button type="submit" class="btn btn-primary">Daftar</button>
                     </div>
                 </div>
