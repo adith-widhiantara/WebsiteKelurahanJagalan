@@ -57,7 +57,7 @@ $title = 'Buat ' . $jenisSurat->nama_surat;
                     </div>
 
                     <button type="submit" class="btn mt-5 float-right">
-                        Simpan
+                        Kirim
                     </button>
                 </form>
             </div>
