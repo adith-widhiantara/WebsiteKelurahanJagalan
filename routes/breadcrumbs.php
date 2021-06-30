@@ -72,6 +72,12 @@ Breadcrumbs::for('admin.kartukeluarga.index', function ($trail) {
     $trail->push('Daftar Kartu Keluarga', route('admin.kartukeluarga.index'));
 });
 
+// kartu keluarga list warga
+Breadcrumbs::for('admin.kartukeluarga.warga', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Daftar Warga Kelurahan', route('admin.kartukeluarga.warga'));
+});
+
 // kartu keluarga show
 Breadcrumbs::for('admin.kartukeluarga.show', function ($trail, $kartuKeluarga) {
     $trail->parent('admin.kartukeluarga.index');

@@ -69,7 +69,8 @@
                 $kartukeluargaActive =
                 url()->current() == route('admin.kartukeluarga.index') ||
                 url()->current() == route('admin.kartukeluarga.create') ||
-                url()->current() == route('admin.tabelkartukeluarga.index');
+                url()->current() == route('admin.tabelkartukeluarga.index') ||
+                url()->current() == route('admin.kartukeluarga.warga');
                 @endphp
 
                 <li class="nav-item @if ( $kartukeluargaActive ) menu-open @endif">
@@ -94,6 +95,22 @@
                             <a href="{{ route('admin.kartukeluarga.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Daftar Kartu Keluarga</p>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if (url()->current() == route('admin.kartukeluarga.warga'))
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Warga</p>
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('admin.kartukeluarga.warga') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Daftar Warga</p>
                             </a>
                         </li>
                         @endif

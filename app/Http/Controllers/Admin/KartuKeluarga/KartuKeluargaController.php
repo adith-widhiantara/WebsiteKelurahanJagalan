@@ -8,6 +8,7 @@ use App\Models\Warga\KartuKeluarga;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\KartuKeluargaRequest;
+use App\Models\Warga\AnggotaKeluarga;
 
 class KartuKeluargaController extends Controller
 {
@@ -18,6 +19,15 @@ class KartuKeluargaController extends Controller
             ->get();
 
         return view('page.admin.keluarga.kartu.index', compact('kartuKeluarga'));
+    }
+
+    public function warga()
+    {
+        $users = AnggotaKeluarga::query()
+            ->with(['user', 'kartu'])
+            ->get();
+
+        return view('page.admin.keluarga.kartu.listWarga', compact('users'));
     }
 
     public function create()

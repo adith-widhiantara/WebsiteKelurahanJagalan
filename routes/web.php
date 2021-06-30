@@ -203,6 +203,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         // index
         Route::get('', [KartuKeluargaController::class, 'index'])->name('index'); // admin.kartukeluarga.index
 
+        // list warga
+        Route::get('warga', [KartuKeluargaController::class, 'warga'])->name('warga'); // admin.kartukeluarga.warga
+
         // create
         Route::get('create', [KartuKeluargaController::class, 'create'])->name('create'); // admin.kartukeluarga.create
 
