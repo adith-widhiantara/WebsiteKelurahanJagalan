@@ -402,7 +402,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         // setuju pengajuan surat
         Route::put('post/accept/{administrasi}', [SuratController::class, 'acceptAdministrasi'])->name('store.acceptAdministrasi'); // admin.surat.store.acceptAdministrasi
 
-        // setuju pengajuan surat
+        // tolak pengajuan surat
         Route::put('post/decline/{administrasi}', [SuratController::class, 'declineAdministrasi'])->name('store.declineAdministrasi'); // admin.surat.store.declineAdministrasi
 
         // show
@@ -433,7 +433,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // end jenis surat
 
     // antrian
-    Route::prefix('antrian')->name('antrian.')->group(function () {
+    Route::prefix('antrian')->name('antrian.')->middleware(['role:admin|petugas|kepala_kelurahan'])->group(function () {
         // layar pendaftaran
         Route::get('layarpendaftaran', [AntrianController::class, 'pendaftaran'])->name('pendaftaran'); // admin.antrian.pendaftaran
 

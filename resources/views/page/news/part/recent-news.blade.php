@@ -3,8 +3,7 @@
 
     @foreach (\App\Models\News\News::where('show', 1)->latest()->take(4)->get() as $news)
     <div class="media post_item">
-        <img src="{{ asset('assets/img/blog/single_blog_1.png') }}" alt="post"
-            style="height: 80px; width: 80px; object-fit: cover">
+        <img src="{{ asset('image/news/'. $news->photo) }}" alt="post" style="height: 80px; width: 80px; object-fit: cover">
         <div class="media-body">
             <a href="{{ route('news.show', $news->slug) }}">
                 <h3 style="color: #2d2d2d;">{{ $news -> title }}</h3>

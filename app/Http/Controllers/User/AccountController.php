@@ -6,12 +6,32 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
     public function login(Request $request)
     {
         $credentials = $request->only('nomor_ktp', 'password');
+
+        $checkPendataan = User::query()
+            ->where('nomor_ktp', $request->nomor_ktp)
+            ->with('kematian')
+            ->with('keluar')
+            ->first();
+
+        if (isset($checkPendataan)) {
+            if ($checkPendataan->kematian()->exists()) {
+                return back()->withErrors([
+                    'nomor_ktp' => 'Pengguna akun ini telah meninggal!',
+                ]);
+            }
+            if ($checkPendataan->keluar()->exists()) {
+                return back()->withErrors([
+                    'nomor_ktp' => 'Pengguna akun ini telah pindah keluar!',
+                ]);
+            }
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -34,8 +54,7 @@ class AccountController extends Controller
             }
         }
 
-        $checkNomorKTP = User::where('nomor_ktp', $request->nomor_ktp)->first();
-        if (isset($checkNomorKTP)) {
+        if (isset($checkPendataan)) {
             return back()->withErrors([
                 'password' => 'Password tidak benar!'
             ]);

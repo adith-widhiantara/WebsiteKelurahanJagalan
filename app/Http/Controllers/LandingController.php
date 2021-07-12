@@ -20,14 +20,6 @@ class LandingController extends Controller
             ->take(2)
             ->get();
 
-        // $takeCharacters = substr($recentNews->description, -4);
-        // $compareCharacters = '</p>';
-        // if ($takeCharacters == $compareCharacters) {
-        //     echo 'Masuk';
-        // } else {
-        //     echo 'Tidak Masuk';
-        // }
-
         return view('page.landing.index', compact('recentNews'));
     }
 }

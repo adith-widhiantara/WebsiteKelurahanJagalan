@@ -48,14 +48,14 @@ Data Kematian
                                         </thead>
                                         <tbody>
                                             @foreach ($dataKartuKeluarga as $data)
-                                                <tr>
-                                                    <td>{{ $data -> nomorkk }}</td>
-                                                    <td>
-                                                        <a href="{{ route('admin.kematian.create', $data -> nomorkk) }}" class="btn btn-primary btn-xs">
-                                                            Pilih
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{ $data -> nomorkk }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.kematian.create', $data -> nomorkk) }}" class="btn btn-primary btn-xs">
+                                                        Pilih
+                                                    </a>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
@@ -84,6 +84,7 @@ Data Kematian
                             <th>#</th>
                             <th>Nama</th>
                             <th>Nomor KK</th>
+                            <th>Nomor KTP</th>
                             <th>Tanggal Meninggal</th>
                             <th>Sebab Meninggal</th>
                             <th>Aksi</th>
@@ -95,6 +96,7 @@ Data Kematian
                             <td>{{ $loop -> iteration }}</td>
                             <td>{{ $data -> user -> nama }}</td>
                             <td>{{ $data -> user -> anggota -> kartu -> nomorkk }}</td>
+                            <td>{{ $data -> user -> nomor_ktp }}</td>
                             <td>{{ $data -> tanggal_meninggal }}</td>
                             <td>{{ $data -> sebab_meninggal }}</td>
                             <td><a href="{{ route('admin.kematian.show', $data -> id) }}" class="btn btn-primary btn-xs">Detail</a></td>
@@ -106,6 +108,7 @@ Data Kematian
                             <th>#</th>
                             <th>Nama</th>
                             <th>Nomor KK</th>
+                            <th>Nomor KTP</th>
                             <th>Tanggal Meninggal</th>
                             <th>Sebab Meninggal</th>
                             <th>Aksi</th>

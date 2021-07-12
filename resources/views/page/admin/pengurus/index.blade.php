@@ -82,6 +82,7 @@ $title = 'Daftar Pengguna & Pengurus Website';
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="card-body">
@@ -92,15 +93,74 @@ $title = 'Daftar Pengguna & Pengurus Website';
                     <div class="row">
                         <div class="col-10">
                             @isset($kepalaKelurahanUser)
-                            <a href="#" class="btn btn-default btn-block">{{ $kepalaKelurahanUser -> nama }}</a>
+                            <a href="#" class="btn btn-default btn-block">
+                                {{ $kepalaKelurahanUser -> nama }}
+                            </a>
                             @else
                             <input type="text" class="form-control" value="Belum Terdata" disabled>
                             @endisset
                         </div>
                         <div class="col-2">
-                            <a href="#" class="btn btn-primary btn-block">
+                            <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#detail-kepala-kelurahan-modal">
                                 Detail
                             </a>
+
+                            <div class="modal fade" id="detail-kepala-kelurahan-modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-dark">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Daftarkan Kepala Kelurahan</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Nomor KTP
+                                                    </label>
+                                                    <input type="text" class="form-control" value="{{ $kepalaKelurahanUser -> nomor_ktp }}" disabled>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>
+                                                        Nama
+                                                    </label>
+                                                    <input type="text" class="form-control" value="{{ $kepalaKelurahanUser -> nama }}" disabled>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>
+                                                        Nomor Telepon
+                                                    </label>
+                                                    <input type="text" class="form-control" value="{{ $kepalaKelurahanUser -> nomor_telepon }}" disabled>
+                                                </div>
+
+                                                @isset($kepalaKelurahanUser -> pengurus -> alamat)
+                                                <div class="form-group">
+                                                    <label>
+                                                        Alamat
+                                                    </label>
+                                                    <input type="text" class="form-control" value="{{ $kepalaKelurahanUser -> pengurus -> alamat }}" disabled>
+                                                </div>
+                                                @endisset
+                                            </div>
+                                            <div class="modal-footer justify-content-end">
+                                                @isset($kepalaKelurahanUser -> anggota)
+                                                <a href="{{ route('admin.kartukeluarga.anggota.show', [$kepalaKelurahanUser -> anggota -> kartu -> nomorkk, $kepalaKelurahanUser -> nomor_ktp]) }}" class="btn btn-primary">
+                                                    Kunjungi detail informasi
+                                                </a>
+                                                @endisset
+
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Tutup
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

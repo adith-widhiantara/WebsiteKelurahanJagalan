@@ -223,7 +223,9 @@
                                 {{ \Carbon\Carbon::parse($aduan -> valid -> commentKepala -> created_at)->isoFormat('HH:mm') }}
                             </span>
                             <h3 class="timeline-header">
-                                <a href="#">{{ \App\Models\User::where('id', $aduan -> valid -> commentKepala -> user_id)->first()->nama }}</a>
+                                <a href="#">
+                                    {{ \App\Models\User::where('id', $aduan -> valid -> commentKepala -> user_id)->first() ? \App\Models\User::where('id', $aduan -> valid -> commentKepala -> user_id)->first()->nama : 'Kepala kelurahan' }}
+                                </a>
                                 mengomentari aduan
                             </h3>
                             <div class="timeline-body">
@@ -331,9 +333,19 @@
                                 menerima aduan
                             </h3>
                             <div class="timeline-body">
-                                <h5>
-                                    Aduan ini telah diterima, dan segera ditindaklanjut
-                                </h5>
+                                <div class="d-flex justify-content-between">
+                                    <h5>
+                                        Aduan ini telah diterima, dan segera ditindaklanjut
+                                    </h5>
+
+                                    @role('RW')
+                                    @if ( $aduan->valid->commentRW->status == 1 )
+                                    <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-tindak-lanjut-form">
+                                        Kirim Bukti Penindaklanjutan
+                                    </a>
+                                    @endif {{-- $aduan->valid->commentRW->status == 1 --}}
+                                    @endrole
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -365,12 +377,6 @@
                                         Tindak Lanjut
                                     </a>
                                     @endif {{-- $aduan->valid->commentRW->status == 0 --}}
-
-                                    @if ( $aduan->valid->commentRW->status == 1 )
-                                    <a href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-tindak-lanjut-form">
-                                        Kirim Bukti Penindaklanjutan
-                                    </a>
-                                    @endif {{-- $aduan->valid->commentRW->status == 1 --}}
                                     @endrole
                                 </div>
                             </div>

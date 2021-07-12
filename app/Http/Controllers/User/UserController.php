@@ -97,16 +97,36 @@ class UserController extends Controller
             'nomor_ktp.numeric' => 'Pengisian nomor KTP hanya angka',
         ]);
 
-        $user = User::query()
-            ->where('nomor_ktp', $request->nomor_ktp)
-            ->with('anggota')
-            ->first();
+        try {
+            $user = User::query()
+                ->where('nomor_ktp', $request->nomor_ktp)
+                ->with('anggota')
+                ->with('kematian')
+                ->with('keluar')
+                ->firstOrFail();
 
-        $user->forgetPassword()->create();
+            if ($user->kematian()->exists()) {
+                return back()->withErrors([
+                    'nomor_ktp' => 'Pengguna akun ini telah meninggal!',
+                ]);
+            }
+            if ($user->keluar()->exists()) {
+                return back()->withErrors([
+                    'nomor_ktp' => 'Pengguna akun ini telah pindah keluar!',
+                ]);
+            }
 
-        return redirect()
-            ->route('login')
-            ->with('success', 'Tunggu admin untuk me-reset akun anda');
+            $user->forgetPassword()->create();
+
+            return redirect()
+                ->route('login')
+                ->with('success', 'Tunggu admin untuk me-reset akun anda');
+        } catch (\Throwable $th) {
+            return back()
+                ->withErrors([
+                    'nomor_ktp' => 'Nomor KTP tidak terdaftar!',
+                ]);
+        }
     }
 
     public function lupaPasswordAdmin(Request $request, User $user)
@@ -118,6 +138,6 @@ class UserController extends Controller
         $user->forgetPassword()->delete();
 
         return back()
-            ->with('success', 'Akun berhasil di-reset password');
+            ->with('success', 'Password akun berhasil di-reset');
     }
 }

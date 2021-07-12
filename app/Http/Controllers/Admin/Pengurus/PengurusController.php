@@ -30,6 +30,8 @@ class PengurusController extends Controller
                 $query->where('name', 'kepala_kelurahan');
             })
             ->with('roles')
+            ->with('anggota')
+            ->with('pengurus')
             ->first();
 
         $RwDanRtData = [

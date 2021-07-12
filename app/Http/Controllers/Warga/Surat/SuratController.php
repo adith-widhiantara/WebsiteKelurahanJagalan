@@ -76,7 +76,7 @@ class SuratController extends Controller
         if ($jenisSurat->slug == 'surat_keterangan_usaha') {
             //
             $request->validate([
-                'sejak' => ['required'],
+                'sejak' => ['required', 'integer'],
                 'keperluan' => ['required'],
                 'pesan' => ['required'],
                 'keterangan' => ['nullable'],
@@ -236,7 +236,9 @@ class SuratController extends Controller
             //
         }
 
-        return redirect()->route('warga.surat.index')->with('success', 'Pengajuan Surat Berhasil Dikirim');
+        return redirect()
+            ->route('warga.surat.index')
+            ->with('success', 'Pengajuan Surat Berhasil Dikirim');
     }
 
     public function showResult(Administrasi $administrasi)

@@ -1,11 +1,11 @@
 Fitur
-1. administrasi surat (permintaan surat) (done) v2,
-2. pengaduan warga, (done) v2
+1. pengajuan surat pengantar (permintaan surat) (done) v2,
+2. aduan warga, (done) v2
 3. penyiaran berita, (done) v1
 4. pengajuan nomor antrian, (done realtime pemanggilan & pendaftaran) v3
-5. pendataan warga, (done) v2 (print PDF)
-6. pengaturan akun (done) v1,
-7. kartu dan anggota keluarga (done) v2,
+5. kartu dan anggota keluarga (done) v2,
+6. pendataan warga, (done) v2 (print PDF)
+7. pengaturan akun (done) (Login logout) v1,
 8. pengaturan website (done).
 
 Role

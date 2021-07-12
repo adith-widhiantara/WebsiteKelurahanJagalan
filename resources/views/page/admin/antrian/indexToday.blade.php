@@ -14,6 +14,7 @@ $title = 'Daftar antrian hari ini';
 
 @section('base')
 <div class="row">
+    @role('petugas')
     <div class="col-4">
         <div class="card card-primary">
             <div class="card-header">
@@ -141,7 +142,9 @@ $title = 'Daftar antrian hari ini';
             </div>
         </div>
     </div>
+    @endrole
 
+    @role('kepala_kelurahan')
     <div class="col-4">
         <div class="card card-success">
             <div class="card-header">
@@ -205,5 +208,6 @@ $title = 'Daftar antrian hari ini';
             </div>
         </div>
     </div>
+    @endrole
 </div>
 @endsection

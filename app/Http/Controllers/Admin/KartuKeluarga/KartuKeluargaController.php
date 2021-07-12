@@ -25,6 +25,8 @@ class KartuKeluargaController extends Controller
     {
         $users = AnggotaKeluarga::query()
             ->with(['user', 'kartu'])
+            ->whereDoesntHave('user.kematian')
+            ->whereDoesntHave('user.keluar')
             ->get();
 
         return view('page.admin.keluarga.kartu.listWarga', compact('users'));

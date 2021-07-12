@@ -395,6 +395,7 @@
                 {{-- end Pendataan Warga --}}
 
                 {{-- Daftar Antrian --}}
+                @role('admin|petugas|kepala_kelurahan')
                 @php
                 $daftarAntrianActive =
                 url()->current() == route('admin.antrian.index.today') ||
@@ -410,6 +411,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @role('petugas|kepala_kelurahan')
                         <li class="nav-item">
                             @if (url()->current() == route('admin.antrian.index.today'))
                             <a href="#" class="nav-link active">
@@ -423,6 +425,7 @@
                             </a>
                             @endif
                         </li>
+                        @endrole
                         <li class="nav-item">
                             @if (url()->current() == route('admin.antrian.index'))
                             <a href="#" class="nav-link active">
@@ -450,6 +453,7 @@
                         </li>
                     </ul>
                 </li>
+                @endrole
                 {{-- end Daftar Antrian --}}
 
                 {{-- Daftar Pengguna --}}
