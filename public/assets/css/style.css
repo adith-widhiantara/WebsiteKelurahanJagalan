@@ -3240,12 +3240,12 @@ hr {
   font-weight: 400;
 }
 .single-features .features-caption p {
-  color: #285D25;
+  color: #285d25;
   font-size: 18px;
 }
 
 .info-man {
-  background: #285D25;
+  background: #285d25;
   display: inline-block;
   padding: 31px 31px;
   position: absolute;
@@ -3267,7 +3267,7 @@ hr {
   font-size: 18px;
 }
 .info-man.info-man2 {
-  background: #329D23;
+  background: #329d23;
   left: 150px;
   padding: 31px 18px;
 }
@@ -3434,7 +3434,6 @@ hr {
 }
 .all-starups-area .starups-img {
   width: 50%;
-  background-image: url(../img/gallery/about3.png);
   background-size: 100%;
   background-size: cover;
   background-repeat: no-repeat;

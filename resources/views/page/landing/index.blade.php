@@ -8,9 +8,16 @@ Selamat Datang
 @endguest
 @endsection
 
+@php
+$imageAduan = \App\Models\PengaturanWebsite::where('name', 'image_aduan')->first()->description;
+$imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
+$imagePenghargaan = \App\Models\PengaturanWebsite::where('name', 'image_penghargaan')->first()->description;
+$imageBantuan = \App\Models\PengaturanWebsite::where('name', 'image_bantuan')->first()->description;
+@endphp
+
 @section('base')
 <!-- slider Area-->
-@include('page.landing.part.sliderArea')
+@include('page.landing.part.sliderArea', ['imageAduan' => $imageAduan, 'imageSurat' => $imageSurat])
 <!-- end slider Area-->
 
 {{-- news area --}}

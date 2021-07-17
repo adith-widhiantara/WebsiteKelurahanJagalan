@@ -44,5 +44,5 @@
         </div>
     </div>
     <!--Right Contents  -->
-    <div class="starups-img"></div>
+    <div class="starups-img" style="background-image: url({{ asset('storage/pengaturan/bantuanBG/'.$imageBantuan) }}); object-fit: cover"></div>
 </div>

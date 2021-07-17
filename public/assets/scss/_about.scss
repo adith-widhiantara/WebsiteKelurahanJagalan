@@ -1,28 +1,27 @@
-
 // About 02
-.about-area2{
+.about-area2 {
     // left content
-    .about-caption{
+    .about-caption {
         padding-left: 50px;
-        @media #{$laptop}{
+        @media #{$laptop} {
             padding-left: 50px;
         }
-        @media #{$lg}{
+        @media #{$lg} {
             padding-left: 0px;
         }
-        @media #{$md}{
-          padding-top: 50px;
-          padding-left: 0px;
+        @media #{$md} {
+            padding-top: 50px;
+            padding-left: 0px;
         }
-        @media #{$sm}{
-          padding-top: 50px;
-          padding-left: 0px;
+        @media #{$sm} {
+            padding-top: 50px;
+            padding-left: 0px;
         }
-        @media #{$xs}{
-          padding-top: 40px;
-          padding-left: 0px;
+        @media #{$xs} {
+            padding-top: 40px;
+            padding-left: 0px;
         }
-        &.about-caption2{
+        &.about-caption2 {
             padding-left: 0;
         }
         .pera-top {
@@ -35,11 +34,11 @@
             font-size: 16px;
             color: #212025;
             font-weight: 300;
-		}
+        }
     }
     // Right img
-    .about-img{
-        img{
+    .about-img {
+        img {
             width: 100%;
         }
     }
@@ -47,8 +46,8 @@
         position: relative;
     }
 }
-.about-caption{
-    @media #{$xs}{
+.about-caption {
+    @media #{$xs} {
         margin-bottom: 35px;
     }
 }
@@ -56,7 +55,7 @@
 // right mark
 .single-features {
     display: flex;
-    .features-icon{
+    .features-icon {
         position: relative;
         top: 8px;
         img {
@@ -72,80 +71,80 @@
             font-weight: 400;
         }
         p {
-            color: #285D25;
+            color: #285d25;
             font-size: 18px;
         }
-    } 
+    }
 }
-// 
-.info-man{
-    background: #285D25;
+//
+.info-man {
+    background: #285d25;
     display: inline-block;
     padding: 31px 31px;
     position: absolute;
-    bottom: 0;	
+    bottom: 0;
     left: 0;
-    @media #{$xs}{
+    @media #{$xs} {
         padding: 13px 31px;
-    }	
-    .head-cap{
-        img{
+    }
+    .head-cap {
+        img {
             width: inherit;
             margin-bottom: 11px;
         }
-        p{
+        p {
             color: #fff;
             margin: 0;
-            font-size: 18px;    
+            font-size: 18px;
         }
     }
 
     // Two
-    &.info-man2{
-        background: #329D23;
+    &.info-man2 {
+        background: #329d23;
         left: 150px;
         padding: 31px 18px;
-        @media #{$xs}{
+        @media #{$xs} {
             padding: 13px 9px;
-          }
+        }
     }
 }
 
 // about footer
 
-.all-starups-area{
+.all-starups-area {
     display: flex;
     align-items: center;
-    @media #{$md}{
-      display: block;
+    @media #{$md} {
+        display: block;
     }
-    @media #{$xs}{
-      display: block;
+    @media #{$xs} {
+        display: block;
     }
-    @media #{$sm}{
-      display: block;
+    @media #{$sm} {
+        display: block;
     }
     // left Contents
-    .starups{
+    .starups {
         display: flex;
         align-items: center;
         width: 50%;
         // Padding Left
         padding-left: 19%;
-        @media #{$laptop}{
+        @media #{$laptop} {
             padding-left: 10%;
             padding-right: 35px;
         }
-        @media #{$large2}{
+        @media #{$large2} {
             padding-left: 10%;
         }
-        @media #{$lg}{
+        @media #{$lg} {
             padding-left: 8%;
         }
-        @media #{$sm}{
+        @media #{$sm} {
             padding: 0 30px;
         }
-        @media #{$xs}{
+        @media #{$xs} {
             padding: 0 15px;
             margin-bottom: 40px;
         }
@@ -154,84 +153,82 @@
         // background-size: cover;
         // background-repeat: no-repeat;
         height: 700px;
-        @media #{$md}{
+        @media #{$md} {
             width: 100%;
             height: 464px;
             padding-left: 8%;
         }
-        @media #{$xs}{
+        @media #{$xs} {
             width: 100%;
             height: 500px;
         }
-        @media #{$sm}{
+        @media #{$sm} {
             height: 564px;
             width: 100%;
         }
         // content Area
-        .starups-details{
+        .starups-details {
             padding-right: 117px;
-            @media #{$laptop}{
+            @media #{$laptop} {
                 padding-right: 0px;
             }
-            @media #{$lg}{
+            @media #{$lg} {
                 padding-right: 30px;
             }
-            @media #{$md}{
+            @media #{$md} {
                 padding-right: 0px;
             }
-            @media #{$sm}{
+            @media #{$sm} {
                 padding-right: 0px;
                 margin-top: 0px;
             }
-            @media #{$xs}{
+            @media #{$xs} {
                 padding-right: 0px;
                 margin-top: 0;
-                
             }
-            span{
-                margin-bottom: 22px; 
+            span {
+                margin-bottom: 22px;
                 display: block;
-               color: #9fabbe;;
+                color: #9fabbe;
             }
-            h3{
+            h3 {
                 font-size: 35px;
                 display: block;
                 // color:#fff;
                 font-weight: 700;
                 margin-bottom: 53px;
-                @media #{$xs}{
+                @media #{$xs} {
                     font-size: 21px;
                 }
-                @media #{$sm}{
+                @media #{$sm} {
                     font-size: 28px;
                 }
-                @media #{$lg}{
+                @media #{$lg} {
                     font-size: 28px;
                 }
-                @media #{$md}{
+                @media #{$md} {
                     font-size: 43px;
                 }
             }
-            p{
-
+            p {
             }
-            // 
-            .starups-list{
-                ul{
+            //
+            .starups-list {
+                ul {
                     display: flex;
-                    li{
-                        i{
+                    li {
+                        i {
                             position: relative;
-                            top:4px;
+                            top: 4px;
                         }
-                        p{
+                        p {
                             padding-left: 20px;
                             color: #234821;
                             font-size: 18px;
-                            @media #{$sm}{
+                            @media #{$sm} {
                                 padding-left: 9px;
                             }
-                            @media #{$xs}{
+                            @media #{$xs} {
                                 padding-left: 9px;
                             }
                         }
@@ -241,27 +238,25 @@
         }
     }
     // -Right Contents
-    .starups-img{
+    .starups-img {
         width: 50%;
         // BG
-        background-image: url(../img/gallery/about3.png);
         background-size: 100%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: left top;
         height: 700px;
-         @media #{$xs}{
+        @media #{$xs} {
             width: 100%;
             height: 500px;
         }
-        @media #{$sm}{
+        @media #{$sm} {
             width: 100%;
             height: 500px;
         }
-        @media #{$md}{
+        @media #{$md} {
             width: 100%;
             height: 400px;
         }
-
     }
 }

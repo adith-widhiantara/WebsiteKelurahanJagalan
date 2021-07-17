@@ -15,7 +15,7 @@
                     <div class="row no-gutters">
                         <div class="col-xl-6 col-lg-6 col-md-6">
                             <div class="features-img">
-                                <img src="{{ asset('assets/img/gallery/services1.png') }}" alt="">
+                                <img src="{{ asset('storage/aduan/bgimage/'.$imageAduan) }}" style="object-fit: cover">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6">
@@ -42,7 +42,7 @@
                     <div class="row no-gutters">
                         <div class="col-xl-6 col-lg-6 col-md-6">
                             <div class="features-img">
-                                <img src="{{ asset('assets/img/gallery/services2.png') }}" alt="">
+                                <img src="{{ asset('storage/surat/bgimage/'.$imageSurat) }}" style="object-fit: cover">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6">

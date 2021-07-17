@@ -45,22 +45,10 @@
             </div>
             <div class="col-lg-6 col-md-12">
                 <!-- about-img -->
-                <div class="about-img about-img2  ">
-                    <img src="{{ asset('assets/img/gallery/about2.png') }}" alt="">
-                    {{-- <div class="info-man text-center">
-                        <div class="head-cap">
-                            <img src="{{ asset('assets/img/icon/agronomy.svg') }}" alt="">
-                    <p>Best Plants</p>
+                <div class="about-img about-img2">
+                    <img src="{{ asset('storage/pengaturan/penghargaanBG/'.$imagePenghargaan) }}" style="object-fit: cover">
                 </div>
             </div>
-            <div class="info-man info-man2 text-center">
-                <div class="head-cap">
-                    <img src="{{ asset('assets/img/icon/fields.svg') }}" alt="">
-                    <p>Award Wining</p>
-                </div>
-            </div> --}}
         </div>
-    </div>
-    </div>
     </div>
 </section>

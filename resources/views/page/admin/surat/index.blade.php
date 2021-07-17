@@ -116,6 +116,67 @@ $title = 'Daftar Seluruh Permintaan Surat Warga';
             </div>
         </div>
     </div>
+
+    {{-- set background aduan --}}
+    <div class="col-12">
+        <div class="card card-secondary">
+            <div class="card-header">
+                Atur gambar latar belakang
+            </div>
+            <div class="card-body">
+                <form action="{{ route('admin.surat.uploadImage') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exampleInputFile">Masukkan gambar</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="image" required>
+                                <label class="custom-file-label" for="exampleInputFile">Pilih gambar</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Unggah</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">
+                        Simpan
+                    </button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-bgimage">
+                        Lihat gambar
+                    </button>
+                </div>
+
+                <div class="modal fade" id="modal-bgimage">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Latar Belakang Aduan</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @php
+                            $imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
+                            @endphp
+                            <div class="modal-body">
+                                <img src="{{ asset('storage/surat/bgimage/'.$imageSurat) }}" class="img-fluid">
+                            </div>
+                            <div class="modal-footer justify-content-end">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Tutup
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end set background aduan --}}
 </div>
 @endsection
 
@@ -133,8 +194,13 @@ $title = 'Daftar Seluruh Permintaan Surat Warga';
 <script src="{{ asset('lte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('lte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
+<!-- bs-custom-file-input -->
+<script src="{{ asset('lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
 <script>
     $(function() {
+        bsCustomFileInput.init();
+
         $("#example1").DataTable({
             "paging": true,
             "lengthChange": false,

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Surat\Jenis;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PengaturanWebsite;
 use App\Models\Surat\Administrasi;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Warga\KartuKeluarga;
@@ -24,6 +25,25 @@ class SuratController extends Controller
         $dataJenisSurat = Jenis::all();
 
         return view('page.admin.surat.index', compact('dataSurat', 'dataJenisSurat'));
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $fileName = 'suratBG.' . $request->file('image')->extension();
+        $request->file('image')->storeAs(
+            'public/surat/bgimage',
+            $fileName
+        );
+
+        PengaturanWebsite::query()
+            ->updateOrCreate([
+                'name' => 'image_surat'
+            ], [
+                'description' => $fileName
+            ]);
+
+        return back()
+            ->with('success', 'Latar belakang pengajuan surat berhasil diperbarui');
     }
 
     public function create($jenisSurat)

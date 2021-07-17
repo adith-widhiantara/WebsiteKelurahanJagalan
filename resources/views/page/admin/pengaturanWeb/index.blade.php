@@ -19,7 +19,7 @@ $title = 'Pengaturan Website';
             <div class="card-header">
                 <h3 class="card-title">Kontak Person</h3>
             </div>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
 
@@ -65,6 +65,19 @@ $title = 'Pengaturan Website';
                         <input type="text" class="form-control" name="email" value="{{ $data['email'] }}" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleInputFile">Masukkan gambar butuh bantuan?</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="imageBantuan">
+                                <label class="custom-file-label" for="exampleInputFile">Pilih gambar</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Unggah</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
@@ -86,7 +99,7 @@ $title = 'Pengaturan Website';
                     Pencapaian
                 </h3>
             </div>
-            <form action="{{ route('admin.pengaturan.store.pencapaian') }}" method="post">
+            <form action="{{ route('admin.pengaturan.store.pencapaian') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -117,6 +130,19 @@ $title = 'Pengaturan Website';
                         <input type="text" class="form-control" name="deskripsi_penghargaan_3" placeholder="Pencapaian 3" value="{{ App\Models\PengaturanWebsite::where('name', 'deskripsi_penghargaan_3')->first()->description }}" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleInputFile">Masukkan gambar pencapaian</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="imagePenghargaan">
+                                <label class="custom-file-label" for="exampleInputFile">Pilih gambar</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Unggah</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-end">
@@ -129,4 +155,15 @@ $title = 'Pengaturan Website';
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<!-- bs-custom-file-input -->
+<script src="{{ asset('lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+<script>
+    $(function(){
+        bsCustomFileInput.init();
+    })
+</script>
 @endsection

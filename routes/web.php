@@ -163,6 +163,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         // index
         Route::get('', [AdminAduanController::class, 'index'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('index'); // admin.aduan.index
 
+        // upload background
+        Route::post('image', [AdminAduanController::class, 'uploadImage'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('uploadImage'); // admin.aduan.uploadImage
+
         // index Bulan Ini
         Route::get('bulanini', [AdminAduanController::class, 'thisMonthIndex'])->middleware('role:admin|petugas|RW|RT|kepala_kelurahan')->name('thisMonthIndex'); // admin.aduan.thisMonthIndex
 
@@ -392,6 +395,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::prefix('surat')->name('surat.')->group(function () {
         // index
         Route::get('', [SuratController::class, 'index'])->name('index'); // admin.surat.index
+
+        // image bg surat
+        Route::post('image', [SuratController::class, 'uploadImage'])->name('uploadImage'); // admin.surat.uploadImage
 
         // create
         Route::get('create/{jenisSurat}', [SuratController::class, 'create'])->name('create'); // admin.surat.create

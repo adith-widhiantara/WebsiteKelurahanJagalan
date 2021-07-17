@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Aduan\JenisAduan;
 use App\Http\Controllers\Controller;
+use App\Models\PengaturanWebsite;
 
 class AduanController extends Controller
 {
@@ -17,6 +18,25 @@ class AduanController extends Controller
         $jenisAduan = JenisAduan::all();
 
         return view('page.admin.aduan.index', compact('jenisAduan', 'aduan'));
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $fileName = 'aduanBG.' . $request->file('image')->extension();
+        $request->file('image')->storeAs(
+            'public/aduan/bgimage',
+            $fileName
+        );
+
+        PengaturanWebsite::query()
+            ->updateOrCreate([
+                'name' => 'image_aduan'
+            ], [
+                'description' => $fileName
+            ]);
+
+        return back()
+            ->with('success', 'Latar belakang aduan berhasil diperbarui');
     }
 
     public function thisMonthIndex()
