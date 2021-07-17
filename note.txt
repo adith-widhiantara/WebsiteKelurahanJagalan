@@ -1,3 +1,6 @@
+Kurang
+1. gambar dashboard
+
 Fitur
 1. pengajuan surat pengantar (permintaan surat) (done) v2,
 2. aduan warga, (done) v2

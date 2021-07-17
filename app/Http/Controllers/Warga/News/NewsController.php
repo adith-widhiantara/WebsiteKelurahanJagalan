@@ -34,6 +34,23 @@ class NewsController extends Controller
         return view('page.news.index', compact('allNews', 'recentNews', 'categoryList'));
     }
 
+    public function searchNews(Request $request)
+    {
+        $searchNews = News::query()
+            ->when($request->keyword, function ($query) use ($request) {
+                $query->where('title', 'like', "%{$request->keyword}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $recentNews = News::where('show', 1)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+        $categoryList = Category::all();
+
+        return view('page.news.search', compact('searchNews', 'recentNews', 'categoryList'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

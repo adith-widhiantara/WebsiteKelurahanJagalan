@@ -55,6 +55,9 @@ Route::prefix('news')->name('news.')->group(function () {
     // index
     Route::get('', [NewsController::class, 'index'])->name('index');
 
+    // set search
+    Route::post('search', [NewsController::class, 'searchNews'])->name('search'); // news.search
+
     // show
     Route::get('{news:slug}', [NewsController::class, 'show'])->name('show');
 });
