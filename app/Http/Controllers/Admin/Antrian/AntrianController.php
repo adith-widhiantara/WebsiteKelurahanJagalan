@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin\Antrian;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Events\PanggilAntrianEvent;
-use App\Events\ShowCountAntrianEvent;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian\JenisAntrian;
 use App\Models\Antrian\NomorAntrian;
+use Illuminate\Support\Facades\Auth;
+use App\Events\ShowCountAntrianEvent;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 
 class AntrianController extends Controller
@@ -138,13 +140,16 @@ class AntrianController extends Controller
             }
         }
 
-        $jenisAntrian->nomorAntrian()->create([
+        $nomorAntrian = $jenisAntrian->nomorAntrian()->create([
             'user_id' => $user->id,
             'nomor_antrian' => $jenisAntrian->code . '-' . $lastThisAntrianCount,
             'angka_antrian' => $lastThisAntrianCount
         ]);
 
-        return back()->with('success', 'Berhasil didaftarkan');
+        $fileName = $nomorAntrian->id . '_' . $nomorAntrian->user_id . '.pdf';
+
+        return $this->printPdfAntrian($nomorAntrian, $fileName);
+        // return back()->with('success', 'Berhasil didaftarkan');
     }
 
     public function petugasPajakStore(Request $request)
@@ -176,13 +181,16 @@ class AntrianController extends Controller
             }
         }
 
-        $jenisAntrian->nomorAntrian()->create([
+        $nomorAntrian = $jenisAntrian->nomorAntrian()->create([
             'user_id' => $user->id,
             'nomor_antrian' => $jenisAntrian->code . '-' . $lastThisAntrianCount,
             'angka_antrian' => $lastThisAntrianCount
         ]);
 
-        return back()->with('success', 'Berhasil didaftarkan');
+        $fileName = $nomorAntrian->id . '_' . $nomorAntrian->user_id . '.pdf';
+
+        return $this->printPdfAntrian($nomorAntrian, $fileName);
+        // return back()->with('success', 'Berhasil didaftarkan');
     }
 
     public function kepalaKelurahanStore(Request $request)
@@ -214,13 +222,26 @@ class AntrianController extends Controller
             }
         }
 
-        $jenisAntrian->nomorAntrian()->create([
+        $nomorAntrian = $jenisAntrian->nomorAntrian()->create([
             'user_id' => $user->id,
             'nomor_antrian' => $jenisAntrian->code . '-' . $lastThisAntrianCount,
             'angka_antrian' => $lastThisAntrianCount
         ]);
 
-        return back()->with('success', 'Berhasil didaftarkan');
+        $fileName = $nomorAntrian->id . '_' . $nomorAntrian->user_id . '.pdf';
+
+        return $this->printPdfAntrian($nomorAntrian, $fileName);
+        // return back()->with('success', 'Berhasil didaftarkan');
+    }
+
+    private function printPdfAntrian($nomorAntrian, $fileName)
+    {
+        $pdf = PDF::loadView('page.admin.antrian.print', ['data' => $nomorAntrian->nomor_antrian]);
+        $pdf->save(base_path() . '/storage/app/public/antrian/antrian.pdf');
+        Storage::move('public/antrian/antrian.pdf', 'public/antrian/' . $fileName);
+
+        $pdfUrl = Storage::path('public/antrian/' . $fileName);
+        return response()->file($pdfUrl);
     }
 
     public function antrianTerima(Request $request, NomorAntrian $dataAntrian)
