@@ -1,5 +1,4 @@
 Kurang
-1. gambar dashboard
 
 Fitur
 1. pengajuan surat pengantar (permintaan surat) (done) v2,
