@@ -21,11 +21,11 @@ $title = 'Buat Aduan';
                 <form action="{{ route('aduan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mt-10">
-                        <input type="text" name="judul_masalah" placeholder="Apa Aduan Anda?" required class="single-input" value="{{ old('judul_masalah') }}">
+                        <input type="text" name="judul_masalah" placeholder="Apa Aduan Anda?" class="single-input" value="{{ old('judul_masalah') }}">
                     </div>
 
                     <div class="mt-10">
-                        <input type="file" name="foto[]" placeholder="Foto Kejadian" required class="single-input" multiple>
+                        <input type="file" name="foto[]" placeholder="Foto Kejadian" class="single-input" multiple>
                     </div>
 
                     <div class="input-group-icon mt-10">
@@ -41,7 +41,7 @@ $title = 'Buat Aduan';
                     </div>
 
                     <div class="mt-10">
-                        <textarea class="single-textarea" name="detail_pengaduan" placeholder="Jelaskan Aduan Anda" required>{{ old('detail_pengaduan') }}</textarea>
+                        <textarea class="single-textarea" name="detail_pengaduan" placeholder="Jelaskan Aduan Anda">{{ old('detail_pengaduan') }}</textarea>
                     </div>
 
                     <button type="submit" class="btn mt-5 float-right">

@@ -122,7 +122,10 @@ class AdminNewsController extends Controller
 
     public function indexCategory()
     {
-        $category = Category::all();
+        $category = Category::query()
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
         return view('page.admin.news.category.index', compact('category'));
     }
 

@@ -31,24 +31,23 @@ Buat Berita
                 <div class="card-body">
 
                     @if ($errors->any())
+                    @foreach ($errors->all() as $error)
                     <div class="alert alert-warning" role="alert">
-                        @foreach ($errors->all() as $error)
                         {{ $error }}
-                        @endforeach
                     </div>
+                    @endforeach
                     @endif
 
                     <div class="form-group">
                         <label for="title">Judul Berita</label>
-                        <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="title"
-                            value="{{ old('title') }}">
+                        <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="title" value="{{ old('title') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="photoNews">Sampul Berita</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="photoNews" name="photo">
+                                <input type="file" class="custom-file-input" id="photoNews" name="photo" required accept="image/*">
                                 <label class="custom-file-label" for="photoNews">Pilih Gambar</label>
                             </div>
                             <div class="input-group-append">
@@ -61,7 +60,7 @@ Buat Berita
                         <label>Kategori Berita</label>
                         <select class="form-control select2" name="category_id">
                             <option value="">...</option>
-                            @foreach (\App\Models\News\Category::all() as $cat)
+                            @foreach (\App\Models\News\Category::orderBy('updated_at', 'desc')->get() as $cat)
                             <option @if ( old('category_id')==$cat->id ) selected="selected" @endif
                                 value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach

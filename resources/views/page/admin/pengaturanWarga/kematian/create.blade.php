@@ -94,7 +94,7 @@ Buat Data Kematian
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ url()->previous() }}" class="btn btn-warning">
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">
                             Kembali
                         </a>
                         <button class="btn btn-success" type="submit">

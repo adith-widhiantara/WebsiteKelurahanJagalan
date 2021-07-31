@@ -148,7 +148,9 @@ return [
         ],
         'password' => [
             'min' => 'Password minimal :min huruf.',
-
+        ],
+        'title' => [
+            'max' => 'Judul tidak bisa lebih dari :max'
         ],
     ],
 

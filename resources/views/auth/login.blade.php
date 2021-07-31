@@ -12,7 +12,7 @@ $title = "Masuk";
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <div class="login100-form-title" style="background-image: url(assets/img/hero/hero2.png);">
+            <div class="login100-form-title" style="background-image: url(assets/img/hero/imagecon-group.jpg);">
                 <span class="login100-form-title-1">
                     @php
                     echo $title

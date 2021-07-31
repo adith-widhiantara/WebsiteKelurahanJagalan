@@ -45,7 +45,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Nama
+                            Nama <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" required class="form-control" placeholder="Masukkan Nama" name="nama" value="{{ old('nama') }}">
                         <small class="form-text text-muted">Nama tidak bisa diganti.</small>
@@ -53,7 +53,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Nomor KTP
+                            Nomor KTP <span style="color: #ff0000">*</span>
                         </label>
                         <input type="number" min="1000000000000000" max="9999999999999999" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ old('nomor_ktp') }}">
                         <small class="form-text text-muted">Nomor KTP tidak bisa diganti.</small>
@@ -61,14 +61,14 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Nomor Telepon
+                            Nomor Telepon <span style="color: #ff0000">*</span>
                         </label>
                         <input type="number" required class="form-control" placeholder="Masukkan Nomor Telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}">
                     </div>
 
                     <div class="form-group">
                         <label>
-                            Gelar
+                            Gelar <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="gelar_id">
                             <option value="" selected="selected">...</option>
@@ -80,7 +80,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Jenis Kelamin
+                            Jenis Kelamin <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="jenis_kelamin">
                             <option value="" selected="selected">...</option>
@@ -91,14 +91,14 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Tempat Lahir
+                            Tempat Lahir <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" required class="form-control" placeholder="Masukkan Tempat Lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
                     </div>
 
                     <div class="form-group">
                         <label>
-                            Tanggal Lahir
+                            Tanggal Lahir <span style="color: #ff0000">*</span>
                         </label>
                         <div class="input-group date" id="tanggalLahir" data-target-input="nearest">
                             <div class="input-group-prepend" data-target="#tanggalLahir" data-toggle="datetimepicker">
@@ -110,7 +110,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Akte Kelahiran
+                            Akte Kelahiran <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="surat_lahir">
                             <option value="" selected="selected">...</option>
@@ -128,7 +128,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Golongan Darah
+                            Golongan Darah <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="golongan_darah_id">
                             <option value="" selected="selected">...</option>
@@ -140,7 +140,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Agama
+                            Agama <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="agama_id">
                             <option value="" selected="selected">...</option>
@@ -159,7 +159,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Status Perkawinan
+                            Status Perkawinan <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="status_perkawinan_id">
                             <option value="" selected="selected">...</option>
@@ -171,7 +171,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Akte Perkawinan
+                            Akte Perkawinan <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="buku_nikah">
                             <option value="" selected="selected">...</option>
@@ -201,7 +201,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Akte Perceraian
+                            Akte Perceraian <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="surat_cerai">
                             <option value="" selected="selected">...</option>
@@ -231,7 +231,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Status Hubungan Dengan Kepala Keluarga
+                            Status Hubungan Dalam Keluarga <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="status_hubungan_kepala_id">
                             <option value="" selected="selected">...</option>
@@ -243,7 +243,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Kelainan Fisik dan Mental
+                            Kelainan Fisik dan Mental <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="kelainan_fisik">
                             <option value="" selected="selected">...</option>
@@ -254,7 +254,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Penyandang Cacat
+                            Penyandang Cacat <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="penyandang_cacat_id">
                             <option value="" selected="selected">...</option>
@@ -266,7 +266,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Pendidikan Terakhir
+                            Pendidikan Terakhir <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="pendidikan_terakhir_id">
                             <option value="" selected="selected">...</option>
@@ -278,7 +278,7 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            Pekerjaan
+                            Pekerjaan <span style="color: #ff0000">*</span>
                         </label>
                         <select class="form-control select2" style="width: 100%;" name="pekerjaan_id">
                             <option value="" selected="selected">...</option>
@@ -290,28 +290,28 @@ Pendaftaran Anggota Keluarga
 
                     <div class="form-group">
                         <label>
-                            NIK Ibu
+                            NIK Ibu <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" class="form-control" placeholder="Masukkan NIK Ibu" name="nik_ibu" value="{{ old('nik_ibu') }}">
                     </div>
 
                     <div class="form-group">
                         <label>
-                            Nama Ibu
+                            Nama Ibu <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" required class="form-control" placeholder="Masukkan Nama Ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
                     </div>
 
                     <div class="form-group">
                         <label>
-                            NIK Ayah
+                            NIK Ayah <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" class="form-control" placeholder="Masukkan NIK Ayah" name="nik_ayah" value="{{ old('nik_ayah') }}">
                     </div>
 
                     <div class="form-group">
                         <label>
-                            Nama Ayah
+                            Nama Ayah <span style="color: #ff0000">*</span>
                         </label>
                         <input type="text" required class="form-control" placeholder="Masukkan Nama Ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
                     </div>
