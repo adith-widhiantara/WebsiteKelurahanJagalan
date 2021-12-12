@@ -160,7 +160,7 @@ $title = 'Daftar Seluruh Permintaan Surat Warga';
                                 </button>
                             </div>
                             @php
-                            $imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
+                            @$imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
                             @endphp
                             <div class="modal-body">
                                 <img src="{{ asset('storage/surat/bgimage/'.$imageSurat) }}" class="img-fluid">

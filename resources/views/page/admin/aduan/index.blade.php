@@ -318,7 +318,7 @@ Daftar Aduan
                                 </button>
                             </div>
                             @php
-                            $imageAduan = \App\Models\PengaturanWebsite::where('name', 'image_aduan')->first()->description;
+                            @$imageAduan = \App\Models\PengaturanWebsite::where('name', 'image_aduan')->first()->description;
                             @endphp
                             <div class="modal-body">
                                 <img src="{{ asset('storage/aduan/bgimage/'.$imageAduan) }}" class="img-fluid">

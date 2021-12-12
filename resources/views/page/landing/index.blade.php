@@ -9,10 +9,10 @@ Selamat Datang
 @endsection
 
 @php
-$imageAduan = \App\Models\PengaturanWebsite::where('name', 'image_aduan')->first()->description;
-$imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
-$imagePenghargaan = \App\Models\PengaturanWebsite::where('name', 'image_penghargaan')->first()->description;
-$imageBantuan = \App\Models\PengaturanWebsite::where('name', 'image_bantuan')->first()->description;
+@$imageAduan = \App\Models\PengaturanWebsite::where('name', 'image_aduan')->first()->description;
+@$imageSurat = \App\Models\PengaturanWebsite::where('name', 'image_surat')->first()->description;
+@$imagePenghargaan = \App\Models\PengaturanWebsite::where('name', 'image_penghargaan')->first()->description;
+@$imageBantuan = \App\Models\PengaturanWebsite::where('name', 'image_bantuan')->first()->description;
 @endphp
 
 @section('base')
