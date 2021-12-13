@@ -55,16 +55,14 @@
                         <label>
                             Nama
                         </label>
-                        <input type="text" required class="form-control" placeholder="Masukkan Nama" name="nama" value="{{ $userKeluarga->nama }}" disabled>
-                        <small class="form-text text-muted">Nama tidak bisa diganti.</small>
+                        <input type="text" required class="form-control" placeholder="Masukkan Nama" name="nama" value="{{ $userKeluarga->nama }}">
                     </div>
 
                     <div class="form-group">
                         <label>
                             Nomor KTP
                         </label>
-                        <input type="text" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ $userKeluarga->nomor_ktp }}" disabled>
-                        <small class="form-text text-muted">Nomor KTP tidak bisa diganti.</small>
+                        <input type="text" required class="form-control" placeholder="Masukkan Nomor KTP" name="nomor_ktp" value="{{ $userKeluarga->nomor_ktp }}">
                     </div>
 
                     <div class="form-group">

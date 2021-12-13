@@ -103,6 +103,8 @@ class AnggotaKeluargaController extends Controller
         $userKeluarga = User::where('nomor_ktp', $anggotaKeluarga)->firstOrFail();
 
         $userKeluarga->update([
+            'nama' => $request->nama,
+            'nomor_ktp' => $request->nomor_ktp,
             'nomor_telepon' => $request->nomor_telepon,
             'email' => $request->email,
         ]);
