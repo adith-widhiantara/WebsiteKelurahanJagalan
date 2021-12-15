@@ -26,7 +26,7 @@
                             </div>
                             <div class="pera-count mb-50">
                                 <p>
-                                    Jumlah kartu keluarga yang berada di Kelurahan Jagalan.
+                                    Jumlah kartu keluarga yang berada di Desa Penambangan.
                                 </p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="pera-count">
                                 <p>
-                                    Jumlah warga yang berada di Kelurahan Jagalan.
+                                    Jumlah warga yang berada di Desa Penambangan.
                                 </p>
                             </div>
                         </div>

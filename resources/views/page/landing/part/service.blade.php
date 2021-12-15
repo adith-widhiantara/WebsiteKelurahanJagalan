@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="section-tittle mb-60 text-center">
                     <h2>
-                        Layanan Online Kelurahan Jagalan
+                        Layanan Online Desa Penambangan
                     </h2>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                                     Aduan Masyarakat
                                 </h1>
                                 <p>
-                                    Penyampaian keluhan oleh masyarakat Kelurahan Jagalan kepada Pengurus Kelurahan Jagalan atas pelayanan atau sarana prasarana yang tidak sesuai dengan standar pelayanan.
+                                    Penyampaian keluhan oleh masyarakat Desa Penambangan kepada Pengurus Desa Penambangan atas pelayanan atau sarana prasarana yang tidak sesuai dengan standar pelayanan.
                                 </p>
                                 <a href="{{ route('aduan.index') }}" class="btn">
                                     Aduan Masyarakat
@@ -54,7 +54,7 @@
                                     Pengajuan Surat
                                 </h1>
                                 <p>
-                                    Pengajuan berbagai surat dari masyarakat Kelurahan Jagalan kepada Pengurus Kelurahan Jagalan.
+                                    Pengajuan berbagai surat dari masyarakat Desa Penambangan kepada Pengurus Desa Penambangan.
                                 </p>
                                 <a href="{{ route('warga.surat.index') }}" class="btn">
                                     Pengajuan Surat

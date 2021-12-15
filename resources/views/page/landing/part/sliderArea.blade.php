@@ -10,7 +10,7 @@
                                 Aduan Masyarakat
                             </h1>
                             <p data-animation="fadeInUp" data-delay="0.4s">
-                                Penyampaian keluhan oleh masyarakat Kelurahan Jagalan kepada Pengurus Kelurahan Jagalan.
+                                Penyampaian keluhan oleh masyarakat Desa Penambangan kepada Pengurus Desa Penambangan.
                             </p>
                             <a href="{{ route('aduan.index') }}" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">
                                 Menuju Layanan Ini
@@ -31,7 +31,7 @@
                                 Pengajuan Surat
                             </h1>
                             <p data-animation="fadeInUp" data-delay="0.4s">
-                                Pengajuan berbagai surat dari masyarakat Kelurahan Jagalan kepada Pengurus Kelurahan Jagalan.
+                                Pengajuan berbagai surat dari masyarakat Desa Penambangan kepada Pengurus Desa Penambangan.
                             </p>
                             <a href="{{ route('warga.surat.index') }}" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">
                                 Menuju Layanan Ini

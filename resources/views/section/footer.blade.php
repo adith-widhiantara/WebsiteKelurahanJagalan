@@ -82,7 +82,7 @@
                                     Copyright &copy;
                                     <script>
                                         document.write(new Date().getFullYear());
-                                    </script> Kelurahan Jagalan
+                                    </script> Desa Penambangan
                                 </p>
                             </div>
                         </div>
